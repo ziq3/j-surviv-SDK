@@ -4,11 +4,20 @@
  */
 package jsclub.codefest2024.model;
 
+import io.socket.client.Socket;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  *
  * @author Son Duong
  */
 public class Player {
+
+    private static final Logger LOGGER = LogManager.getLogger(Player.class);
     private String player_name;
     private int hp;
     private int x;
@@ -17,6 +26,7 @@ public class Player {
     private int effect_time_left;
     private int bullet_num;
     private int point;
+    private Socket socket;
 
     public Player() {
     }
@@ -95,4 +105,17 @@ public class Player {
     public void setPoint(int point) {
         this.point = point;
     }
+
+    public void move(String step) {
+        if (socket != null && step.length() > 0) {
+            Dir dir = new Dir(step);
+            LOGGER.debug("Player = {} - Dir = {}", this.player_name, dir);
+            try {
+                socket.emit("driver player", new JSONObject(dir.toString()));
+            } catch (JSONException e) {
+                LOGGER.error(e);
+            }
+        }
+    }
+
 }
