@@ -1,8 +1,8 @@
-package jsclub.codefest2024.socket.data.Weapons;
+package jsclub.codefest2024.socket.data.Weapon;
 
 import com.google.gson.Gson;
 
-public class Weapons {
+public class Weapon {
     private String type;
     private int size;
     private int point;
@@ -18,7 +18,7 @@ public class Weapons {
     private int explosionRadius;
 
     // Constructor
-    public Weapons(String type, int size, int point, int rare, int damage, int obstacleDamage,
+    public Weapon(String type, int size, int point, int rare, int damage, int obstacleDamage,
             Double stunDuration, int knockbackDistance, int cooldown, int capacity, int bulletSpeed, int range,
             int explosionRadius) {
         this.type = type;

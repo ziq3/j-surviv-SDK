@@ -1,12 +1,34 @@
 package jsclub.codefest2024.socket.data.Enemies;
 
-import java.util.List;
+import com.google.gson.Gson;
 
 public class Chaser {
-    public List<String> chaserList;
-    public int Damage = 15;
+    public int Damage;
+    public String Name;
 
-    public Chaser() {
-        chaserList = List.of("Phu_huynh", "Ninja_Lead", "Cho", "Ong_noi");
+    public Chaser(int Damge, String Name) {
+        this.Damage = Damge;
+        this.Name = Name;
+    }
+
+    public void setDamge(int Damage) {
+        this.Damage = Damage;
+    }
+
+    public int getDamage() {
+        return Damage;
+    }
+
+    public void setName(String Name) {
+        this.Name = Name;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    @Override
+    public String toString() {
+        return new Gson().toJson(this);
     }
 }
