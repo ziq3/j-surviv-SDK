@@ -4,46 +4,77 @@
  */
 package jsclub.codefest2024.model;
 
+import com.google.gson.Gson;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author Son Duong
  */
 public class Inventory {
-    private String player_name;
-    private String action;
-    private int item_id;
+
+    enum Items {
+        WATER_GUN,
+        LEGO_GUN,
+        RUBBER_GUN,
+        BADMINTON,
+        BROOM,
+        SANDAL,
+        LIGHT_SABER,
+        HAND,
+        PAPER_AIRPLANE,
+        BALL,
+        PAPER_DART,
+        TEDDY_BEAR,
+        WATER_BALL,
+        SNACK,
+        INSECTICIDE,
+        DRINK,
+        BANDAGES,
+        LUNCH_BOX
+    }
+
+    public String player_name;
+    public String action;
+    public int item_id;
 
     public Inventory() {
     }
 
-    public Inventory(String player_name, String action, int item_id) {
-        this.player_name = player_name;
-        this.action = action;
-        this.item_id = item_id;
+    public static Map<Items, Integer> INVENTORY = new HashMap<>() {
+        {
+            put(Items.WATER_GUN, 0);
+            put(Items.LEGO_GUN, 0);
+            put(Items.RUBBER_GUN, 0);
+            put(Items.BADMINTON, 0);
+            put(Items.BROOM, 0);
+            put(Items.SANDAL, 0);
+            put(Items.LIGHT_SABER, 0);
+            put(Items.HAND, 0);
+            put(Items.PAPER_AIRPLANE, 0);
+            put(Items.BALL, 0);
+            put(Items.PAPER_DART, 0);
+            put(Items.TEDDY_BEAR, 0);
+            put(Items.WATER_BALL, 0);
+            put(Items.SNACK, 0);
+            put(Items.INSECTICIDE, 0);
+            put(Items.DRINK, 0);
+            put(Items.BANDAGES, 0);
+            put(Items.LUNCH_BOX, 0);
+        }
+    };
+
+    public void removeItem(Items item) {
+        INVENTORY.put(item, 0);
     }
 
-    public String getPlayer_name() {
-        return player_name;
+    public void addItem(Items item) {
+        INVENTORY.put(item, INVENTORY.get(item) + 1);
     }
 
-    public void setPlayer_name(String player_name) {
-        this.player_name = player_name;
+    @Override
+    public String toString() {
+        return new Gson().toJson(this);
     }
-
-    public String getAction() {
-        return action;
-    }
-
-    public void setAction(String action) {
-        this.action = action;
-    }
-
-    public int getItem_id() {
-        return item_id;
-    }
-
-    public void setItem_id(int item_id) {
-        this.item_id = item_id;
-    }
-    
 }
