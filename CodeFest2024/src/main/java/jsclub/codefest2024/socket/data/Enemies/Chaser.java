@@ -3,28 +3,18 @@ package jsclub.codefest2024.socket.data.Enemies;
 import com.google.gson.Gson;
 
 public class Chaser {
-    public int Damage;
-    public String Name;
+    public int damage;
 
-    public Chaser(int Damge, String Name) {
-        this.Damage = Damge;
-        this.Name = Name;
+    public Chaser(int damage) {
+        this.damage = damage;
     }
 
-    public void setDamge(int Damage) {
-        this.Damage = Damage;
+    public void setDamge(int damage) {
+        this.damage = damage;
     }
 
     public int getDamage() {
-        return Damage;
-    }
-
-    public void setName(String Name) {
-        this.Name = Name;
-    }
-
-    public String getName() {
-        return Name;
+        return damage;
     }
 
     @Override

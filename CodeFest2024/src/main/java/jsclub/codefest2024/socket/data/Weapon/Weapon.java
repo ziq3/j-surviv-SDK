@@ -3,10 +3,12 @@ package jsclub.codefest2024.socket.data.Weapon;
 import com.google.gson.Gson;
 
 public class Weapon {
-    private String type;
-    private int size;
+    public enum WeaponType {
+        Guns, Melee, Throwables
+    }
+
+    private WeaponType type;
     private int point;
-    private int rare;
     private int damage;
     private int obstacleDamage;
     private Double stunDuration;
@@ -18,13 +20,11 @@ public class Weapon {
     private int explosionRadius;
 
     // Constructor
-    public Weapon(String type, int size, int point, int rare, int damage, int obstacleDamage,
+    public Weapon(WeaponType type, int point, int damage, int obstacleDamage,
             Double stunDuration, int knockbackDistance, int cooldown, int capacity, int bulletSpeed, int range,
             int explosionRadius) {
         this.type = type;
-        this.size = size;
         this.point = point;
-        this.rare = rare;
         this.damage = damage;
         this.obstacleDamage = obstacleDamage;
         this.stunDuration = stunDuration;
@@ -36,20 +36,12 @@ public class Weapon {
         this.explosionRadius = explosionRadius;
     }
 
-    public void setType(String type) {
+    public void setType(WeaponType type) {
         this.type = type;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
     }
 
     public void setPoint(int point) {
         this.point = point;
-    }
-
-    public void setRare(int rare) {
-        this.rare = rare;
     }
 
     public void setDamage(int damage) {
@@ -88,20 +80,12 @@ public class Weapon {
         this.explosionRadius = explosionRadius;
     }
 
-    public String getType() {
+    public WeaponType getType() {
         return type;
-    }
-
-    public int getSize() {
-        return size;
     }
 
     public int getPoint() {
         return point;
-    }
-
-    public int getRare() {
-        return rare;
     }
 
     public int getDamage() {

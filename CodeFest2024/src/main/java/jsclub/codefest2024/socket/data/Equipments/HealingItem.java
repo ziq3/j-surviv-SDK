@@ -4,26 +4,18 @@ import com.google.gson.Gson;
 
 public class HealingItem {
     private int healingHp;
-    private int size;
     private int usageTime;
-    private int rare;
     private int point;
 
     // Constructor
-    public HealingItem(int healingHp, int size, int usageTime, int point, int rare) {
+    public HealingItem(int healingHp, int usageTime, int point) {
         this.healingHp = healingHp;
-        this.size = size;
         this.usageTime = usageTime;
         this.point = point;
-        this.rare = rare;
     }
 
     public void setHealingHp(int healingHp) {
         this.healingHp = healingHp;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
     }
 
     public void setUsageTime(int usageTime) {
@@ -34,16 +26,8 @@ public class HealingItem {
         this.point = point;
     }
 
-    public void setRare(int rare) {
-        this.rare = rare;
-    }
-
     public int getHealingHp() {
         return healingHp;
-    }
-
-    public int getSize() {
-        return size;
     }
 
     public int getUsageTime() {
@@ -52,10 +36,6 @@ public class HealingItem {
 
     public int getPoint() {
         return point;
-    }
-
-    public int getRare() {
-        return rare;
     }
 
     @Override

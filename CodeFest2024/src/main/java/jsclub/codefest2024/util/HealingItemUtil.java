@@ -8,27 +8,27 @@ import jsclub.codefest2024.socket.data.Equipments.HealingItem;
 
 public class HealingItemUtil {
     public static Map<String, HealingItem> createHealingItemsMap() {
-        Map<String, HealingItem> HealingItemList = new HashMap<>();
-        HealingItemList.put("SNACK", new HealingItem(10, 1, 1000, 5, 1));
-        HealingItemList.put("INSECTICIDE", new HealingItem(15, 1, 1500, 7, 1));
-        HealingItemList.put("DRINK", new HealingItem(20, 1, 2000, 10, 1));
-        HealingItemList.put("BANDAGES", new HealingItem(50, 1, 3000, 25, 2));
-        HealingItemList.put("LUNCH_BOX", new HealingItem(100, 1, 4000, 51, 3));
-        return HealingItemList;
+        Map<String, HealingItem> healingItemList = new HashMap<>();
+        healingItemList.put("SNACK", new HealingItem(10, 1000, 1));
+        healingItemList.put("INSECTICIDE", new HealingItem(15, 1500, 1));
+        healingItemList.put("DRINK", new HealingItem(20, 2000, 1));
+        healingItemList.put("BANDAGES", new HealingItem(50, 3000, 2));
+        healingItemList.put("LUNCH_BOX", new HealingItem(100, 4000, 3));
+        return healingItemList;
     }
 
-    public Map<String, HealingItem> HealingItemList;
+    public Map<String, HealingItem> healingItemList;
 
     public HealingItemUtil() {
-        HealingItemList = createHealingItemsMap();
+        this.healingItemList = createHealingItemsMap();
     }
 
     @Override
     public String toString() {
-        return new Gson().toJson(HealingItemList);
+        return new Gson().toJson(healingItemList);
     }
 
     public HealingItem getHealingItem(String name) {
-        return HealingItemList.get(name);
+        return healingItemList.get(name);
     }
 }

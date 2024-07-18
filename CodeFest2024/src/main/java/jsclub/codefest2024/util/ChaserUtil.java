@@ -8,25 +8,25 @@ import jsclub.codefest2024.socket.data.Enemies.Chaser;
 
 public class ChaserUtil {
     public static Map<String, Chaser> createChasersMap() {
-        Map<String, Chaser> ChaserList = new HashMap<>();
-        ChaserList.put("Chaser1", new Chaser(15, "Chaser1"));
-        ChaserList.put("Chaser2", new Chaser(15, "Chaser2"));
-        ChaserList.put("Chaser3", new Chaser(15, "Chaser3"));
-        ChaserList.put("Chaser4", new Chaser(15, "Chaser4"));
-        return ChaserList;
+        Map<String, Chaser> chaserList = new HashMap<>();
+        chaserList.put("Chaser1", new Chaser(15));
+        chaserList.put("Chaser2", new Chaser(15));
+        chaserList.put("Chaser3", new Chaser(15));
+        chaserList.put("Chaser4", new Chaser(15));
+        return chaserList;
     }
 
-    public Map<String, Chaser> ChaserList;
+    public Map<String, Chaser> chaserList;
 
     public ChaserUtil() {
-        ChaserList = createChasersMap();
+        this.chaserList = createChasersMap();
     }
 
     public String toString() {
-        return new Gson().toJson(ChaserList);
+        return new Gson().toJson(chaserList);
     }
 
     public Chaser getChaser(String name) {
-        return ChaserList.get(name);
+        return chaserList.get(name);
     }
 }
