@@ -4,52 +4,71 @@
  */
 package jsclub.codefest2024.sdk.socket;
 
-import java.net.URI;
-import java.util.Collections;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import io.socket.client.IO;
 import io.socket.client.Socket;
-import io.socket.emitter.Emitter;
+import jsclub.codefest2024.sdk.util.SocketUtil;
 
 /**
- *
- * @author AD
+ * SocketClient for connecting to a server using Socket.IO.
+ * Author: AD
  */
 public class SocketClient {
-    final static URI uri = URI.create("http://localhost:3000");
+    final private String defaultUrl = "http://localhost:3000";
+    private Socket socket;
 
-    public static void main(String[] args) throws JSONException {
-        IO.Options options = IO.Options.builder().build();
+    /**
+     * Connects to the server at the specified URL.
+     * 
+     * @param serverUrl The URL of the server to connect to.
+     * @return true if connection was initiated successfully, false otherwise.
+     */
+    public Boolean connectToServer(String serverUrl) {
+        if (socket != null) {
+            socket.disconnect();
+            socket = null;
+        }
 
-        Socket socket = IO.socket(uri, options);
+        socket = SocketUtil.init(serverUrl);
 
-        // Log connection events
-        socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
-            @Override
-            public void call(Object... args) {
-                System.out.println("Connected to server");
+        if (socket == null) {
+            return false;
+        }
+
+        socket.on(Socket.EVENT_CONNECT, objects -> {
+            try {
+                System.out.println("Connected to the server");
+                socket.on("message", (Object... args) -> {
+                    System.out.println("Message from server: " + args[0]);
+                });
+
+            socket.emit("message", "From client: ","Hello server" );
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
         });
 
-        socket.on(Socket.EVENT_CONNECT_ERROR, new Emitter.Listener() {
-            @Override
-            public void call(Object... args) {
-                System.out.println("Connection error: " + args[0]);
-            }
+        socket.on(Socket.EVENT_DISCONNECT, objects -> {
+            System.out.println("Disconnected from the server");
         });
 
-        socket.on("message", new Emitter.Listener() {
-            @Override
-            public void call(Object... args) {
-                System.out.println("Message from server: " + args[0]);
-            }
+        socket.on(Socket.EVENT_CONNECT_ERROR, objects -> {
+            System.err.println("Connection error: " + objects[0]);
         });
-
-        socket.emit("message", 1, "From client");
 
         socket.connect();
+        return true;
+    }
+
+    /**
+     * Disconnects from the currently connected server.
+     */
+    public void disconnectFromServer() {
+        if (socket != null && socket.connected()) {
+            socket.disconnect();
+        }
+    }
+    
+    public static void main(String[] args) {
+        SocketClient cli = new SocketClient();
+        cli.connectToServer(cli.defaultUrl);
     }
 }
