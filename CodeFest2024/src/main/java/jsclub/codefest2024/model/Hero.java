@@ -4,11 +4,12 @@
  */
 package jsclub.codefest2024.model;
 
-import io.socket.client.Socket;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import io.socket.client.Socket;
 
 /**
  *
@@ -45,16 +46,5 @@ public class Hero {
             }
         }
     }
-    
-    public void getInventory() {
-        if (socket != null) {
-            Inventory inven = new Inventory();
-            LOGGER.debug("Player = {} - Inventory = {}", this.player_name, inven.INVENTORY);
-            try {
-                socket.emit("inventory", new JSONObject(inven.toString()));
-            } catch (JSONException e) {
-                LOGGER.error(e);
-            }
-        }
-    }
+
 }

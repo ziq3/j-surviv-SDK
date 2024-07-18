@@ -35,9 +35,12 @@ public class Inventory {
         LUNCH_BOX
     }
 
+    enum Action {
+        ADD,
+        REMOVE
+    }
+
     public String player_name;
-    public String action;
-    public int item_id;
 
     public Inventory() {
     }
@@ -71,6 +74,17 @@ public class Inventory {
 
     public void addItem(Items item) {
         INVENTORY.put(item, INVENTORY.get(item) + 1);
+    }
+
+    public void actionItem(Items item, Action action) {
+        switch(action){
+            case ADD:
+                addItem(item);
+                break;
+            case REMOVE:
+                removeItem(item);
+                break;
+        }
     }
 
     @Override
