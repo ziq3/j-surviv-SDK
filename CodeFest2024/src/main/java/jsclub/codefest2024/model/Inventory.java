@@ -4,9 +4,10 @@
  */
 package jsclub.codefest2024.model;
 
-import com.google.gson.Gson;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.google.gson.Gson;
 
 /**
  *
@@ -32,7 +33,10 @@ public class Inventory {
         INSECTICIDE,
         DRINK,
         BANDAGES,
-        LUNCH_BOX
+        LUNCH_BOX,
+        VEST,
+        POT,
+        HELMET
     }
 
     enum Action {
@@ -65,8 +69,16 @@ public class Inventory {
             put(Items.DRINK, 0);
             put(Items.BANDAGES, 0);
             put(Items.LUNCH_BOX, 0);
+            put(Items.VEST, 0);
+            put(Items.POT, 0);
+            put(Items.HELMET, 0);
         }
     };
+
+
+    public Map<Items, Integer> getInventory() {
+        return INVENTORY;
+    }
 
     public void removeItem(Items item) {
         INVENTORY.put(item, 0);

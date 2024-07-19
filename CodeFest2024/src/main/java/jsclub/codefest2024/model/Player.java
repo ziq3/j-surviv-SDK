@@ -5,12 +5,6 @@
 package jsclub.codefest2024.model;
 
 import com.google.gson.Gson;
-import io.socket.client.Socket;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  *

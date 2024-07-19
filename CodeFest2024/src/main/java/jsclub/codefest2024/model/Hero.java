@@ -35,12 +35,24 @@ public class Hero {
     }
     
     
+    public void getPlayerInfo(){
+        if (socket != null){
+            Player player = new Player();
+            LOGGER.debug("Player = {} - PlayerInfo = {}", this.player_name, player);
+            try {
+                socket.emit(ServerSocketConfig.PLAYER_INFO, new JSONObject(player.toString()));
+            } catch (JSONException e) {
+                LOGGER.error(e);
+            }
+        }
+    }
+    
     public void move(String step) {
         if (socket != null && step.length() > 0) {
             Dir dir = new Dir(step);
             LOGGER.debug("Player = {} - Dir = {}", this.player_name, dir);
             try {
-                socket.emit("driver player", new JSONObject(dir.toString()));
+                socket.emit(ServerSocketConfig.DRIVE_PLAYER, new JSONObject(dir.toString()));
             } catch (JSONException e) {
                 LOGGER.error(e);
             }
