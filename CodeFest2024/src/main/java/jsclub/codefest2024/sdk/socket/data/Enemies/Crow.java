@@ -1,8 +1,8 @@
-package jsclub.codefest2024.socket.data.Enemies;
+package jsclub.codefest2024.sdk.socket.data.Enemies;
 
 import com.google.gson.Gson;
 
-import jsclub.codefest2024.socket.Position;
+import jsclub.codefest2024.sdk.socket.Position;
 
 public class Crow {
     public int damge = 10;

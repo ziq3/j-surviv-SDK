@@ -1,10 +1,10 @@
-package jsclub.codefest2024.util;
+package jsclub.codefest2024.sdk.util;
 
 import java.util.HashMap;
 import java.util.Map;
 import com.google.gson.Gson;
 
-import jsclub.codefest2024.socket.data.Enemies.Chaser;
+import jsclub.codefest2024.sdk.socket.data.Enemies.Chaser;
 
 public class ChaserUtil {
     public static Map<String, Chaser> createChasersMap() {

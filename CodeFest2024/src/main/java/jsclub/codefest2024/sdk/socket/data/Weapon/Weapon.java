@@ -1,4 +1,4 @@
-package jsclub.codefest2024.socket.data.Weapon;
+package jsclub.codefest2024.sdk.socket.data.Weapon;
 
 import com.google.gson.Gson;
 

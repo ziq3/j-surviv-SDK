@@ -1,4 +1,4 @@
-package jsclub.codefest2024.model;
+package jsclub.codefest2024.sdk.model;
 
 public class ServerSocketConfig {
     public static final String JOIN_GAME = "join game";

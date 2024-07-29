@@ -1,4 +1,4 @@
-package jsclub.codefest2024.socket.data.Equipments;
+package jsclub.codefest2024.sdk.socket.data.Equipments;
 
 import com.google.gson.Gson;
 

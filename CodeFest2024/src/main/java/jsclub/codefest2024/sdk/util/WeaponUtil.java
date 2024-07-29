@@ -1,12 +1,12 @@
-package jsclub.codefest2024.util;
+package jsclub.codefest2024.sdk.util;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import com.google.gson.Gson;
 
-import jsclub.codefest2024.socket.data.Weapon.Weapon;
-import jsclub.codefest2024.socket.data.Weapon.Weapon.WeaponType;
+import jsclub.codefest2024.sdk.socket.data.Weapon.Weapon;
+import jsclub.codefest2024.sdk.socket.data.Weapon.Weapon.WeaponType;
 
 public class WeaponUtil {
     private static WeaponType Guns = WeaponType.Guns;

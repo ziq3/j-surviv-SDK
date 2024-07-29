@@ -1,4 +1,4 @@
-package jsclub.codefest2024.socket.data.Enemies;
+package jsclub.codefest2024.sdk.socket.data.Enemies;
 
 import com.google.gson.Gson;
 
