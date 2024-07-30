@@ -72,9 +72,4 @@ public class SocketClient {
             socket.disconnect();
         }
     }
-
-    public static void main(String[] args) {
-        SocketClient cli = new SocketClient();
-        cli.connectToServer(cli.defaultUrl);
-    }
 }

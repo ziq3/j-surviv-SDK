@@ -4,59 +4,32 @@
  */
 package jsclub.codefest2024.sdk.model;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import io.socket.client.Socket;
+import jsclub.codefest2024.sdk.socket.SocketClient;
 
 /**
  *
  * @author Son Duong
  */
 public class Hero {
-    private static final Logger LOGGER = LogManager.getLogger(Hero.class);
     private String player_name = "";
     private String gameID = "";
-    private Socket socket;
+    private final SocketClient socketClient;
     
     public Hero(String player_name, String gameID) {
         this.player_name = player_name;
         this.gameID = gameID;
+
+        this.socketClient = new SocketClient();
+    }
+
+    public void start(String serverURL) {
+        socketClient.connectToServer(serverURL + "/sdk");
     }
     
     public String getPlayerID() {
         return player_name;
     }
-
     public String getGameID() {
         return gameID;
     }
-    
-    
-    public void getPlayerInfo(){
-        if (socket != null){
-            Player player = new Player();
-            LOGGER.debug("Player = {} - PlayerInfo = {}", this.player_name, player);
-            try {
-                socket.emit(ServerSocketConfig.PLAYER_INFO, new JSONObject(player.toString()));
-            } catch (JSONException e) {
-                LOGGER.error(e);
-            }
-        }
-    }
-    
-    public void move(String step) {
-        if (socket != null && step.length() > 0) {
-            Dir dir = new Dir(step);
-            LOGGER.debug("Player = {} - Dir = {}", this.player_name, dir);
-            try {
-                socket.emit(ServerSocketConfig.DRIVE_PLAYER, new JSONObject(dir.toString()));
-            } catch (JSONException e) {
-                LOGGER.error(e);
-            }
-        }
-    }
-
 }
