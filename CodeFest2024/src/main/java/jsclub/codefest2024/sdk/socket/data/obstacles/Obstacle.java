@@ -1,8 +1,9 @@
 package jsclub.codefest2024.sdk.socket.data.obstacles;
 
 import com.google.gson.Gson;
+import jsclub.codefest2024.sdk.socket.data.element.Element;
 
-public class Obstacle {
+public class Obstacle  extends Element {
     private int endurance;
 
     public Obstacle(int endurance) {
