@@ -1,8 +1,9 @@
 package jsclub.codefest2024.sdk.socket.data.weapon;
 
 import com.google.gson.Gson;
+import jsclub.codefest2024.sdk.socket.data.element.Element;
 
-public class Weapon {
+public class Weapon extends Element {
     public enum WeaponType {
         Guns, Melee, Throwables
     }
