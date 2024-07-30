@@ -6,12 +6,10 @@ package jsclub.codefest2024.sdk.socket;
 
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
+import jsclub.codefest2024.sdk.socket.event.onTestGameReceive;
+import jsclub.codefest2024.sdk.util.MsgPackUtil;
 import jsclub.codefest2024.sdk.util.SocketUtil;
-import org.msgpack.core.MessageBufferPacker;
-import org.msgpack.core.MessagePack;
-import org.msgpack.core.MessageUnpacker;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 /**
@@ -19,7 +17,7 @@ import java.io.IOException;
  * Author: AD
  */
 public class SocketClient {
-    private final String defaultUrl = "http://localhost:3000";
+    private final String defaultUrl = "http://localhost:3000/sdk";
     private Socket socket;
 
     /**
@@ -44,25 +42,7 @@ public class SocketClient {
             @Override
             public void call(Object... args) {
                 System.out.println("Connected to the server");
-                socket.on("msgpack_event", new Emitter.Listener() {
-                    @Override
-                    public void call(Object... args) {
-                        byte[] data = (byte[]) args[0];
-                        try {
-                            String message = decodeMsgPackMessage(data);
-                            System.out.println("Message from server: " + message);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-
-                try {
-                    byte[] encodedMessage = encodeMsgPackMessage( "Hello server");
-                    socket.emit("msgpack_event", encodedMessage);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                socket.on(EventName.ON_TEST_GAME_RECEIVE, new onTestGameReceive());
             }
         });
 
@@ -91,47 +71,5 @@ public class SocketClient {
         if (socket != null && socket.connected()) {
             socket.disconnect();
         }
-    }
-
-    /**
-     * Encodes a message into MsgPack format.
-     *
-     * @param messages The messages to encode.
-     * @return The encoded MsgPack message.
-     * @throws IOException If an I/O error occurs.
-     */
-    private byte[] encodeMsgPackMessage(String... messages) throws IOException {
-        MessageBufferPacker packer = MessagePack.newDefaultBufferPacker();
-
-        for (String message : messages) {
-            packer.packString(message);
-        }
-
-        packer.close();
-        return packer.toByteArray();
-    }
-
-    /**
-     * Decodes a MsgPack message.
-     *
-     * @param data The MsgPack message to decode.
-     * @return The decoded message.
-     * @throws IOException If an I/O error occurs.
-     */
-    private String decodeMsgPackMessage(byte[] data) throws IOException {
-        MessageUnpacker unpacker = MessagePack.newDefaultUnpacker(new ByteArrayInputStream(data));
-
-        StringBuilder result = new StringBuilder();
-        while (unpacker.hasNext()) {
-            result.append(unpacker.unpackString()).append(" ");
-        }
-        unpacker.close();
-
-        return result.toString().trim();
-    }
-
-    public static void main(String[] args) {
-        SocketClient cli = new SocketClient();
-        cli.connectToServer(cli.defaultUrl);
     }
 }
