@@ -1,13 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package jsclub.codefest2024.bot;
 
-/**
- *
- * @author AD
- */
-public class Main {
+import jsclub.codefest2024.sdk.model.Hero;
 
+public class Main {
+    private static final String SERVER_URL = "https://cf-server.jsclub.dev";
+
+    public static void main(String[] args) {
+        Hero hero = new Hero("player1", "game1");
+        hero.start(SERVER_URL);
+    }
 }
