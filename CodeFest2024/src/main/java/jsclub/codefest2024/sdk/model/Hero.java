@@ -6,6 +6,8 @@ package jsclub.codefest2024.sdk.model;
 
 import jsclub.codefest2024.sdk.socket.SocketClient;
 
+import java.util.Map;
+
 /**
  *
  * @author Son Duong
@@ -32,4 +34,5 @@ public class Hero {
     public String getGameID() {
         return gameID;
     }
+
 }

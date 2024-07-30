@@ -15,36 +15,13 @@ import com.google.gson.Gson;
  */
 public class Inventory {
 
-    public enum Items {
-        WATER_GUN,
-        LEGO_GUN,
-        RUBBER_GUN,
-        BADMINTON,
-        BROOM,
-        SANDAL,
-        LIGHT_SABER,
-        HAND,
-        PAPER_AIRPLANE,
-        BALL,
-        PAPER_DART,
-        TEDDY_BEAR,
-        WATER_BALL,
-        SNACK,
-        INSECTICIDE,
-        DRINK,
-        BANDAGES,
-        LUNCH_BOX,
-        VEST,
-        POT,
-        HELMET
-    }
-
     public String player_name;
+    public Items item;
 
     public Inventory() {
     }
 
-    public static Map<Items, Integer> INVENTORY = new HashMap<>() {
+    public Map<Items, Integer> INVENTORY = new HashMap<>() {
         {
             put(Items.WATER_GUN, 0);
             put(Items.LEGO_GUN, 0);

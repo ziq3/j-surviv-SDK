@@ -33,7 +33,7 @@ public class SocketClient {
             socket = null;
         }
 
-        socket = SocketUtil.init(serverUrl);
+        socket = SocketUtil.init("http://localhost:3000");
 
         if (socket == null) {
             return false;
