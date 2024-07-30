@@ -6,7 +6,7 @@ import jsclub.codefest2024.sdk.model.Inventory;
 import jsclub.codefest2024.sdk.model.InventoryUpdateData;
 import jsclub.codefest2024.sdk.model.Items;
 
-public class PlayerInventoryUpdate implements Emitter.Listener {
+public class onPlayerInventoryUpdate implements Emitter.Listener {
     InventoryUpdateData inventoryData = new InventoryUpdateData();
     Inventory inventory = new Inventory();
     private Gson gson = new Gson();

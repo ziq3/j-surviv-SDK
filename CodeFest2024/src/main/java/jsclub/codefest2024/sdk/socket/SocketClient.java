@@ -6,12 +6,9 @@ package jsclub.codefest2024.sdk.socket;
 
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
-import jsclub.codefest2024.sdk.socket.event.PlayerInventoryUpdate;
+import jsclub.codefest2024.sdk.socket.event.onPlayerInventoryUpdate;
 import jsclub.codefest2024.sdk.socket.event.onTestGameReceive;
-import jsclub.codefest2024.sdk.util.MsgPackUtil;
 import jsclub.codefest2024.sdk.util.SocketUtil;
-
-import java.io.IOException;
 
 /**
  * SocketClient for connecting to a server using Socket.IO.
@@ -44,7 +41,7 @@ public class SocketClient {
             public void call(Object... args) {
                 System.out.println("Connected to the server");
                 socket.on(EventName.ON_TEST_GAME_RECEIVE, new onTestGameReceive());
-                socket.on(EventName.ON_PLAYER_INVENTORY_UPDATE, new PlayerInventoryUpdate());
+                socket.on(EventName.ON_PLAYER_INVENTORY_UPDATE, new onPlayerInventoryUpdate());
             }
         });
 
