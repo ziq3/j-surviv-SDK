@@ -15,7 +15,7 @@ import com.google.gson.Gson;
  */
 public class Inventory {
 
-    enum Items {
+    public enum Items {
         WATER_GUN,
         LEGO_GUN,
         RUBBER_GUN,
@@ -37,11 +37,6 @@ public class Inventory {
         VEST,
         POT,
         HELMET
-    }
-
-    enum Action {
-        ADD,
-        REMOVE
     }
 
     public String player_name;
@@ -78,25 +73,6 @@ public class Inventory {
 
     public Map<Items, Integer> getInventory() {
         return INVENTORY;
-    }
-
-    public void removeItem(Items item) {
-        INVENTORY.put(item, 0);
-    }
-
-    public void addItem(Items item) {
-        INVENTORY.put(item, INVENTORY.get(item) + 1);
-    }
-
-    public void actionItem(Items item, Action action) {
-        switch(action){
-            case ADD:
-                addItem(item);
-                break;
-            case REMOVE:
-                removeItem(item);
-                break;
-        }
     }
 
     @Override
