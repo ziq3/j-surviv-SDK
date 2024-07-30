@@ -72,4 +72,8 @@ public class SocketClient {
             socket.disconnect();
         }
     }
+
+    public Socket getSocket() {
+        return socket;
+    }
 }
