@@ -42,7 +42,7 @@ public class SocketClient {
             @Override
             public void call(Object... args) {
                 System.out.println("Connected to the server");
-                socket.on(EventName.ON_TEST_GAME_RECEIVE, new onTestGameReceive());
+                socket.on(EventName.ON_TEST_GAME_RECEIVE, new onTestGameReceive(socket));
             }
         });
 
