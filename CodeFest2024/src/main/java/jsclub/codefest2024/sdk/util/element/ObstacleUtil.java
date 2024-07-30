@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import com.google.gson.Gson;
 
-import jsclub.codefest2024.sdk.socket.data.Obstacles.Obstacle;
+import jsclub.codefest2024.sdk.socket.data.obstacles.Obstacle;
 
 public class ObstacleUtil {
 

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import com.google.gson.Gson;
 
-import jsclub.codefest2024.sdk.socket.data.Equipments.HealingItem;
+import jsclub.codefest2024.sdk.socket.data.equipments.HealingItem;
 
 public class HealingItemUtil {
     public static Map<String, HealingItem> createHealingItemsMap() {

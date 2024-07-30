@@ -1,4 +1,4 @@
-package jsclub.codefest2024.sdk.socket.data.Obstacles;
+package jsclub.codefest2024.sdk.socket.data.obstacles;
 
 public class Obstacle {
     private int endurance;

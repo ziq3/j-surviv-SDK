@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import com.google.gson.Gson;
 
-import jsclub.codefest2024.sdk.socket.data.Equipments.Armor;
+import jsclub.codefest2024.sdk.socket.data.equipments.Armor;
 
 public class ArmorUtil {
     public static Map<String, Armor> createArmorMap() {

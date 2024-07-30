@@ -5,8 +5,8 @@ import java.util.Map;
 
 import com.google.gson.Gson;
 
-import jsclub.codefest2024.sdk.socket.data.Weapon.Weapon;
-import jsclub.codefest2024.sdk.socket.data.Weapon.Weapon.WeaponType;
+import jsclub.codefest2024.sdk.socket.data.weapon.Weapon;
+import jsclub.codefest2024.sdk.socket.data.weapon.Weapon.WeaponType;
 
 public class WeaponUtil {
     private static WeaponType Guns = WeaponType.Guns;
