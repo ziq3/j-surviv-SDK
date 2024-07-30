@@ -16,11 +16,6 @@ import com.google.gson.Gson;
 public class Inventory {
 
     public String player_name;
-    public Items item;
-
-    public Inventory() {
-    }
-
     public Map<Items, Integer> INVENTORY = new HashMap<>() {
         {
             put(Items.WATER_GUN, 0);
@@ -46,6 +41,9 @@ public class Inventory {
             put(Items.HELMET, 0);
         }
     };
+
+    public Inventory() {
+    }
 
 
     public Map<Items, Integer> getInventory() {
