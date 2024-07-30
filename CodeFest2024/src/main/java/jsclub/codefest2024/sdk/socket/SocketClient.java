@@ -6,13 +6,10 @@ package jsclub.codefest2024.sdk.socket;
 
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
+import jsclub.codefest2024.sdk.socket.event.onTestGameReceive;
 import jsclub.codefest2024.sdk.util.MsgPackUtil;
 import jsclub.codefest2024.sdk.util.SocketUtil;
-import org.msgpack.core.MessageBufferPacker;
-import org.msgpack.core.MessagePack;
-import org.msgpack.core.MessageUnpacker;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 /**
@@ -45,25 +42,7 @@ public class SocketClient {
             @Override
             public void call(Object... args) {
                 System.out.println("Connected to the server");
-                socket.on("msgpack_event", new Emitter.Listener() {
-                    @Override
-                    public void call(Object... args) {
-                        byte[] data = (byte[]) args[0];
-                        try {
-                            String message = MsgPackUtil.decodeMsgPackMessage(data);
-                            System.out.println("Message from server: " + message);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-
-                try {
-                    byte[] encodedMessage = MsgPackUtil.encodeMsgPackMessage( "Hello server");
-                    socket.emit("msgpack_event", encodedMessage);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                socket.on(EventName.ON_TEST_GAME_RECEIVE, new onTestGameReceive());
             }
         });
 

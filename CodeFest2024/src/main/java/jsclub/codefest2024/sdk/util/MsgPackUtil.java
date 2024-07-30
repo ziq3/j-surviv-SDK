@@ -3,8 +3,8 @@ package jsclub.codefest2024.sdk.util;
 import org.msgpack.core.MessageBufferPacker;
 import org.msgpack.core.MessagePack;
 import org.msgpack.core.MessageUnpacker;
+import org.msgpack.value.Value;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 public class MsgPackUtil {
@@ -29,19 +29,14 @@ public class MsgPackUtil {
     /**
      * Decodes a MsgPack message.
      *
-     * @param data The MsgPack message to decode.
-     * @return The decoded message.
+     * @param arg The message to decode.
+     * @return The decoded message as a string.
      * @throws IOException If an I/O error occurs.
      */
-    public static String decodeMsgPackMessage(byte[] data) throws IOException {
-        MessageUnpacker unpacker = MessagePack.newDefaultUnpacker(new ByteArrayInputStream(data));
-
-        StringBuilder result = new StringBuilder();
-        while (unpacker.hasNext()) {
-            result.append(unpacker.unpackString()).append(" ");
-        }
-        unpacker.close();
-
-        return result.toString().trim();
+    public static String decodeMsgPackMessage(Object arg) throws IOException {
+        byte[] data = (byte[]) arg;
+        MessageUnpacker unpacker = MessagePack.newDefaultUnpacker(data);
+        Value msgpackValue =  unpacker.unpackValue();
+        return msgpackValue.toJson();
     }
 }
