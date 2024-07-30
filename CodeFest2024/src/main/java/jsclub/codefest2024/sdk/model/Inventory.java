@@ -52,6 +52,10 @@ public class Inventory {
         return INVENTORY;
     }
 
+    public int getItemInfo(Items items){
+        return INVENTORY.get(items);
+    }
+
     @Override
     public String toString() {
         return new Gson().toJson(this);
