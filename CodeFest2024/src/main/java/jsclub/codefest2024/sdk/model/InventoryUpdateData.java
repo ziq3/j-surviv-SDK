@@ -5,9 +5,7 @@
 package jsclub.codefest2024.sdk.model;
 
 import com.google.gson.Gson;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.google.gson.annotations.SerializedName;
 
 /**
  *
@@ -15,8 +13,12 @@ import java.util.Map;
  */
 public class InventoryUpdateData {
 
-    public String player_name;
+    @SerializedName("player_name")
+    public String playerName ;
+
     public String action;
+
+    @SerializedName("item_id")
     public Items item;
 
     public InventoryUpdateData() {
