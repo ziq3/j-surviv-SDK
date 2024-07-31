@@ -2,7 +2,7 @@ package jsclub.codefest2024.sdk.socket.event;
 
 import io.socket.emitter.Emitter;
 import jsclub.codefest2024.sdk.socket.EventName;
-import jsclub.codefest2024.sdk.socket.data.emitData.TestBotAction;
+import jsclub.codefest2024.sdk.socket.data.emit_data.TestBotAction;
 import jsclub.codefest2024.sdk.util.MsgPackUtil;
 
 import java.io.IOException;

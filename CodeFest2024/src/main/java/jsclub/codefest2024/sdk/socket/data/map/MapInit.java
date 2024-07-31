@@ -2,16 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package jsclub.codefest2024.sdk.socket.data.Map;
+package jsclub.codefest2024.sdk.socket.data.map;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 import jsclub.codefest2024.sdk.socket.data.enemies.*;
 import jsclub.codefest2024.sdk.socket.data.equipments.*;
 import jsclub.codefest2024.sdk.socket.data.obstacles.*;
 import jsclub.codefest2024.sdk.socket.data.weapon.*;
-import jsclub.codefest2024.sdk.util.element.*;
 
 /**
  *
