@@ -10,10 +10,10 @@ public class ObstacleUtil {
 
     public static Map<String, Obstacle> createObstaclesMap() {
         Map<String, Obstacle> obstacleList = new HashMap<>();
-        obstacleList.put("Hop vat pham", new Obstacle(40));
-        obstacleList.put("Hop vat pham dac biet", new Obstacle(40));
-        obstacleList.put("Binh hoa", new Obstacle(10));
-        obstacleList.put("Binh xang", new Obstacle(100));
+        obstacleList.put("CHASE", new Obstacle(40));
+        obstacleList.put("SPECIAL_CHASE", new Obstacle(40));
+        obstacleList.put("FLOWER_VASE", new Obstacle(10));
+        obstacleList.put("GAS_TANK", new Obstacle(100));
         return obstacleList;
     }
 
