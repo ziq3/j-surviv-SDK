@@ -1,7 +1,6 @@
-package jsclub.codefest2024.sdk.socket.data.element;
+package jsclub.codefest2024.sdk.socket.data;
 
 import com.google.gson.Gson;
-import jsclub.codefest2024.sdk.socket.Position;
 
 public class Element {
     private int row;

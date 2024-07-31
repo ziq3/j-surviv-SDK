@@ -3,7 +3,7 @@ package jsclub.codefest2024.sdk.socket.data.enemies;
 import com.google.gson.Gson;
 
 import jsclub.codefest2024.sdk.socket.Position;
-import jsclub.codefest2024.sdk.socket.data.element.Element;
+import jsclub.codefest2024.sdk.socket.data.Element;
 
 public class Crow extends Element {
     public int damge = 10;

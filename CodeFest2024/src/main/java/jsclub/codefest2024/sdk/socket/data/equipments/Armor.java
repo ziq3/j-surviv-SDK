@@ -1,7 +1,7 @@
 package jsclub.codefest2024.sdk.socket.data.equipments;
 
 import com.google.gson.Gson;
-import jsclub.codefest2024.sdk.socket.data.element.Element;
+import jsclub.codefest2024.sdk.socket.data.Element;
 
 public class Armor extends Element {
     private Double damageReduce;
