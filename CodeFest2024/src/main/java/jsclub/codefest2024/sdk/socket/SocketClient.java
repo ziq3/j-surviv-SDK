@@ -6,6 +6,7 @@ package jsclub.codefest2024.sdk.socket;
 
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
+import jsclub.codefest2024.sdk.model.Hero;
 import jsclub.codefest2024.sdk.socket.event.onPlayerInventoryUpdate;
 import jsclub.codefest2024.sdk.socket.event.onTestGameReceive;
 import jsclub.codefest2024.sdk.util.SocketUtil;
@@ -24,13 +25,13 @@ public class SocketClient {
      * @param serverUrl The URL of the server to connect to.
      * @return true if connection was initiated successfully, false otherwise.
      */
-    public Boolean connectToServer(String serverUrl) {
+    public Boolean connectToServer(String serverUrl, Hero hero) {
         if (socket != null) {
             socket.disconnect();
             socket = null;
         }
 
-        socket = SocketUtil.init(serverUrl);
+        socket = SocketUtil.init("http://localhost:3000");
 
         if (socket == null) {
             return false;
@@ -41,7 +42,7 @@ public class SocketClient {
             public void call(Object... args) {
                 System.out.println("Connected to the server");
                 socket.on(EventName.ON_TEST_GAME_RECEIVE, new onTestGameReceive());
-                socket.on(EventName.ON_PLAYER_INVENTORY_UPDATE, new onPlayerInventoryUpdate());
+                socket.on(EventName.ON_PLAYER_INVENTORY_UPDATE, new onPlayerInventoryUpdate(hero));
             }
         });
 
