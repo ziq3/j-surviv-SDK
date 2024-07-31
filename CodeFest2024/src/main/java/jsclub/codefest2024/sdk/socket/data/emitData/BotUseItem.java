@@ -4,10 +4,10 @@ import com.google.gson.annotations.SerializedName;
 
 public class BotUseItem {
     @SerializedName("item_id")
-    private int item_id;
+    private int itemId;
 
     // Constructor
-    public BotUseItem(int item_id) {
-        this.item_id = item_id;
+    public BotUseItem(int itemId) {
+        this.itemId = itemId;
     }
 }

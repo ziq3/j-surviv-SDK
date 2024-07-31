@@ -4,10 +4,10 @@ import com.google.gson.annotations.SerializedName;
 
 public class BotRevokeItem {
     @SerializedName("item_id")
-    private int item_id;
+    private int itemId;
 
     // Constructor
-    public BotRevokeItem(int item_id) {
-        this.item_id = item_id;
+    public BotRevokeItem(int itemId) {
+        this.itemId = itemId;
     }
 }

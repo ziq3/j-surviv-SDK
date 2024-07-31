@@ -72,11 +72,11 @@ public class Hero {
         }
     }
 
-    public void throwAction(int item_id, int destination_x, int destination_y) throws IOException {
+    public void throwItem(int itemId, int destinationX, int destinationY) throws IOException {
         Socket socket = socketClient.getSocket();
 
         if (socket != null) {
-            BotThrow botThrow = new BotThrow(item_id, destination_x, destination_y);
+            BotThrow botThrow = new BotThrow(itemId, destinationX, destinationY);
 
             byte[] bytes = MsgPackUtil.encodeFromObject(botThrow);
             socket.emit(EventName.EMIT_THROW, bytes);
@@ -93,22 +93,22 @@ public class Hero {
         }
     }
 
-    public void useItem(int item_id) throws IOException {
+    public void useItem(int itemId) throws IOException {
         Socket socket = socketClient.getSocket();
 
         if (socket != null) {
-            BotUseItem botUseItem = new BotUseItem(item_id);
+            BotUseItem botUseItem = new BotUseItem(itemId);
 
             byte[] bytes = MsgPackUtil.encodeFromObject(botUseItem);
             socket.emit(EventName.EMIT_USE_ITEM, bytes);
         }
     }
 
-    public void revokeItem(int item_id) throws IOException {
+    public void revokeItem(int itemId) throws IOException {
         Socket socket = socketClient.getSocket();
 
         if (socket != null) {
-            BotRevokeItem botRevokeItem = new BotRevokeItem(item_id);
+            BotRevokeItem botRevokeItem = new BotRevokeItem(itemId);
 
             byte[] bytes = MsgPackUtil.encodeFromObject(botRevokeItem);
             socket.emit(EventName.EMIT_REVOKE_ITEM, bytes);
