@@ -1,8 +1,9 @@
 package jsclub.codefest2024.sdk.socket.data.equipments;
 
 import com.google.gson.Gson;
+import jsclub.codefest2024.sdk.socket.data.element.Element;
 
-public class HealingItem {
+public class HealingItem extends Element {
     private int healingHp;
     private int usageTime;
     private int point;
@@ -13,6 +14,7 @@ public class HealingItem {
         this.usageTime = usageTime;
         this.point = point;
     }
+
 
     public void setHealingHp(int healingHp) {
         this.healingHp = healingHp;
