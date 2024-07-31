@@ -1,44 +1,32 @@
 package jsclub.codefest2024.sdk.socket.data;
 
-import com.google.gson.Gson;
-
 public class Element {
-    private int row;
-    private int col;
+    private int x;
+    private int y;
 
-    public Element() {
-        this.row = -1;
-        this.col = -1;
+    public Element(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
-    public Element(int row, int col) {
-        this.row = row;
-        this.col = col;
+    public int getX() {
+        return x;
     }
 
-    public int getRow() {
-        return row;
+    public int getY() {
+        return y;
     }
 
-    public int getCol() {
-        return col;
+    public void setX(int x) {
+        this.x = x;
     }
 
-    public void setRow(int row) {
-        this.row = row;
+    public void setY(int y) {
+        this.y = y;
     }
 
-    public void setCol(int col) {
-        this.col = col;
+    public void setPosition (int x , int y){
+        this.x = x;
+        this.y = y;
     }
-
-    public String getPosition(){
-        return new Gson().toJson(this);
-    }
-
-    public void setPosition (int row , int col){
-        this.row = row;
-        this.col = col;
-    }
-
 }
