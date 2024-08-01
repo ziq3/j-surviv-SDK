@@ -1,10 +1,9 @@
 package jsclub.codefest2024.sdk.model;
 
 import com.google.gson.Gson;
+import jsclub.codefest2024.Node;
 
-public class Element {
-    private int x;
-    private int y;
+public class Element extends Node {
     private String id;
     private ElementType type = ElementType.ROAD;
 
@@ -13,30 +12,18 @@ public class Element {
     }
 
     public Element(int x, int y, String id, ElementType type) {
-        this.x = x;
-        this.y = y;
+        super(x, y);
         this.id = id;
         this.type = type;
     }
 
     public Element() {}
 
-    public int getX() {
-        return x;
-    }
-    public int getY() {
-        return y;
-    }
     public String getId() {
         return id;
     }
     public ElementType getType() {
         return type;
-    }
-
-    public void setPosition(int x, int y) {
-        this.x = x;
-        this.y = y;
     }
 
     public void setId(String id) {
