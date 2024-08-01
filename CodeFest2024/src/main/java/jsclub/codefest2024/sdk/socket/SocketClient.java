@@ -6,11 +6,8 @@ package jsclub.codefest2024.sdk.socket;
 
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
-import jsclub.codefest2024.sdk.socket.event.onTestGameReceive;
-import jsclub.codefest2024.sdk.util.MsgPackUtil;
+import jsclub.codefest2024.sdk.socket.event_handler.onTestGameReceive;
 import jsclub.codefest2024.sdk.util.SocketUtil;
-
-import java.io.IOException;
 
 /**
  * SocketClient for connecting to a server using Socket.IO.

@@ -1,4 +1,4 @@
-package jsclub.codefest2024.sdk.socket.event;
+package jsclub.codefest2024.sdk.socket.event_handler;
 
 import io.socket.emitter.Emitter;
 import jsclub.codefest2024.sdk.socket.EventName;
