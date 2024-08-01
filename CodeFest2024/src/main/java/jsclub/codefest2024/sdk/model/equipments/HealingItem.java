@@ -4,9 +4,9 @@ import jsclub.codefest2024.sdk.model.Element;
 import jsclub.codefest2024.sdk.model.ElementType;
 
 public class HealingItem extends Element {
-    private int healingHP;
-    private int usageTime;
-    private int point;
+    private final int healingHP;
+    private final int usageTime;
+    private final int point;
 
     public HealingItem(String id, int healingHp, int usageTime, int point) {
         super(id);

@@ -70,4 +70,48 @@ public class GameMap {
     public List<Player> getOtherPlayerInfo() {
         return otherPlayerInfo;
     }
+
+    public void setMapSize(int mapSize) {
+        this.mapSize = mapSize;
+    }
+
+    public void setDarkAreaSize(int darkAreaSize) {
+        this.darkAreaSize = darkAreaSize;
+    }
+
+    public void setListIndestructibleObstacles(List<Obstacle> listIndestructibleObstacles) {
+        this.listIndestructibleObstacles = listIndestructibleObstacles;
+    }
+
+    public void setListEnemies(List<Enemy> listEnemies) {
+        this.listEnemies = listEnemies;
+    }
+
+    public void setListTraps(List<Obstacle> listTraps) {
+        this.listTraps = listTraps;
+    }
+
+    public void setListChests(List<Obstacle> listChests) {
+        this.listChests = listChests;
+    }
+
+    public void setListWeapons(List<Weapon> listWeapons) {
+        this.listWeapons = listWeapons;
+    }
+
+    public void setListHealingItems(List<HealingItem> listHealingItems) {
+        this.listHealingItems = listHealingItems;
+    }
+
+    public void setListArmors(List<Armor> listArmors) {
+        this.listArmors = listArmors;
+    }
+
+    public void setListBullets(List<Bullet> listBullets) {
+        this.listBullets = listBullets;
+    }
+
+    public void setOtherPlayerInfo(List<Player> otherPlayerInfo) {
+        this.otherPlayerInfo = otherPlayerInfo;
+    }
 }
