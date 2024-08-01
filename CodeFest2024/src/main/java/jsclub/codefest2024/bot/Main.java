@@ -23,6 +23,7 @@ public class Main {
             }
         };
 
+        hero.setOnMapUpdate(onMapUpdate);
         hero.start(SERVER_URL);
     }
 }

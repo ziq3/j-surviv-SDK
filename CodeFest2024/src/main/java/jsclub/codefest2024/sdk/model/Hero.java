@@ -18,6 +18,7 @@ public class Hero {
     private String gameID = "";
     private final SocketClient socketClient;
     private final GameMap gameMap;
+    private final Inventory inventory;
     private Emitter.Listener onMapUpdate;
     
     public Hero(String playerName, String gameID) {
@@ -25,7 +26,8 @@ public class Hero {
         this.gameID = gameID;
 
         this.gameMap = new GameMap();
-        this.socketClient = new SocketClient();
+        this.inventory = new Inventory();
+        this.socketClient = new SocketClient(this.inventory);
     }
 
     public void start(String serverURL) {
@@ -127,5 +129,9 @@ public class Hero {
 
     public void setOnMapUpdate(Emitter.Listener onMapUpdate) {
         this.onMapUpdate = onMapUpdate;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
     }
 }

@@ -6,6 +6,7 @@ package jsclub.codefest2024.sdk.socket;
 
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
+import jsclub.codefest2024.sdk.model.Inventory;
 import jsclub.codefest2024.sdk.socket.event_handler.onTestGameReceive;
 import jsclub.codefest2024.sdk.util.SocketUtil;
 
@@ -16,6 +17,7 @@ import jsclub.codefest2024.sdk.util.SocketUtil;
 public class SocketClient {
     private final String defaultUrl = "http://localhost:3000/sdk";
     private Socket socket;
+    private final Inventory heroInventory;
 
     /**
      * Connects to the server at the specified URL.
@@ -73,5 +75,9 @@ public class SocketClient {
 
     public Socket getSocket() {
         return socket;
+    }
+
+    public SocketClient(Inventory heroInventory) {
+        this.heroInventory = heroInventory;
     }
 }
