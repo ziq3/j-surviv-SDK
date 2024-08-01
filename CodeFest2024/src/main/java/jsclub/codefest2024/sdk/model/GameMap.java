@@ -10,6 +10,7 @@ import java.util.List;
 import jsclub.codefest2024.sdk.model.enemies.*;
 import jsclub.codefest2024.sdk.model.equipments.*;
 import jsclub.codefest2024.sdk.model.obstacles.*;
+import jsclub.codefest2024.sdk.model.players.Player;
 import jsclub.codefest2024.sdk.model.weapon.*;
 
 public class GameMap {

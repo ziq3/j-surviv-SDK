@@ -1,6 +1,8 @@
-package jsclub.codefest2024.sdk.model;
+package jsclub.codefest2024.sdk.model.players;
 
 import com.google.gson.annotations.SerializedName;
+import jsclub.codefest2024.sdk.model.Element;
+import jsclub.codefest2024.sdk.model.ElementType;
 
 public class Player extends Element {
     @SerializedName("player_name")
