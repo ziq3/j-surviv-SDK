@@ -2,7 +2,7 @@ package jsclub.codefest2024.sdk.socket.data.emit_data;
 
 import com.google.gson.annotations.SerializedName;
 
-public class BotThrow {
+public class PlayerThrowItemAction {
     @SerializedName("item_id")
     private int itemId;
 
@@ -13,7 +13,7 @@ public class BotThrow {
     private int destinationY;
 
     // Constructor
-    public BotThrow(int itemId, int destinationX, int destinationY) {
+    public PlayerThrowItemAction(int itemId, int destinationX, int destinationY) {
         this.itemId = itemId;
         this.destinationX = destinationX;
         this.destinationY = destinationY;

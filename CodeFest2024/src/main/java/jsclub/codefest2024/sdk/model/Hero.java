@@ -47,7 +47,7 @@ public class Hero {
         Socket socket = socketClient.getSocket();
 
         if (socket != null) {
-            BotMove botMove = new BotMove(move);
+            PlayerMoveAction botMove = new PlayerMoveAction(move);
 
             byte[] bytes = MsgPackUtil.encodeFromObject(botMove);
             socket.emit(EventName.EMIT_MOVE, bytes);
@@ -78,7 +78,7 @@ public class Hero {
         Socket socket = socketClient.getSocket();
 
         if (socket != null) {
-            BotThrow botThrow = new BotThrow(itemId, destinationX, destinationY);
+            PlayerThrowItemAction botThrow = new PlayerThrowItemAction(itemId, destinationX, destinationY);
 
             byte[] bytes = MsgPackUtil.encodeFromObject(botThrow);
             socket.emit(EventName.EMIT_THROW, bytes);
@@ -99,7 +99,7 @@ public class Hero {
         Socket socket = socketClient.getSocket();
 
         if (socket != null) {
-            BotUseItem botUseItem = new BotUseItem(itemId);
+            PlayerUseItemAction botUseItem = new PlayerUseItemAction(itemId);
 
             byte[] bytes = MsgPackUtil.encodeFromObject(botUseItem);
             socket.emit(EventName.EMIT_USE_ITEM, bytes);
@@ -110,7 +110,7 @@ public class Hero {
         Socket socket = socketClient.getSocket();
 
         if (socket != null) {
-            BotRevokeItem botRevokeItem = new BotRevokeItem(itemId);
+            PlayerRevokeItemAction botRevokeItem = new PlayerRevokeItemAction(itemId);
 
             byte[] bytes = MsgPackUtil.encodeFromObject(botRevokeItem);
             socket.emit(EventName.EMIT_REVOKE_ITEM, bytes);
