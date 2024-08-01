@@ -12,6 +12,13 @@ public class Element {
         this.id = id;
     }
 
+    public Element(int x, int y, String id, ElementType type) {
+        this.x = x;
+        this.y = y;
+        this.id = id;
+        this.type = type;
+    }
+
     public Element() {}
 
     public int getX() {

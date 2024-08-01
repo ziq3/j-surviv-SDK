@@ -12,4 +12,5 @@ public enum ElementType {
     TRAP,
     INDESTRUCTIBLE_OBSTACLE,
     ROAD,
+    BULLET,
 }
