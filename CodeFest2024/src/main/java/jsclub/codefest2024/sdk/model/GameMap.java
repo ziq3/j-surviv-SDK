@@ -24,8 +24,58 @@ public class GameMap {
     private List<Armor> listArmors = new ArrayList<>();
     private List<Bullet> listBullets = new ArrayList<>();
     private List<Player> otherPlayerInfo = new ArrayList<>();
+    private Player currentPlayer;
 
     public GameMap() {}
+
+    // @Phi
+    // Update data of this map when game send on init map event
+    public void updateOnInitMap() {
+
+    }
+
+    // @Phi
+    // Update data of this map when game send on update map event
+    public void updateOnUpdateMap() {
+
+    }
+
+    // @Phi
+    // Get element by index on map
+    public Element getElementByIndex(int x, int y) {
+        // return default element is road
+        return new Element(x, y, "ROAD", ElementType.ROAD);
+    }
+
+    public List<Weapon> getAllGun() {
+        List<Weapon> guns = new ArrayList<>();
+        for (Weapon weapon : listWeapons) {
+            if (weapon.getType() == ElementType.GUN) {
+                guns.add(weapon);
+            }
+        }
+        return guns;
+    }
+
+    public List<Weapon> getAllMelee() {
+        List<Weapon> melees = new ArrayList<>();
+        for (Weapon weapon : listWeapons) {
+            if (weapon.getType() == ElementType.MELEE) {
+                melees.add(weapon);
+            }
+        }
+        return melees;
+    }
+
+    public List<Weapon> getAllThrowable() {
+        List<Weapon> throwables = new ArrayList<>();
+        for (Weapon weapon : listWeapons) {
+            if (weapon.getType() == ElementType.THROWABLE) {
+                throwables.add(weapon);
+            }
+        }
+        return throwables;
+    }
 
     public int getMapSize() {
         return mapSize;
@@ -71,6 +121,10 @@ public class GameMap {
         return otherPlayerInfo;
     }
 
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+
     public void setMapSize(int mapSize) {
         this.mapSize = mapSize;
     }
@@ -113,5 +167,9 @@ public class GameMap {
 
     public void setOtherPlayerInfo(List<Player> otherPlayerInfo) {
         this.otherPlayerInfo = otherPlayerInfo;
+    }
+
+    public void setCurrentPlayer(Player currentPlayer) {
+        this.currentPlayer = currentPlayer;
     }
 }
