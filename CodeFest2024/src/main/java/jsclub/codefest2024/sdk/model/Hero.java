@@ -5,6 +5,7 @@
 package jsclub.codefest2024.sdk.model;
 
 import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
 import jsclub.codefest2024.sdk.socket.EventName;
 import jsclub.codefest2024.sdk.socket.SocketClient;
 import jsclub.codefest2024.sdk.socket.data.emit_data.*;
@@ -17,6 +18,7 @@ public class Hero {
     private String gameID = "";
     private final SocketClient socketClient;
     private final GameMap gameMap;
+    private Emitter.Listener onMapUpdate;
     
     public Hero(String playerName, String gameID) {
         this.playerName = playerName;
@@ -27,9 +29,12 @@ public class Hero {
     }
 
     public void start(String serverURL) {
-        socketClient.connectToServer(serverURL + "/sdk");
-    }
+        if (this.onMapUpdate == null) {
+            throw new RuntimeException("onMapUpdate is not set");
+        }
 
+        socketClient.connectToServer(serverURL + "/sdk", this.onMapUpdate);
+    }
 
     public String getPlayerID() {
         return playerName;
@@ -118,5 +123,9 @@ public class Hero {
 
     public GameMap getGameMap() {
         return gameMap;
+    }
+
+    public void setOnMapUpdate(Emitter.Listener onMapUpdate) {
+        this.onMapUpdate = onMapUpdate;
     }
 }

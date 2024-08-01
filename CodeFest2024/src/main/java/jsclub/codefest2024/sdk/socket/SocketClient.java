@@ -23,7 +23,7 @@ public class SocketClient {
      * @param serverUrl The URL of the server to connect to.
      * @return true if connection was initiated successfully, false otherwise.
      */
-    public Boolean connectToServer(String serverUrl) {
+    public Boolean connectToServer(String serverUrl, Emitter.Listener onMapUpdate) {
         if (socket != null) {
             socket.disconnect();
             socket = null;
@@ -40,6 +40,7 @@ public class SocketClient {
             public void call(Object... args) {
                 System.out.println("Connected to the server");
                 socket.on(EventName.ON_TEST_GAME_RECEIVE, new onTestGameReceive(socket));
+                socket.on(EventName.ON_MAP_UPDATE, onMapUpdate);
             }
         });
 
