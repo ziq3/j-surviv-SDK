@@ -12,10 +12,6 @@ import jsclub.codefest2024.sdk.util.MsgPackUtil;
 
 import java.io.IOException;
 
-/**
- *
- * @author Son Duong
- */
 public class Hero {
     private String player_name = "";
     private String gameID = "";

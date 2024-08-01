@@ -6,10 +6,10 @@ package jsclub.codefest2024.sdk.socket.data.map;
 
 import java.util.List;
 
-import jsclub.codefest2024.sdk.socket.data.enemies.*;
-import jsclub.codefest2024.sdk.socket.data.equipments.*;
-import jsclub.codefest2024.sdk.socket.data.obstacles.*;
-import jsclub.codefest2024.sdk.socket.data.weapon.*;
+import jsclub.codefest2024.sdk.model.enemies.*;
+import jsclub.codefest2024.sdk.model.equipments.*;
+import jsclub.codefest2024.sdk.model.obstacles.*;
+import jsclub.codefest2024.sdk.model.weapon.*;
 
 /**
  *
@@ -22,10 +22,8 @@ public class MapInit {
     private int darkAreaWidth;
     private int darkAreaHeight;
     private String[] indestructibles;
-    private List<Chaser> chasers;
-    private List<Crow> crows;
+    private List<Enemy> chasers;
     private List<Armor> armors;
-    private List<DarkArea> darkAreas;
     private List<HealingItem> healingItems;
     private List<Obstacle> obstacles;
     private List<Weapon> weapons;
@@ -84,21 +82,17 @@ public class MapInit {
             List<Weapon> weapons,
             List<Obstacle> obstacles,
             List<HealingItem> healingItems,
-            List<DarkArea> darkAreas,
             List<Armor> armors,
-            List<Crow> crows,
-            List<Chaser> chasers) {
+            List<Enemy> chasers) {
 
         this.weapons = weapons;
         this.obstacles = obstacles;
         this.healingItems = healingItems;
-        this.darkAreas = darkAreas;
         this.armors = armors;
-        this.crows = crows;
         this.chasers = chasers;
     }
 
-    public List<Chaser> getChasers() {
+    public List<Enemy> getChasers() {
         return chasers;
     }
 
@@ -122,10 +116,6 @@ public class MapInit {
         return weapons;
     }
 
-    public List<DarkArea> getDarkAreas() {
-        return darkAreas;
-    }
-
     public void setWeapons(List<Weapon> weapons) {
         this.weapons = weapons;
     }
@@ -138,19 +128,11 @@ public class MapInit {
         this.healingItems = healingItems;
     }
 
-    public void setDarkAreas(List<DarkArea> darkAreas) {
-        this.darkAreas = darkAreas;
-    }
-
     public void setArmors(List<Armor> armors) {
         this.armors = armors;
     }
 
-    public void setCrows(List<Crow> crows) {
-        this.crows = crows;
-    }
-
-    public void setChasers(List<Chaser> chasers) {
+    public void setChasers(List<Enemy> chasers) {
         this.chasers = chasers;
     }
 
