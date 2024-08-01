@@ -13,14 +13,16 @@ import jsclub.codefest2024.sdk.util.MsgPackUtil;
 import java.io.IOException;
 
 public class Hero {
-    private String player_name = "";
+    private String playerName = "";
     private String gameID = "";
     private final SocketClient socketClient;
+    private final GameMap gameMap;
     
-    public Hero(String player_name, String gameID) {
-        this.player_name = player_name;
+    public Hero(String playerName, String gameID) {
+        this.playerName = playerName;
         this.gameID = gameID;
 
+        this.gameMap = new GameMap();
         this.socketClient = new SocketClient();
     }
 
@@ -30,7 +32,7 @@ public class Hero {
 
 
     public String getPlayerID() {
-        return player_name;
+        return playerName;
     }
     public String getGameID() {
         return gameID;
@@ -108,5 +110,13 @@ public class Hero {
             byte[] bytes = MsgPackUtil.encodeFromObject(botRevokeItem);
             socket.emit(EventName.EMIT_REVOKE_ITEM, bytes);
         }
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public GameMap getGameMap() {
+        return gameMap;
     }
 }
