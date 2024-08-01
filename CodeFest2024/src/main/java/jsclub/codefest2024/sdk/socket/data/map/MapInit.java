@@ -96,9 +96,6 @@ public class MapInit {
         return chasers;
     }
 
-    public List<Crow> getCrows() {
-        return crows;
-    }
 
     public List<Armor> getArmors() {
         return armors;
