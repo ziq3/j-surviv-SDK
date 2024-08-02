@@ -17,8 +17,10 @@ public class EnemyFactory {
         return enemyMap.get(id);
     }
 
-    public static Enemy getEnemy(String id, int x, int y) {
-        Enemy enemy = enemyMap.get(id);
+    public static Enemy getEnemy(String id, int x, int y) throws CloneNotSupportedException {
+        Enemy enemyBase = enemyMap.get(id);
+
+        Enemy enemy = (Enemy) enemyBase.clone();
         enemy.setPosition(x, y);
         enemy.setId(id);
 
