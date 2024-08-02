@@ -1,6 +1,6 @@
-package jsclub.codefest2024.algorithm;
+package jsclub.codefest2024.sdk.algorithm;
 
-import jsclub.codefest2024.Node;
+import jsclub.codefest2024.sdk.base.Node;
 import jsclub.codefest2024.sdk.model.GameMap;
 
 import java.util.ArrayList;
@@ -13,8 +13,8 @@ import static java.lang.Math.abs;
 public class ShortestPath {
     // The algorithm to find the shortest path from the current node to the target node
     public static String getShortestPath(GameMap gameMap, List<Node> restrictedNodes, Node current, Node target, boolean skipDarkArea) {
-        int Dx[] = {-1, 1, 0, 0};
-        int Dy[] = {0, 0, -1, 1};
+        int[] Dx = {-1, 1, 0, 0};
+        int[] Dy = {0, 0, -1, 1};
 
         int mapSize = gameMap.getMapSize();
         int darkAreaSize = gameMap.getDarkAreaSize();
@@ -52,24 +52,23 @@ public class ShortestPath {
         openSet.add(new Node(current.x, current.y));
         g.get(current.x).set(current.y, 0);
 
-        String ans = "";
+        StringBuilder ans = new StringBuilder();
 
         while (!openSet.isEmpty()) {
             Node u = openSet.poll();
 
             if (u.x == target.x && u.y == target.y) {
-                Node v = target;
-                while (v.x != current.x || v.y != current.y) {
-                    int dir = trace.get(v.x).get(v.y);
-                    if (dir == 0) ans = ans + 'l';
-                    else if (dir == 1) ans = ans + 'r';
-                    else if (dir == 2) ans = ans + 'd';
-                    else ans = ans + 'u';
-                    v.x -= Dx[dir];
-                    v.y -= Dy[dir];
+                while (target.x != current.x || target.y != current.y) {
+                    int dir = trace.get(target.x).get(target.y);
+                    if (dir == 0) ans.append('l');
+                    else if (dir == 1) ans.append('r');
+                    else if (dir == 2) ans.append('d');
+                    else ans.append('u');
+                    target.x -= Dx[dir];
+                    target.y -= Dy[dir];
                 }
 
-                ans = new StringBuilder(ans).reverse().toString();
+                ans.reverse();
                 break;
             }
 
@@ -82,7 +81,7 @@ public class ShortestPath {
                 if (!skipDarkArea &&
                         (x <= darkAreaSize || y <= darkAreaSize ||
                                 x >= mapSize - darkAreaSize + 1 || y >= mapSize - darkAreaSize + 1))
-                                    continue;
+                    continue;
 
                 int cost = g.get(u.x).get(u.y) + 1;
                 if (g.get(x).get(y) == -1 || g.get(x).get(y) > cost) {
@@ -93,6 +92,6 @@ public class ShortestPath {
             }
         }
 
-        return ans;
+        return ans.toString();
     }
 }

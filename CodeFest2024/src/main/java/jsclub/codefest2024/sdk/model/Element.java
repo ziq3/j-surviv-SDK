@@ -1,7 +1,7 @@
 package jsclub.codefest2024.sdk.model;
 
 import com.google.gson.Gson;
-import jsclub.codefest2024.Node;
+import jsclub.codefest2024.sdk.base.Node;
 
 public class Element extends Node implements Cloneable {
     private String id;

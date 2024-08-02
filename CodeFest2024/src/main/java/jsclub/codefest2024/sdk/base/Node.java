@@ -1,4 +1,4 @@
-package jsclub.codefest2024;
+package jsclub.codefest2024.sdk.base;
 
 public class Node {
     public int x;
