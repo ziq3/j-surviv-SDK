@@ -13,15 +13,40 @@ import com.google.gson.annotations.SerializedName;
  */
 public class InventoryUpdateData {
 
-    @SerializedName("player_name")
-    public String playerName ;
+    @SerializedName("type")
+    public ElementType itemType;
 
+    @SerializedName("id")
+    public String id;
+
+    @SerializedName("action")
     public String action;
 
-    @SerializedName("item_id")
-    public Items item;
-
     public InventoryUpdateData() {
+    }
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public ElementType getItemType() {
+        return itemType;
+    }
+
+    public void setItemType(ElementType itemType) {
+        this.itemType = itemType;
     }
 
     @Override

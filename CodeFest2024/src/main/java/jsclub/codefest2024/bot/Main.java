@@ -3,6 +3,7 @@ package jsclub.codefest2024.bot;
 import io.socket.emitter.Emitter;
 import jsclub.codefest2024.sdk.model.GameMap;
 import jsclub.codefest2024.sdk.model.Hero;
+import jsclub.codefest2024.sdk.model.Inventory;
 
 public class Main {
     private static final String SERVER_URL = "https://cf-server.jsclub.dev";
