@@ -3,7 +3,7 @@ package jsclub.codefest2024.sdk.model;
 import com.google.gson.Gson;
 import jsclub.codefest2024.Node;
 
-public class Element extends Node {
+public class Element extends Node implements Cloneable {
     private String id;
     private ElementType type = ElementType.ROAD;
 
@@ -37,5 +37,10 @@ public class Element extends Node {
     @Override
     public String toString() {
         return new Gson().toJson(this);
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }
