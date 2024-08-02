@@ -37,7 +37,7 @@ public class Hero {
         }
 
         socketClient.connectToServer(serverURL + "/sdk", this.onMapUpdate);
-        joinGame();
+        this.joinGame();
     }
 
     public String getPlayerID() {
@@ -51,7 +51,7 @@ public class Hero {
         Socket socket = socketClient.getSocket();
 
         if (socket != null) {
-            JoinGame joinGame = new JoinGame(gameID, playerName);
+            JoinGame joinGame = new JoinGame(this.gameID, this.playerName);
 
             byte[] bytes = MsgPackUtil.encodeFromObject(joinGame);
             socket.emit(EventName.EMIT_JOIN_GAME, (Object) bytes);
