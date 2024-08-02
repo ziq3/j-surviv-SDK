@@ -31,12 +31,13 @@ public class Hero {
         this.socketClient = new SocketClient(this.inventory);
     }
 
-    public void start(String serverURL) {
+    public void start(String serverURL) throws IOException {
         if (this.onMapUpdate == null) {
             throw new RuntimeException("onMapUpdate is not set");
         }
 
         socketClient.connectToServer(serverURL + "/sdk", this.onMapUpdate);
+        joinGame();
     }
 
     public String getPlayerID() {
@@ -44,6 +45,17 @@ public class Hero {
     }
     public String getGameID() {
         return gameID;
+    }
+
+    public void joinGame() throws IOException{
+        Socket socket = socketClient.getSocket();
+
+        if (socket != null) {
+            JoinGame joinGame = new JoinGame(gameID, playerName);
+
+            byte[] bytes = MsgPackUtil.encodeFromObject(joinGame);
+            socket.emit(EventName.EMIT_JOIN_GAME, (Object) bytes);
+        }
     }
 
     public void move(String move) throws IOException {
