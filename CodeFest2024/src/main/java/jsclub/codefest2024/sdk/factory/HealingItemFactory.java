@@ -18,8 +18,10 @@ public class HealingItemFactory {
         return healingItemMap.get(id);
     }
 
-    public static HealingItem getHealingItem(String id, int x, int y) {
-        HealingItem healingItem = healingItemMap.get(id);
+    public static HealingItem getHealingItem(String id, int x, int y) throws CloneNotSupportedException {
+        HealingItem healingItemBase = healingItemMap.get(id);
+
+        HealingItem healingItem = (HealingItem) healingItemBase.clone();
         healingItem.setPosition(x, y);
         healingItem.setId(id);
         return healingItem;

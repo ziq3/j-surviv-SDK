@@ -34,12 +34,11 @@ public class onPlayerInventoryUpdate implements Emitter.Listener {
             System.out.println("Message from server: " + message);
 
             InventoryUpdateData inventoryUpdateData = gson.fromJson(message, InventoryUpdateData.class);
-            ElementType type = inventoryUpdateData.getItemType();
-            String id = inventoryUpdateData.getId();
-            String action = inventoryUpdateData.getAction();
+            ElementType type = inventoryUpdateData.itemType;
+            String id = inventoryUpdateData.id;
+            String action = inventoryUpdateData.action;
             switch (action) {
                 case "ADD":
-                    Weapon weapon = new Weapon(id, type, 0,0,0,0) ;
                     switch (type) {
                         case GUN:
                             heroInventory.setGun(WeaponFactory.getWeaponById(id));
@@ -64,7 +63,7 @@ public class onPlayerInventoryUpdate implements Emitter.Listener {
                             heroInventory.setGun(null);
                             break;
                         case MELEE:
-                            heroInventory.setMelee(null);
+                            heroInventory.setMelee(WeaponFactory.getWeaponById("HAND"));
                             break;
                         case THROWABLE:
                             heroInventory.getListThrowable().remove(WeaponFactory.getWeaponById(id));

@@ -28,8 +28,10 @@ public class WeaponFactory {
         return weaponMap.get(id);
     }
 
-    public static Weapon getWeapon(String id, int x, int y) {
-        Weapon weapon = weaponMap.get(id);
+    public static Weapon getWeapon(String id, int x, int y) throws CloneNotSupportedException {
+        Weapon weaponBase = weaponMap.get(id);
+
+        Weapon weapon = (Weapon) weaponBase.clone();
         weapon.setPosition(x, y);
         weapon.setId(id);
         return weapon;

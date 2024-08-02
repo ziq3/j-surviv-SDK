@@ -16,8 +16,10 @@ public class ArmorFactory {
         return armorMap.get(id);
     }
 
-    public static Armor getArmor(String id, int x, int y) {
-        Armor armor = armorMap.get(id);
+    public static Armor getArmor(String id, int x, int y) throws CloneNotSupportedException {
+        Armor armorBase = armorMap.get(id);
+
+        Armor armor = (Armor) armorBase.clone();
         armor.setPosition(x, y);
         armor.setId(id);
         return armor;

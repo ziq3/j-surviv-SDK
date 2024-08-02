@@ -22,33 +22,6 @@ public class InventoryUpdateData {
     @SerializedName("action")
     public String action;
 
-    public InventoryUpdateData() {
-    }
-
-    public String getAction() {
-        return action;
-    }
-
-    public void setAction(String action) {
-        this.action = action;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public ElementType getItemType() {
-        return itemType;
-    }
-
-    public void setItemType(ElementType itemType) {
-        this.itemType = itemType;
-    }
-
     @Override
     public String toString() {
         return new Gson().toJson(this);
