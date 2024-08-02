@@ -12,7 +12,7 @@ public class Element extends Node {
     }
 
     public Element(int x, int y, String id, ElementType type) {
-        //super(x, y);
+        super(x, y);
         this.id = id;
         this.type = type;
     }

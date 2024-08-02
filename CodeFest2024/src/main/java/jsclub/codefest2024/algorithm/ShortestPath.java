@@ -12,11 +12,12 @@ import static java.lang.Math.abs;
 
 public class ShortestPath {
     // The algorithm to find the shortest path from the current node to the target node
-    public static String getShortestPath(GameMap gameMap, List<Node> restrictedNodes, Node current, Node target) {
+    public static String getShortestPath(GameMap gameMap, List<Node> restrictedNodes, Node current, Node target, boolean skipDarkArea) {
         int Dx[] = {-1, 1, 0, 0};
         int Dy[] = {0, 0, -1, 1};
 
         int mapSize = gameMap.getMapSize();
+        int darkAreaSize = gameMap.getDarkAreaSize();
 
         ArrayList<ArrayList<Integer>> isRestrictedNodes = new ArrayList<>(mapSize + 1);
         ArrayList<ArrayList<Integer>> g = new ArrayList<>(mapSize + 1);
@@ -43,11 +44,12 @@ public class ShortestPath {
         PriorityQueue<Node> openSet = new PriorityQueue<>(new Comparator<Node>() {
             @Override
             public int compare(Node n1, Node n2) {
-                return Integer.compare(n1.calculateF(n1, target), n2.calculateF(n2, target));
+                return Integer.compare(g.get(n1.x).get(n1.y) + abs(n1.x - target.x) + abs(n1.y - target.y),
+                        g.get(n2.x).get(n2.y) + abs(n2.x - target.x) + abs(n2.y - target.y));
             }
         });
 
-        openSet.add(new Node(current.x, current.y, 0));
+        openSet.add(new Node(current.x, current.y));
         g.get(current.x).set(current.y, 0);
 
         String ans = "";
@@ -77,11 +79,16 @@ public class ShortestPath {
 
                 if (x < 1 || y < 1 || x > mapSize || y > mapSize) continue;
                 if (isRestrictedNodes.get(x).get(y) == 1) continue;
+                if (skipDarkArea &&
+                        (x <= darkAreaSize || y <= darkAreaSize ||
+                                x >= mapSize - darkAreaSize + 1 || y >= mapSize - darkAreaSize + 1))
+                                    continue;
+
                 int cost = g.get(u.x).get(u.y) + 1;
                 if (g.get(x).get(y) == -1 || g.get(x).get(y) > cost) {
                     g.get(x).set(y, cost);
                     trace.get(x).set(y, dir);
-                    openSet.add(new Node(x, y, cost));
+                    openSet.add(new Node(x, y));
                 }
             }
         }

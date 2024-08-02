@@ -15,7 +15,7 @@ import jsclub.codefest2024.sdk.model.players.Player;
 import jsclub.codefest2024.sdk.model.weapon.*;
 
 public class GameMap {
-    private int mapSize = 240;
+    private int mapSize = 0;
     private int darkAreaSize = 0;
     private List<Obstacle> listIndestructibleObstacles = new ArrayList<>();
     private List<Enemy> listEnemies = new ArrayList<>();
