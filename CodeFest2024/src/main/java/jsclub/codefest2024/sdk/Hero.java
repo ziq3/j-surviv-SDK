@@ -22,11 +22,10 @@ public class Hero {
     private final GameMap gameMap;
     private final Inventory inventory;
     private Emitter.Listener onMapUpdate;
-    
+
     public Hero(String playerName, String gameID) {
         this.playerName = playerName;
         this.gameID = gameID;
-
         this.gameMap = new GameMap();
         this.inventory = new Inventory();
         this.socketClient = new SocketClient(this.inventory);
