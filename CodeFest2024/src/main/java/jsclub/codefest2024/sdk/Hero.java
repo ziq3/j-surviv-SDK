@@ -2,10 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package jsclub.codefest2024.sdk.model;
+package jsclub.codefest2024.sdk;
 
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
+import jsclub.codefest2024.sdk.model.GameMap;
+import jsclub.codefest2024.sdk.model.Inventory;
 import jsclub.codefest2024.sdk.socket.EventName;
 import jsclub.codefest2024.sdk.socket.SocketClient;
 import jsclub.codefest2024.sdk.socket.data.emit_data.*;
@@ -51,7 +53,7 @@ public class Hero {
             PlayerMoveAction botMove = new PlayerMoveAction(move);
 
             byte[] bytes = MsgPackUtil.encodeFromObject(botMove);
-            socket.emit(EventName.EMIT_MOVE, bytes);
+            socket.emit(EventName.EMIT_MOVE, (Object) bytes);
         }
     }
 
@@ -61,7 +63,7 @@ public class Hero {
         if (socket != null) {
             String data = "{}";
             byte[] bytes = MsgPackUtil.encodeFromObject(data);
-            socket.emit(EventName.EMIT_SHOOT, bytes);
+            socket.emit(EventName.EMIT_SHOOT, (Object) bytes);
         }
     }
 
@@ -71,7 +73,7 @@ public class Hero {
         if (socket != null) {
             String data = "{}";
             byte[] bytes = MsgPackUtil.encodeFromObject(data);
-            socket.emit(EventName.EMIT_ATTACK, bytes);
+            socket.emit(EventName.EMIT_ATTACK, (Object) bytes);
         }
     }
 
@@ -82,7 +84,7 @@ public class Hero {
             PlayerThrowItemAction botThrow = new PlayerThrowItemAction(itemId, destinationX, destinationY);
 
             byte[] bytes = MsgPackUtil.encodeFromObject(botThrow);
-            socket.emit(EventName.EMIT_THROW, bytes);
+            socket.emit(EventName.EMIT_THROW, (Object) bytes);
         }
     }
 
@@ -92,7 +94,7 @@ public class Hero {
         if (socket != null) {
             String data = "{}";
             byte[] bytes = MsgPackUtil.encodeFromObject(data);
-            socket.emit(EventName.EMIT_PICKUP_ITEM, bytes);
+            socket.emit(EventName.EMIT_PICKUP_ITEM, (Object) bytes);
         }
     }
 
@@ -103,7 +105,7 @@ public class Hero {
             PlayerUseItemAction botUseItem = new PlayerUseItemAction(itemId);
 
             byte[] bytes = MsgPackUtil.encodeFromObject(botUseItem);
-            socket.emit(EventName.EMIT_USE_ITEM, bytes);
+            socket.emit(EventName.EMIT_USE_ITEM, (Object) bytes);
         }
     }
 
@@ -114,7 +116,7 @@ public class Hero {
             PlayerRevokeItemAction botRevokeItem = new PlayerRevokeItemAction(itemId);
 
             byte[] bytes = MsgPackUtil.encodeFromObject(botRevokeItem);
-            socket.emit(EventName.EMIT_REVOKE_ITEM, bytes);
+            socket.emit(EventName.EMIT_REVOKE_ITEM, (Object) bytes);
         }
     }
 
