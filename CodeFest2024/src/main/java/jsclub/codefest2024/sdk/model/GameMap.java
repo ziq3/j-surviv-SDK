@@ -32,14 +32,33 @@ public class GameMap {
 
     // @Phi
     // Update data of this map when game send on init map event
-    public void updateOnInitMap() {
-
+    public void updateOnInitMap(int mapSize, int darkAreaSize, List<Obstacle> listIndestructibleObstacles, List<Enemy> listEnemies, List<Obstacle> listTraps, List<Obstacle> listChests, List<Weapon> listWeapons, List<HealingItem> listHealingItems, List<Armor> listArmors, List<Bullet> listBullets, List<Player> otherPlayerInfo, Player currentPlayer) {
+        this.mapSize = mapSize;
+        this.darkAreaSize = darkAreaSize;
+        this.listIndestructibleObstacles = listIndestructibleObstacles;
+        this.listEnemies = listEnemies;
+        this.listTraps = listTraps;
+        this.listChests = listChests;
+        this.listWeapons = listWeapons;
+        this.listHealingItems = listHealingItems;
+        this.listArmors = listArmors;
+        this.listBullets = listBullets;
+        this.otherPlayerInfo = otherPlayerInfo;
+        this.currentPlayer = currentPlayer;
     }
 
     // @Phi
     // Update data of this map when game send on update map event
-    public void updateOnUpdateMap() {
-
+    public void updateOnUpdateMap(List<Enemy> listEnemies, List<Obstacle> listTraps, List<Obstacle> listChests, List<Weapon> listWeapons, List<HealingItem> listHealingItems, List<Armor> listArmors, List<Bullet> listBullets, List<Player> otherPlayerInfo, Player currentPlayer) {
+        this.listEnemies = listEnemies;
+        this.listTraps = listTraps;
+        this.listChests = listChests;
+        this.listWeapons = listWeapons;
+        this.listHealingItems = listHealingItems;
+        this.listArmors = listArmors;
+        this.listBullets = listBullets;
+        this.otherPlayerInfo = otherPlayerInfo;
+        this.currentPlayer = currentPlayer;
     }
 
     // @Phi
