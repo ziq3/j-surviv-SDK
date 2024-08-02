@@ -79,7 +79,7 @@ public class ShortestPath {
 
                 if (x < 1 || y < 1 || x > mapSize || y > mapSize) continue;
                 if (isRestrictedNodes.get(x).get(y) == 1) continue;
-                if (skipDarkArea &&
+                if (!skipDarkArea &&
                         (x <= darkAreaSize || y <= darkAreaSize ||
                                 x >= mapSize - darkAreaSize + 1 || y >= mapSize - darkAreaSize + 1))
                                     continue;
