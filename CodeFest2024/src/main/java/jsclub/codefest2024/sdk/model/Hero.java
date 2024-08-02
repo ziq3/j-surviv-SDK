@@ -4,70 +4,134 @@
  */
 package jsclub.codefest2024.sdk.model;
 
+import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
+import jsclub.codefest2024.sdk.socket.EventName;
 import jsclub.codefest2024.sdk.socket.SocketClient;
+import jsclub.codefest2024.sdk.socket.data.emit_data.*;
+import jsclub.codefest2024.sdk.util.MsgPackUtil;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.IOException;
 
-/**
- *
- * @author Son Duong
- */
 public class Hero {
-    private String player_name = "";
+    private String playerName = "";
     private String gameID = "";
     private final SocketClient socketClient;
+    private final GameMap gameMap;
+    private final Inventory inventory;
+    private Emitter.Listener onMapUpdate;
 
-    public Map<Items, Integer> inventory = new HashMap<>() {
-        {
-            put(Items.WATER_GUN, 0);
-            put(Items.LEGO_GUN, 0);
-            put(Items.RUBBER_GUN, 0);
-            put(Items.BADMINTON, 0);
-            put(Items.BROOM, 0);
-            put(Items.SANDAL, 0);
-            put(Items.LIGHT_SABER, 0);
-            put(Items.HAND, 0);
-            put(Items.PAPER_AIRPLANE, 0);
-            put(Items.BALL, 0);
-            put(Items.PAPER_DART, 0);
-            put(Items.TEDDY_BEAR, 0);
-            put(Items.WATER_BALL, 0);
-            put(Items.SNACK, 0);
-            put(Items.INSECTICIDE, 0);
-            put(Items.DRINK, 0);
-            put(Items.BANDAGES, 0);
-            put(Items.LUNCH_BOX, 0);
-            put(Items.VEST, 0);
-            put(Items.POT, 0);
-            put(Items.HELMET, 0);
-        }
-    };
-    
-    public Hero(String player_name, String gameID) {
-        this.player_name = player_name;
+    public Hero(String playerName, String gameID) {
+        this.playerName = playerName;
         this.gameID = gameID;
 
-        this.socketClient = new SocketClient();
+        this.gameMap = new GameMap();
+        this.inventory = new Inventory();
+        this.socketClient = new SocketClient(this.inventory);
     }
 
     public void start(String serverURL) {
-        socketClient.connectToServer(serverURL + "/sdk", this);
+        if (this.onMapUpdate == null) {
+            throw new RuntimeException("onMapUpdate is not set");
+        }
+
+        socketClient.connectToServer(serverURL + "/sdk", this.onMapUpdate);
     }
-    
+
     public String getPlayerID() {
-        return player_name;
+        return playerName;
     }
     public String getGameID() {
         return gameID;
     }
 
-    public Map<Items, Integer> getInventory() {
+    public void move(String move) throws IOException {
+        Socket socket = socketClient.getSocket();
+
+        if (socket != null) {
+            PlayerMoveAction botMove = new PlayerMoveAction(move);
+
+            byte[] bytes = MsgPackUtil.encodeFromObject(botMove);
+            socket.emit(EventName.EMIT_MOVE, bytes);
+        }
+    }
+
+    public void shoot() throws IOException {
+        Socket socket = socketClient.getSocket();
+
+        if (socket != null) {
+            String data = "{}";
+            byte[] bytes = MsgPackUtil.encodeFromObject(data);
+            socket.emit(EventName.EMIT_SHOOT, bytes);
+        }
+    }
+
+    public void attack() throws IOException {
+        Socket socket = socketClient.getSocket();
+
+        if (socket != null) {
+            String data = "{}";
+            byte[] bytes = MsgPackUtil.encodeFromObject(data);
+            socket.emit(EventName.EMIT_ATTACK, bytes);
+        }
+    }
+
+    public void throwItem(int itemId, int destinationX, int destinationY) throws IOException {
+        Socket socket = socketClient.getSocket();
+
+        if (socket != null) {
+            PlayerThrowItemAction botThrow = new PlayerThrowItemAction(itemId, destinationX, destinationY);
+
+            byte[] bytes = MsgPackUtil.encodeFromObject(botThrow);
+            socket.emit(EventName.EMIT_THROW, bytes);
+        }
+    }
+
+    public void pickupItem() throws IOException {
+        Socket socket = socketClient.getSocket();
+
+        if (socket != null) {
+            String data = "{}";
+            byte[] bytes = MsgPackUtil.encodeFromObject(data);
+            socket.emit(EventName.EMIT_PICKUP_ITEM, bytes);
+        }
+    }
+
+    public void useItem(int itemId) throws IOException {
+        Socket socket = socketClient.getSocket();
+
+        if (socket != null) {
+            PlayerUseItemAction botUseItem = new PlayerUseItemAction(itemId);
+
+            byte[] bytes = MsgPackUtil.encodeFromObject(botUseItem);
+            socket.emit(EventName.EMIT_USE_ITEM, bytes);
+        }
+    }
+
+    public void revokeItem(int itemId) throws IOException {
+        Socket socket = socketClient.getSocket();
+
+        if (socket != null) {
+            PlayerRevokeItemAction botRevokeItem = new PlayerRevokeItemAction(itemId);
+
+            byte[] bytes = MsgPackUtil.encodeFromObject(botRevokeItem);
+            socket.emit(EventName.EMIT_REVOKE_ITEM, bytes);
+        }
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public GameMap getGameMap() {
+        return gameMap;
+    }
+
+    public void setOnMapUpdate(Emitter.Listener onMapUpdate) {
+        this.onMapUpdate = onMapUpdate;
+    }
+
+    public Inventory getInventory() {
         return inventory;
     }
-    public int getItemInfo(Items item){
-        return inventory.get(item);
-    }
-
-
 }

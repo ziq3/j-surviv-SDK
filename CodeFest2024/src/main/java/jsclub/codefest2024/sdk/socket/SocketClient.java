@@ -6,13 +6,9 @@ package jsclub.codefest2024.sdk.socket;
 
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
-import jsclub.codefest2024.sdk.model.Hero;
-import jsclub.codefest2024.sdk.socket.event.onPlayerInventoryUpdate;
-import jsclub.codefest2024.sdk.socket.event.onTestGameReceive;
-import jsclub.codefest2024.sdk.util.MsgPackUtil;
+import jsclub.codefest2024.sdk.model.Inventory;
+import jsclub.codefest2024.sdk.socket.event_handler.onTestGameReceive;
 import jsclub.codefest2024.sdk.util.SocketUtil;
-
-import java.io.IOException;
 
 /**
  * SocketClient for connecting to a server using Socket.IO.
@@ -21,6 +17,7 @@ import java.io.IOException;
 public class SocketClient {
     private final String defaultUrl = "http://localhost:3000/sdk";
     private Socket socket;
+    private final Inventory heroInventory;
 
     /**
      * Connects to the server at the specified URL.
@@ -28,7 +25,7 @@ public class SocketClient {
      * @param serverUrl The URL of the server to connect to.
      * @return true if connection was initiated successfully, false otherwise.
      */
-    public Boolean connectToServer(String serverUrl, Hero hero) {
+    public Boolean connectToServer(String serverUrl, Emitter.Listener onMapUpdate) {
         if (socket != null) {
             socket.disconnect();
             socket = null;
@@ -44,8 +41,8 @@ public class SocketClient {
             @Override
             public void call(Object... args) {
                 System.out.println("Connected to the server");
-                socket.on(EventName.ON_PLAYER_INVENTORY_UPDATE, new onPlayerInventoryUpdate(hero));
                 socket.on(EventName.ON_TEST_GAME_RECEIVE, new onTestGameReceive(socket));
+                socket.on(EventName.ON_MAP_UPDATE, onMapUpdate);
             }
         });
 
@@ -74,5 +71,13 @@ public class SocketClient {
         if (socket != null && socket.connected()) {
             socket.disconnect();
         }
+    }
+
+    public Socket getSocket() {
+        return socket;
+    }
+
+    public SocketClient(Inventory heroInventory) {
+        this.heroInventory = heroInventory;
     }
 }
