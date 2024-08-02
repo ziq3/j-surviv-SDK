@@ -7,15 +7,10 @@ import jsclub.codefest2024.sdk.factory.HealingItemFactory;
 import jsclub.codefest2024.sdk.factory.WeaponFactory;
 import jsclub.codefest2024.sdk.model.ElementType;
 import jsclub.codefest2024.sdk.model.Inventory;
-import jsclub.codefest2024.sdk.model.InventoryUpdateData;
-import jsclub.codefest2024.sdk.model.equipments.Armor;
-import jsclub.codefest2024.sdk.model.weapon.Weapon;
-import jsclub.codefest2024.sdk.socket.EventName;
-import jsclub.codefest2024.sdk.socket.data.emit_data.TestBotAction;
+import jsclub.codefest2024.sdk.socket.data.receive_data.InventoryUpdateData;
 import jsclub.codefest2024.sdk.util.MsgPackUtil;
 
 import java.io.IOException;
-import java.util.Date;
 
 public class onPlayerInventoryUpdate implements Emitter.Listener {
     private final io.socket.client.Socket socket;
