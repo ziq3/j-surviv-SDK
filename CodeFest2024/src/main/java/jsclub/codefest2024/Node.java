@@ -13,7 +13,9 @@ public class Node {
     public int getX() {
         return x;
     }
-    public int getY() { return y; }
+    public int getY() {
+        return y;
+    }
 
     public void setPosition(int x, int y) {
         this.x = x;
