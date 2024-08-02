@@ -6,6 +6,7 @@ import jsclub.codefest2024.Node;
 public class Element extends Node {
     private String id;
     private ElementType type = ElementType.ROAD;
+
     public Element(String id) {
         this.id = id;
     }
