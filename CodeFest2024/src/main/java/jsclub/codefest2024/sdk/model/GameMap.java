@@ -46,37 +46,37 @@ public class GameMap {
     // Get element by index on map
     public Element getElementByIndex(int x, int y) {
         Element element = null;
-        element = getElementByIndex(x, y, listIndestructibleObstacles.toArray());
+        element = this.getElementInMap(x, y, this.listIndestructibleObstacles);
         if(element != null) return element;
 
-        element = getElementByIndex(x, y, listEnemies.toArray());
+        element = this.getElementInMap(x, y, this.listEnemies);
         if(element != null) return element;
 
-        element = getElementByIndex(x, y, listTraps.toArray());
+        element = this.getElementInMap(x, y, this.listTraps);
         if(element != null) return element;
 
-        element = getElementByIndex(x, y, listChests.toArray());
+        element = this.getElementInMap(x, y, this.listChests);
         if(element != null) return element;
 
-        element = getElementByIndex(x, y, listWeapons.toArray());
+        element = this.getElementInMap(x, y, this.listWeapons);
         if(element != null) return element;
 
-        element = getElementByIndex(x, y, listHealingItems.toArray());
+        element = this.getElementInMap(x, y, this.listHealingItems);
         if(element != null) return element;
 
-        element = getElementByIndex(x, y, listArmors.toArray());
+        element = this.getElementInMap(x, y, this.listArmors);
         if(element != null) return element;
 
-        element = getElementByIndex(x, y, listBullets.toArray());
+        element = this.getElementInMap(x, y, this.listBullets);
         if(element != null) return element;
 
-        element = getElementByIndex(x, y, otherPlayerInfo.toArray());
+        element = this.getElementInMap(x, y, this.otherPlayerInfo);
         if(element != null) return element;
 
         return new Element(x, y, "ROAD", ElementType.ROAD);
     }
 
-    public Element getElementByIndex(int x, int y, Object[] elements){
+    public Element getElementInMap(int x, int y, List elements){
         for(Object element : elements){
             Element e = (Element) element;
             if (e.getX() == x && e.getY() == y) {
