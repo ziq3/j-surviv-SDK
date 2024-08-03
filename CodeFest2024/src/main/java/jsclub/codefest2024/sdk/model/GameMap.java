@@ -45,8 +45,49 @@ public class GameMap {
     // @Phi
     // Get element by index on map
     public Element getElementByIndex(int x, int y) {
-        // return default element is road
+        Element element = null;
+        element = this.findElementInListByIndex(x, y, this.listIndestructibleObstacles);
+        if(element != null) return element;
+
+        element = this.findElementInListByIndex(x, y, this.listEnemies);
+        if(element != null) return element;
+
+        element = this.findElementInListByIndex(x, y, this.listTraps);
+        if(element != null) return element;
+
+        element = this.findElementInListByIndex(x, y, this.listChests);
+        if(element != null) return element;
+
+        element = this.findElementInListByIndex(x, y, this.listWeapons);
+        if(element != null) return element;
+
+        element = this.findElementInListByIndex(x, y, this.listHealingItems);
+        if(element != null) return element;
+
+        element = this.findElementInListByIndex(x, y, this.listArmors);
+        if(element != null) return element;
+
+        element = this.findElementInListByIndex(x, y, this.listBullets);
+        if(element != null) return element;
+
+        element = this.findElementInListByIndex(x, y, this.otherPlayerInfo);
+        if(element != null) return element;
+
+        if(this.currentPlayer.x == x && this.currentPlayer.y == y) {
+            return this.currentPlayer;
+        }
+
         return new Element(x, y, "ROAD", ElementType.ROAD);
+    }
+
+    public Element findElementInListByIndex(int x, int y, List elements){
+        for(Object element : elements){
+            Element e = (Element) element;
+            if (e.getX() == x && e.getY() == y) {
+                return e;
+            }
+        }
+        return null;
     }
 
     public List<Weapon> getAllGun() {
