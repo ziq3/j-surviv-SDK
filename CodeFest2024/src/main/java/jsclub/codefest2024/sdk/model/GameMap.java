@@ -47,6 +47,7 @@ public class GameMap {
     public Element getElementByIndex(int x, int y) {
         List<Element> elements = new ArrayList<>();
         elements.addAll(listIndestructibleObstacles);
+        elements.addAll(listEnemies);
         elements.addAll(listTraps);
         elements.addAll(listChests);
         elements.addAll(listWeapons);
