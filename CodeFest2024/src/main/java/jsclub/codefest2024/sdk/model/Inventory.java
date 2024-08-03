@@ -1,5 +1,6 @@
 package jsclub.codefest2024.sdk.model;
 
+import jsclub.codefest2024.sdk.factory.WeaponFactory;
 import jsclub.codefest2024.sdk.model.equipments.Armor;
 import jsclub.codefest2024.sdk.model.equipments.HealingItem;
 import jsclub.codefest2024.sdk.model.weapon.Weapon;
@@ -17,6 +18,7 @@ public class Inventory {
     public Inventory() {
         // @Son
         // Set default value for melee is HAND
+        this.melee = WeaponFactory.getWeaponById("HAND");
     }
 
     public Weapon getGun() {
