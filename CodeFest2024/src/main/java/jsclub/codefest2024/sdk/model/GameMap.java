@@ -45,6 +45,21 @@ public class GameMap {
     // @Phi
     // Get element by index on map
     public Element getElementByIndex(int x, int y) {
+        List<Element> elements = new ArrayList<>();
+        elements.addAll(listIndestructibleObstacles);
+        elements.addAll(listTraps);
+        elements.addAll(listChests);
+        elements.addAll(listWeapons);
+        elements.addAll(listHealingItems);
+        elements.addAll(listArmors);
+        elements.addAll(listBullets);
+        elements.addAll(otherPlayerInfo);
+        for(Element element : elements) {
+            if (element.getX() == x && element.getY() == y) {
+                return element;
+            }
+        }
+
         // return default element is road
         return new Element(x, y, "ROAD", ElementType.ROAD);
     }
