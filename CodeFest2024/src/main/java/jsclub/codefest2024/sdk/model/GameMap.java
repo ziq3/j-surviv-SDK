@@ -46,37 +46,41 @@ public class GameMap {
     // Get element by index on map
     public Element getElementByIndex(int x, int y) {
         Element element = null;
-        element = this.getElementInMap(x, y, this.listIndestructibleObstacles);
+        element = this.findElementInListByIndex(x, y, this.listIndestructibleObstacles);
         if(element != null) return element;
 
-        element = this.getElementInMap(x, y, this.listEnemies);
+        element = this.findElementInListByIndex(x, y, this.listEnemies);
         if(element != null) return element;
 
-        element = this.getElementInMap(x, y, this.listTraps);
+        element = this.findElementInListByIndex(x, y, this.listTraps);
         if(element != null) return element;
 
-        element = this.getElementInMap(x, y, this.listChests);
+        element = this.findElementInListByIndex(x, y, this.listChests);
         if(element != null) return element;
 
-        element = this.getElementInMap(x, y, this.listWeapons);
+        element = this.findElementInListByIndex(x, y, this.listWeapons);
         if(element != null) return element;
 
-        element = this.getElementInMap(x, y, this.listHealingItems);
+        element = this.findElementInListByIndex(x, y, this.listHealingItems);
         if(element != null) return element;
 
-        element = this.getElementInMap(x, y, this.listArmors);
+        element = this.findElementInListByIndex(x, y, this.listArmors);
         if(element != null) return element;
 
-        element = this.getElementInMap(x, y, this.listBullets);
+        element = this.findElementInListByIndex(x, y, this.listBullets);
         if(element != null) return element;
 
-        element = this.getElementInMap(x, y, this.otherPlayerInfo);
+        element = this.findElementInListByIndex(x, y, this.otherPlayerInfo);
         if(element != null) return element;
+
+        if(this.currentPlayer.x == x && this.currentPlayer.y == y) {
+            return this.currentPlayer;
+        }
 
         return new Element(x, y, "ROAD", ElementType.ROAD);
     }
 
-    public Element getElementInMap(int x, int y, List elements){
+    public Element findElementInListByIndex(int x, int y, List elements){
         for(Object element : elements){
             Element e = (Element) element;
             if (e.getX() == x && e.getY() == y) {
