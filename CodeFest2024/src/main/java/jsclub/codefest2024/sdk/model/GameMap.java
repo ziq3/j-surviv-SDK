@@ -4,6 +4,7 @@
  */
 package jsclub.codefest2024.sdk.model;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,8 @@ import jsclub.codefest2024.sdk.model.equipments.*;
 import jsclub.codefest2024.sdk.model.obstacles.*;
 import jsclub.codefest2024.sdk.model.players.Player;
 import jsclub.codefest2024.sdk.model.weapon.*;
+import jsclub.codefest2024.sdk.socket.data.receive_data.MapUpdateData;
+import jsclub.codefest2024.sdk.util.MsgPackUtil;
 
 public class GameMap {
     private int mapSize = 0;
@@ -32,33 +35,46 @@ public class GameMap {
 
     // @Phi
     // Update data of this map when game send on init map event
-    public void updateOnInitMap(int mapSize, int darkAreaSize, List<Obstacle> listIndestructibleObstacles, List<Enemy> listEnemies, List<Obstacle> listTraps, List<Obstacle> listChests, List<Weapon> listWeapons, List<HealingItem> listHealingItems, List<Armor> listArmors, List<Bullet> listBullets, List<Player> otherPlayerInfo, Player currentPlayer) {
-        this.mapSize = mapSize;
-        this.darkAreaSize = darkAreaSize;
-        this.listIndestructibleObstacles = listIndestructibleObstacles;
-        this.listEnemies = listEnemies;
-        this.listTraps = listTraps;
-        this.listChests = listChests;
-        this.listWeapons = listWeapons;
-        this.listHealingItems = listHealingItems;
-        this.listArmors = listArmors;
-        this.listBullets = listBullets;
-        this.otherPlayerInfo = otherPlayerInfo;
-        this.currentPlayer = currentPlayer;
+    public void updateOnInitMap(Object arg) {
+        try {
+            Gson gson = new Gson();
+            String message = MsgPackUtil.decode(arg);
+            System.out.println("Message from server: " + message);
+
+            MapUpdateData mapUpdateData = gson.fromJson(message, MapUpdateData.class);
+
+            setMapSize(mapUpdateData.mapSize);
+            setListIndestructibleObstacles(mapUpdateData.listIndestrucible);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     // @Phi
     // Update data of this map when game send on update map event
-    public void updateOnUpdateMap(List<Enemy> listEnemies, List<Obstacle> listTraps, List<Obstacle> listChests, List<Weapon> listWeapons, List<HealingItem> listHealingItems, List<Armor> listArmors, List<Bullet> listBullets, List<Player> otherPlayerInfo, Player currentPlayer) {
-        this.listEnemies = listEnemies;
-        this.listTraps = listTraps;
-        this.listChests = listChests;
-        this.listWeapons = listWeapons;
-        this.listHealingItems = listHealingItems;
-        this.listArmors = listArmors;
-        this.listBullets = listBullets;
-        this.otherPlayerInfo = otherPlayerInfo;
-        this.currentPlayer = currentPlayer;
+    public void updateOnUpdateMap(Object arg) {
+        try {
+            String message = MsgPackUtil.decode(arg);
+            System.out.println("Message from server: " + message);
+            Gson gson = new Gson();
+
+            MapUpdateData mapUpdateData = gson.fromJson(message, MapUpdateData.class);
+
+            setDarkAreaSize(mapUpdateData.darkAreaSize);
+            setListEnemies(mapUpdateData.listEnemies);
+            setListTraps(mapUpdateData.listTraps);
+            setListChests(mapUpdateData.listChests);
+            setListWeapons(mapUpdateData.listWeapons);
+            setListHealingItems(mapUpdateData.listHealingItems);
+            setListArmors(mapUpdateData.listArmors);
+            setListBullets(mapUpdateData.listBullet);
+            setOtherPlayerInfo(mapUpdateData.players);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     // @Phi

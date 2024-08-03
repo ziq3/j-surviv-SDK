@@ -10,7 +10,6 @@ public enum ElementType {
     HEALING_ITEM,
     CHEST,
     TRAP,
-    DESTRUCTIBLE_OBSTACLE,
     INDESTRUCTIBLE_OBSTACLE,
     ROAD,
     BULLET,

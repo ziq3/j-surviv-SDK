@@ -19,10 +19,14 @@ public class ObstacleFactory {
         return obstacleMap.get(id);
     }
 
-    public static int getObStacleHp(String id){
-        Obstacle obstacle = getObstacleById(id);
+    public static Obstacle getObStacle(String id, int x, int y, int hp) throws CloneNotSupportedException {
+        Obstacle obstacleBase = getObstacleById(id);
 
-        return obstacle.getHp();
+        Obstacle obstacle = (Obstacle) obstacleBase.clone();
+        obstacle.setPosition(x,y);
+        obstacle.setId(id);
+
+        return obstacle;
     }
 
 }
