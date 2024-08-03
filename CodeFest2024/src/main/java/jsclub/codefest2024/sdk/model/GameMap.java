@@ -45,24 +45,45 @@ public class GameMap {
     // @Phi
     // Get element by index on map
     public Element getElementByIndex(int x, int y) {
-        List<Element> elements = new ArrayList<>();
-        elements.addAll(listIndestructibleObstacles);
-        elements.addAll(listEnemies);
-        elements.addAll(listTraps);
-        elements.addAll(listChests);
-        elements.addAll(listWeapons);
-        elements.addAll(listHealingItems);
-        elements.addAll(listArmors);
-        elements.addAll(listBullets);
-        elements.addAll(otherPlayerInfo);
-        for(Element element : elements) {
-            if (element.getX() == x && element.getY() == y) {
-                return element;
+        Element element = null;
+        element = getElementByIndex(x, y, listIndestructibleObstacles.toArray());
+        if(element != null) return element;
+
+        element = getElementByIndex(x, y, listEnemies.toArray());
+        if(element != null) return element;
+
+        element = getElementByIndex(x, y, listTraps.toArray());
+        if(element != null) return element;
+
+        element = getElementByIndex(x, y, listChests.toArray());
+        if(element != null) return element;
+
+        element = getElementByIndex(x, y, listWeapons.toArray());
+        if(element != null) return element;
+
+        element = getElementByIndex(x, y, listHealingItems.toArray());
+        if(element != null) return element;
+
+        element = getElementByIndex(x, y, listArmors.toArray());
+        if(element != null) return element;
+
+        element = getElementByIndex(x, y, listBullets.toArray());
+        if(element != null) return element;
+
+        element = getElementByIndex(x, y, otherPlayerInfo.toArray());
+        if(element != null) return element;
+
+        return new Element(x, y, "ROAD", ElementType.ROAD);
+    }
+
+    public Element getElementByIndex(int x, int y, Object[] elements){
+        for(Object element : elements){
+            Element e = (Element) element;
+            if (e.getX() == x && e.getY() == y) {
+                return e;
             }
         }
-
-        // return default element is road
-        return new Element(x, y, "ROAD", ElementType.ROAD);
+        return null;
     }
 
     public List<Weapon> getAllGun() {
