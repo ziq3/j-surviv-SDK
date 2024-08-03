@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
+import jsclub.codefest2024.sdk.base.Node;
+import jsclub.codefest2024.sdk.factory.*;
 import jsclub.codefest2024.sdk.model.enemies.*;
 import jsclub.codefest2024.sdk.model.equipments.*;
 import jsclub.codefest2024.sdk.model.obstacles.*;
@@ -44,9 +46,15 @@ public class GameMap {
             MapUpdateData mapUpdateData = gson.fromJson(message, MapUpdateData.class);
 
             setMapSize(mapUpdateData.mapSize);
-            setListIndestructibleObstacles(mapUpdateData.listIndestrucible);
 
-        } catch (IOException e) {
+            for(Obstacle o : mapUpdateData.listIndestrucible){
+                Obstacle indestructible = ObstacleFactory.getObStacle("INDESTRUCTIBLE_OBSTACLE", o.getX(), o.getY());
+                listIndestructibleObstacles.add(indestructible);
+            }
+
+
+
+        } catch (IOException | CloneNotSupportedException e) {
             throw new RuntimeException(e);
         }
     }
@@ -62,16 +70,41 @@ public class GameMap {
             MapUpdateData mapUpdateData = gson.fromJson(message, MapUpdateData.class);
 
             setDarkAreaSize(mapUpdateData.darkAreaSize);
-            setListEnemies(mapUpdateData.listEnemies);
-            setListTraps(mapUpdateData.listTraps);
-            setListChests(mapUpdateData.listChests);
-            setListWeapons(mapUpdateData.listWeapons);
-            setListHealingItems(mapUpdateData.listHealingItems);
-            setListArmors(mapUpdateData.listArmors);
-            setListBullets(mapUpdateData.listBullet);
-            setOtherPlayerInfo(mapUpdateData.players);
 
-        } catch (IOException e) {
+            for(Enemy e : mapUpdateData.listEnemies){
+                Enemy enemy = EnemyFactory.getEnemy(e.getId(), e.getX(), e.getY());
+                listEnemies.add(enemy);
+            }
+
+            for(Obstacle t : mapUpdateData.listTraps) {
+                Obstacle trap = ObstacleFactory.getObStacle(t.getId(), t.getX(), t.getY());
+                listTraps.add(trap);
+            }
+            for(Obstacle c : mapUpdateData.listChests) {
+                Obstacle chest = ObstacleFactory.getObStacle(c.getId(), c.getX(), c.getY());
+                listChests.add(chest);
+            }
+
+            for(Weapon w : mapUpdateData.listWeapons){
+                Weapon weapon = WeaponFactory.getWeapon(w.getId(), w.getX(), w.getY());
+                listWeapons.add(weapon);
+            }
+
+            for(HealingItem h: mapUpdateData.listHealingItems){
+                HealingItem healing = HealingItemFactory.getHealingItem(h.getId(), h.getX(),h.getY());
+                listHealingItems.add(healing);
+            }
+
+            for (Armor a: mapUpdateData.listArmors) {
+                Armor armor = ArmorFactory.getArmor(a.getId(),a.getX(),a.getY());
+                listArmors.add(armor);
+            }
+
+            listBullets.addAll(mapUpdateData.listBullet);
+
+            otherPlayerInfo.addAll(mapUpdateData.players);
+
+        } catch (IOException | CloneNotSupportedException e) {
             throw new RuntimeException(e);
         }
 
