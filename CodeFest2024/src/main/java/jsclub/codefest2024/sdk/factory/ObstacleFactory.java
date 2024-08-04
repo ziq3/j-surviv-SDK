@@ -22,22 +22,18 @@ public class ObstacleFactory {
     public static Obstacle getObstacle(String id, int x, int y) throws CloneNotSupportedException {
         Obstacle obstacleBase = getObstacleById(id);
 
-        if(obstacleBase != null){
+        Obstacle obstacle = (Obstacle) obstacleBase.clone();
+        obstacle.setId(id);
+        obstacle.setPosition(x,y);
 
-            Obstacle obstacle;
-            if(obstacleBase.getHp() > 0){
-                obstacle = new Obstacle(id,obstacleBase.getType(),obstacleBase.getHp());
-            } else {
-                obstacle = (Obstacle) obstacleBase.clone();
-                obstacle.setId(id);
-            }
-
-            obstacle.setPosition(x,y);
-
-            return obstacle;
-        }
-
-        return null;
+        return obstacle;
     }
 
+    public static Obstacle getObstacle(String id, int x, int y, int hp) throws CloneNotSupportedException {
+        Obstacle obstacleBase = getObstacleById(id);
+        Obstacle obstacle = new Obstacle(obstacleBase.getId(),obstacleBase.getType(),hp);
+        obstacle.setPosition(x,y);
+
+        return obstacle;
+    }
 }

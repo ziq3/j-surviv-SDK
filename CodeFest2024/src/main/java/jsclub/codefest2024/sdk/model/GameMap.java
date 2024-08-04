@@ -88,13 +88,13 @@ public class GameMap {
             setListEnemies(newListEnemies);
 
             for(Obstacle t : mapData.listTraps) {
-                Obstacle trap = ObstacleFactory.getObstacle(t.getId(), t.getX(), t.getY());
+                Obstacle trap = ObstacleFactory.getObstacle(t.getId(), t.getX(), t.getY(),t.getHp());
                 newListTraps.add(trap);
             }
             setListTraps(newListTraps);
 
             for(Obstacle c : mapData.listChests) {
-                Obstacle chest = ObstacleFactory.getObstacle(c.getId(), c.getX(), c.getY());
+                Obstacle chest = ObstacleFactory.getObstacle(c.getId(), c.getX(), c.getY(),c.getHp());
                 newListChests.add(chest);
             }
             setListChests(newListChests);
@@ -118,10 +118,6 @@ public class GameMap {
             setListArmors(newListArmor);
 
             List<Bullet> newBullets = new ArrayList<>(mapData.listBullet);
-            for(Bullet b : newBullets){
-                b.setId("BULLET");
-                b.setType(ElementType.BULLET);
-            }
             setListBullets(newBullets);
 
             List<Player> newOtherPlayersInfo = new ArrayList<>(mapData.players);
@@ -271,5 +267,5 @@ public class GameMap {
         return new Gson().toJson(this);
     }
 
-    
+
 }

@@ -12,4 +12,8 @@ public class Bullet extends Element {
 //    private final String id = "BULLET";
 
 
+    public Bullet() {
+        setId("BULLET");
+        setType(ElementType.BULLET);
+    }
 }
