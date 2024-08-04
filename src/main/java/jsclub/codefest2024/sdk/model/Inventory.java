@@ -16,7 +16,6 @@ public class Inventory {
     private List<HealingItem> listHealingItem = new ArrayList<>();
 
     public Inventory() {
-        // @Son
         // Set default value for melee is HAND
         this.melee = WeaponFactory.getWeaponById("HAND");
     }
