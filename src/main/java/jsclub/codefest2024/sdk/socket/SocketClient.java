@@ -7,7 +7,6 @@ package jsclub.codefest2024.sdk.socket;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 import jsclub.codefest2024.sdk.model.Inventory;
-import jsclub.codefest2024.sdk.socket.event_handler.onTestGameReceive;
 import jsclub.codefest2024.sdk.socket.event_handler.onPlayerInventoryUpdate;
 import jsclub.codefest2024.sdk.util.SocketUtil;
 
@@ -42,7 +41,6 @@ public class SocketClient {
             @Override
             public void call(Object... args) {
                 System.out.println("Connected to the server");
-                socket.on(EventName.ON_TEST_GAME_RECEIVE, new onTestGameReceive(socket));
                 socket.on(EventName.ON_MAP_UPDATE, onMapUpdate);
                 socket.on(EventName.ON_INVENTORY_UPDATE, new onPlayerInventoryUpdate(socket, heroInventory));
             }

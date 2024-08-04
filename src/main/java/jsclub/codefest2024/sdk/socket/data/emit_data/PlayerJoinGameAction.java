@@ -2,7 +2,7 @@ package jsclub.codefest2024.sdk.socket.data.emit_data;
 
 import com.google.gson.annotations.SerializedName;
 
-public class JoinGame {
+public class PlayerJoinGameAction {
     @SerializedName("game_id")
     private String gameID;
 
@@ -10,7 +10,7 @@ public class JoinGame {
     private String playerName;
 
     // Constructor
-    public JoinGame(String gameID, String playerName) {
+    public PlayerJoinGameAction(String gameID, String playerName) {
         this.gameID = gameID;
         this.playerName = playerName;
     }
