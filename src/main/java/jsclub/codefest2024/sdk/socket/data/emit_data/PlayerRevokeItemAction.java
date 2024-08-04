@@ -6,7 +6,6 @@ public class PlayerRevokeItemAction {
     @SerializedName("item_id")
     private int itemId;
 
-    // Constructor
     public PlayerRevokeItemAction(int itemId) {
         this.itemId = itemId;
     }

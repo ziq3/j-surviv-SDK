@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package jsclub.codefest2024.sdk.model;
 
 import java.io.IOException;
@@ -43,10 +39,12 @@ public class GameMap {
 
             setMapSize(mapData.mapSize);
 
-            for(Obstacle o : mapData.listIndestrucible){
+            List<Obstacle> newListIndestructibleObstacles = new ArrayList<>();
+            for(Obstacle o : mapData.listIndestructible){
                 Obstacle indestructible = ObstacleFactory.getObstacle("INDESTRUCTIBLE_OBSTACLE", o.getX(), o.getY());
-                listIndestructibleObstacles.add(indestructible);
+                newListIndestructibleObstacles.add(indestructible);
             }
+            setListIndestructibleObstacles(newListIndestructibleObstacles);
         } catch (CloneNotSupportedException | IOException e) {
             throw new RuntimeException(e);
         }
@@ -102,19 +100,14 @@ public class GameMap {
             }
             setListArmors(newListArmor);
 
-            List<Bullet> newBullets = new ArrayList<>(mapData.listBullet);
-            setListBullets(newBullets);
-
-            List<Player> newOtherPlayersInfo = new ArrayList<>(mapData.players);
-            setOtherPlayerInfo(newOtherPlayersInfo);
-
+            setListBullets(mapData.listBullet);
+            setOtherPlayerInfo(mapData.otherPlayers);
+            setCurrentPlayer(mapData.currentPlayer);
         } catch (CloneNotSupportedException | IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    // @Phi
-    // Get element by index on map
     public Element getElementByIndex(int x, int y) {
         Element element = null;
         element = this.findElementInListByIndex(x, y, this.listIndestructibleObstacles);
@@ -151,7 +144,7 @@ public class GameMap {
         return new Element(x, y, "ROAD", ElementType.ROAD);
     }
 
-    public Element findElementInListByIndex(int x, int y, List elements){
+    private Element findElementInListByIndex(int x, int y, List elements){
         for(Object element : elements){
             Element e = (Element) element;
             if (e.getX() == x && e.getY() == y) {

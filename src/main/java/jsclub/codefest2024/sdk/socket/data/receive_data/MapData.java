@@ -20,7 +20,7 @@ public class MapData {
     public int darkAreaSize;
 
     @SerializedName("list_indestructible")
-    public List<Obstacle> listIndestrucible;
+    public List<Obstacle> listIndestructible;
 
     @SerializedName("list_traps")
     public List<Obstacle> listTraps;
@@ -43,8 +43,11 @@ public class MapData {
     @SerializedName("list_bullet")
     public List<Bullet> listBullet;
 
-    @SerializedName("players")
-    public List<Player> players;
+    @SerializedName("other_players")
+    public List<Player> otherPlayers;
+
+    @SerializedName("current_player")
+    public Player currentPlayer;
 
     @Override
     public String toString() {

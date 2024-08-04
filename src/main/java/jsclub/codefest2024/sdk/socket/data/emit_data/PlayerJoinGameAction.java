@@ -9,7 +9,6 @@ public class PlayerJoinGameAction {
     @SerializedName("player_name")
     private String playerName;
 
-    // Constructor
     public PlayerJoinGameAction(String gameID, String playerName) {
         this.gameID = gameID;
         this.playerName = playerName;

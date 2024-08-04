@@ -6,7 +6,6 @@ public class PlayerMoveAction {
     @SerializedName("move")
     private String move;
 
-    // Constructor
     public PlayerMoveAction(String move) {
         this.move = move;
     }

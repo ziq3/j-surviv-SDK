@@ -8,41 +8,30 @@ import jsclub.codefest2024.sdk.socket.event_handler.onMapInit;
 import jsclub.codefest2024.sdk.socket.event_handler.onPlayerInventoryUpdate;
 import jsclub.codefest2024.sdk.util.SocketUtil;
 
-/**
- * SocketClient for connecting to a server using Socket.IO.
- * Author: AD
- */
 public class SocketClient {
-    private final String defaultUrl = "http://localhost:3000/sdk";
     private Socket socket;
     private final Inventory heroInventory;
     private final GameMap gameMap;
-
-    /**
-     * Connects to the server at the specified URL.
-     *
-     * @param serverUrl The URL of the server to connect to.
-     * @return true if connection was initiated successfully, false otherwise.
-     */
-    public Boolean connectToServer(String serverUrl, Emitter.Listener onMapUpdate) {
+    
+    public void connectToServer(String serverUrl, Emitter.Listener onMapUpdate) {
         if (socket != null) {
             socket.disconnect();
             socket = null;
         }
 
         socket = SocketUtil.init(serverUrl);
-
         if (socket == null) {
-            return false;
+            return;
         }
 
         socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
                 System.out.println("Connected to the server");
-                socket.on(EventName.ON_MAP_UPDATE, onMapUpdate);
                 socket.on(EventName.ON_MAP_INIT, new onMapInit(gameMap));
                 socket.on(EventName.ON_INVENTORY_UPDATE, new onPlayerInventoryUpdate(heroInventory));
+
+                socket.on(EventName.ON_MAP_UPDATE, onMapUpdate);
             }
         });
 
@@ -61,16 +50,6 @@ public class SocketClient {
         });
 
         socket.connect();
-        return true;
-    }
-
-    /**
-     * Disconnects from the currently connected server.
-     */
-    public void disconnectFromServer() {
-        if (socket != null && socket.connected()) {
-            socket.disconnect();
-        }
     }
 
     public Socket getSocket() {

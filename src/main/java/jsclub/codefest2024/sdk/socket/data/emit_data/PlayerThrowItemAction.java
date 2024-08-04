@@ -12,7 +12,6 @@ public class PlayerThrowItemAction {
     @SerializedName("destination_y")
     private int destinationY;
 
-    // Constructor
     public PlayerThrowItemAction(int itemId, int destinationX, int destinationY) {
         this.itemId = itemId;
         this.destinationX = destinationX;

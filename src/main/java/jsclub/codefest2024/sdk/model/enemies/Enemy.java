@@ -15,5 +15,4 @@ public class Enemy extends Element {
     public int getDamage() {
         return damage;
     }
-
 }

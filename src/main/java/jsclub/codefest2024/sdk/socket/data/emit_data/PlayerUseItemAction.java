@@ -6,7 +6,6 @@ public class PlayerUseItemAction {
     @SerializedName("item_id")
     private int itemId;
 
-    // Constructor
     public PlayerUseItemAction(int itemId) {
         this.itemId = itemId;
     }

@@ -22,6 +22,13 @@ public class MsgPackUtil {
         return encodeFromJSONString(jsonString);
     }
 
+    /**
+     * Encodes a message into MsgPack format from a JSON string.
+     *
+     * @param jsonString The JSON string to encode.
+     * @return The encoded MsgPack message.
+     * @throws IOException If an I/O error occurs.
+     */
     public static byte[] encodeFromJSONString(String jsonString) throws IOException {
         Value value = ValueFactory.newString(jsonString);
 

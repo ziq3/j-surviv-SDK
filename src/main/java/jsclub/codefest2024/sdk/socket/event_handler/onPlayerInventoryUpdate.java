@@ -24,9 +24,8 @@ public class onPlayerInventoryUpdate implements Emitter.Listener {
     public void call(Object... args) {
         try {
             String message = MsgPackUtil.decode(args[0]);
-            System.out.println("Message from server: " + message);
-
             InventoryUpdateData inventoryUpdateData = gson.fromJson(message, InventoryUpdateData.class);
+
             ElementType type = inventoryUpdateData.itemType;
             String id = inventoryUpdateData.id;
             String action = inventoryUpdateData.action;

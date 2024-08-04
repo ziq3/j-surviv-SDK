@@ -17,9 +17,27 @@ public class Player extends Element {
     private int point;
     private int hp;
 
-//    private ElementType type = ElementType.PLAYER;
-
     public Player() {
         setType(ElementType.PLAYER);
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public int getBulletNum() {
+        return bulletNum;
+    }
+
+    public int getDamageReduction() {
+        return damageReduction;
+    }
+
+    public int getPoint() {
+        return point;
+    }
+
+    public int getHp() {
+        return hp;
     }
 }
