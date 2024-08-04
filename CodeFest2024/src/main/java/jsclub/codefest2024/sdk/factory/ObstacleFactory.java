@@ -31,7 +31,10 @@ public class ObstacleFactory {
 
     public static Obstacle getObstacle(String id, int x, int y, int hp) throws CloneNotSupportedException {
         Obstacle obstacleBase = getObstacleById(id);
-        Obstacle obstacle = new Obstacle(obstacleBase.getId(),obstacleBase.getType(),hp);
+        Obstacle obstacle = (Obstacle) obstacleBase.clone();
+
+        obstacle.setHp(hp);
+        obstacle.setId(id);
         obstacle.setPosition(x,y);
 
         return obstacle;
