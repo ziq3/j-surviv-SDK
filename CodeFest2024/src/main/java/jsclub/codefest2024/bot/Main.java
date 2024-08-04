@@ -18,7 +18,7 @@ public class Main {
                 GameMap gameMap = hero.getGameMap();
 
                 // Update game map
-                gameMap.updateOnUpdateMap(args[0]);
+//                gameMap.updateOnUpdateMap(args[0]);
 
                 // Perform actions based on game map
                 System.out.println(gameMap);

@@ -17,7 +17,9 @@ public class Player extends Element {
     private int point;
     private int hp;
 
-    private ElementType type = ElementType.PLAYER;
+//    private ElementType type = ElementType.PLAYER;
 
-    public Player() {}
+    public Player() {
+        setType(ElementType.PLAYER);
+    }
 }

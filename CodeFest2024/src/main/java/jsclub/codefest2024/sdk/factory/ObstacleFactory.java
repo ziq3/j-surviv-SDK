@@ -19,14 +19,25 @@ public class ObstacleFactory {
         return obstacleMap.get(id);
     }
 
-    public static Obstacle getObStacle(String id, int x, int y) throws CloneNotSupportedException {
+    public static Obstacle getObstacle(String id, int x, int y) throws CloneNotSupportedException {
         Obstacle obstacleBase = getObstacleById(id);
 
-        Obstacle obstacle = (Obstacle) obstacleBase.clone();
-        obstacle.setPosition(x,y);
-        obstacle.setId(id);
+        if(obstacleBase != null){
 
-        return obstacle;
+            Obstacle obstacle;
+            if(obstacleBase.getHp() > 0){
+                obstacle = new Obstacle(id,obstacleBase.getType(),obstacleBase.getHp());
+            } else {
+                obstacle = (Obstacle) obstacleBase.clone();
+                obstacle.setId(id);
+            }
+
+            obstacle.setPosition(x,y);
+
+            return obstacle;
+        }
+
+        return null;
     }
 
 }

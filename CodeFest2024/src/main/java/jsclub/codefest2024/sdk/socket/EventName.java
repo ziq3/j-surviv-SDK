@@ -5,6 +5,7 @@ public class EventName {
     public static final String ON_MAP_UPDATE = "game:on-map-updated";
     public static final String ON_MAP_INIT = "game:send-map-infomation";
     public static final String ON_INVENTORY_UPDATE = "sdk:on-player-inventory-updated";
+    public static final String EMIT_TEST_GAME = "";
 
     public static final String EMIT_JOIN_GAME = "sdk:join-game";
 

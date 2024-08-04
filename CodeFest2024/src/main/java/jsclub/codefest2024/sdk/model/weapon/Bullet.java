@@ -8,6 +8,8 @@ public class Bullet extends Element {
     private final int speed = 0;
     private final int destination_x = 0;
     private final int destination_y = 0;
-    private final ElementType type = ElementType.BULLET;
-    private final String id = "BULLET";
+//    private final ElementType type = ElementType.BULLET;
+//    private final String id = "BULLET";
+
+
 }
