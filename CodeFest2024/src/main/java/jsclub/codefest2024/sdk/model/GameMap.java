@@ -4,15 +4,19 @@
  */
 package jsclub.codefest2024.sdk.model;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
+import jsclub.codefest2024.sdk.factory.*;
 import jsclub.codefest2024.sdk.model.enemies.*;
 import jsclub.codefest2024.sdk.model.equipments.*;
 import jsclub.codefest2024.sdk.model.obstacles.*;
 import jsclub.codefest2024.sdk.model.players.Player;
 import jsclub.codefest2024.sdk.model.weapon.*;
+import jsclub.codefest2024.sdk.socket.data.receive_data.MapData;
+import jsclub.codefest2024.sdk.util.MsgPackUtil;
 
 public class GameMap {
     private int mapSize = 0;
@@ -32,13 +36,96 @@ public class GameMap {
 
     // @Phi
     // Update data of this map when game send on init map event
-    public void updateOnInitMap() {
+    public void updateOnInitMap(String arg) {
+        try {
+            Gson gson = new Gson();
+//            String message = MsgPackUtil.decode(arg);
 
+            String message = arg;
+            System.out.println("Message from server: " + message);
+
+            MapData mapData = gson.fromJson(message, MapData.class);
+
+            setMapSize(mapData.mapSize);
+
+            for(Obstacle o : mapData.listIndestrucible){
+                Obstacle indestructible = ObstacleFactory.getObstacle("INDESTRUCTIBLE_OBSTACLE", o.getX(), o.getY());
+                listIndestructibleObstacles.add(indestructible);
+            }
+
+
+
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     // @Phi
     // Update data of this map when game send on update map event
-    public void updateOnUpdateMap() {
+    public void updateOnUpdateMap(String arg) {
+        try {
+//            String message = MsgPackUtil.decode(arg);
+
+            String message = arg;
+            System.out.println("Message from server: " + message);
+            Gson gson = new Gson();
+
+            MapData mapData = gson.fromJson(message, MapData.class);
+
+            List<Enemy> newListEnemies = new ArrayList<>();
+            List<Obstacle> newListTraps = new ArrayList<>();
+            List<Obstacle> newListChests = new ArrayList<>();
+            List<Weapon> newListWeapons = new ArrayList<>();
+            List<HealingItem> newListHealingItem = new ArrayList<>();
+            List<Armor> newListArmor = new ArrayList<>();
+
+            setDarkAreaSize(mapData.darkAreaSize);
+
+            for(Enemy e : mapData.listEnemies){
+                Enemy enemy = EnemyFactory.getEnemy(e.getId(), e.getX(), e.getY());
+                newListEnemies.add(enemy);
+            }
+            setListEnemies(newListEnemies);
+
+            for(Obstacle t : mapData.listTraps) {
+                Obstacle trap = ObstacleFactory.getObstacle(t.getId(), t.getX(), t.getY(),t.getHp());
+                newListTraps.add(trap);
+            }
+            setListTraps(newListTraps);
+
+            for(Obstacle c : mapData.listChests) {
+                Obstacle chest = ObstacleFactory.getObstacle(c.getId(), c.getX(), c.getY(),c.getHp());
+                newListChests.add(chest);
+            }
+            setListChests(newListChests);
+
+            for(Weapon w : mapData.listWeapons){
+                Weapon weapon = WeaponFactory.getWeapon(w.getId(), w.getX(), w.getY());
+                newListWeapons.add(weapon);
+            }
+            setListWeapons(newListWeapons);
+
+            for(HealingItem h: mapData.listHealingItems){
+                HealingItem healing = HealingItemFactory.getHealingItem(h.getId(), h.getX(),h.getY());
+                newListHealingItem.add(healing);
+            }
+            setListHealingItems(newListHealingItem);
+
+            for (Armor a: mapData.listArmors) {
+                Armor armor = ArmorFactory.getArmor(a.getId(),a.getX(),a.getY());
+                newListArmor.add(armor);
+            }
+            setListArmors(newListArmor);
+
+            List<Bullet> newBullets = new ArrayList<>(mapData.listBullet);
+            setListBullets(newBullets);
+
+            List<Player> newOtherPlayersInfo = new ArrayList<>(mapData.players);
+            setOtherPlayerInfo(newOtherPlayersInfo);
+
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
@@ -220,4 +307,6 @@ public class GameMap {
     public String toString() {
         return new Gson().toJson(this);
     }
+
+
 }

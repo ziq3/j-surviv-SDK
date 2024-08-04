@@ -20,4 +20,8 @@ public class Obstacle extends Element {
     public int getHp() {
         return hp;
     }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
 }
