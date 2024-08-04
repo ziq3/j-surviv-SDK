@@ -19,6 +19,8 @@ import jsclub.codefest2024.sdk.socket.data.receive_data.MapData;
 import jsclub.codefest2024.sdk.util.MsgPackUtil;
 
 public class GameMap {
+    private final Gson gson = new Gson();
+
     private int mapSize = 0;
     private int darkAreaSize = 0;
     private List<Obstacle> listIndestructibleObstacles = new ArrayList<>();
@@ -34,16 +36,9 @@ public class GameMap {
 
     public GameMap() {}
 
-    // @Phi
-    // Update data of this map when game send on init map event
-    public void updateOnInitMap(String arg) {
+    public void updateOnInitMap(Object arg) {
         try {
-            Gson gson = new Gson();
-//            String message = MsgPackUtil.decode(arg);
-
-            String message = arg;
-            System.out.println("Message from server: " + message);
-
+            String message = MsgPackUtil.decode(arg);
             MapData mapData = gson.fromJson(message, MapData.class);
 
             setMapSize(mapData.mapSize);
@@ -52,24 +47,14 @@ public class GameMap {
                 Obstacle indestructible = ObstacleFactory.getObstacle("INDESTRUCTIBLE_OBSTACLE", o.getX(), o.getY());
                 listIndestructibleObstacles.add(indestructible);
             }
-
-
-
-        } catch (CloneNotSupportedException e) {
+        } catch (CloneNotSupportedException | IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    // @Phi
-    // Update data of this map when game send on update map event
-    public void updateOnUpdateMap(String arg) {
+    public void updateOnUpdateMap(Object arg) {
         try {
-//            String message = MsgPackUtil.decode(arg);
-
-            String message = arg;
-            System.out.println("Message from server: " + message);
-            Gson gson = new Gson();
-
+            String message = MsgPackUtil.decode(arg);
             MapData mapData = gson.fromJson(message, MapData.class);
 
             List<Enemy> newListEnemies = new ArrayList<>();
@@ -123,10 +108,9 @@ public class GameMap {
             List<Player> newOtherPlayersInfo = new ArrayList<>(mapData.players);
             setOtherPlayerInfo(newOtherPlayersInfo);
 
-        } catch (CloneNotSupportedException e) {
+        } catch (CloneNotSupportedException | IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     // @Phi

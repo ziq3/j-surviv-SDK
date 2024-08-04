@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package jsclub.codefest2024.sdk;
 
 import io.socket.client.Socket;
@@ -28,7 +24,7 @@ public class Hero {
         this.gameID = gameID;
         this.gameMap = new GameMap();
         this.inventory = new Inventory();
-        this.socketClient = new SocketClient(this.inventory);
+        this.socketClient = new SocketClient(this.inventory, this.gameMap);
     }
 
     public void start(String serverURL) throws IOException {

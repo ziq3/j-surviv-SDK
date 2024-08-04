@@ -13,12 +13,10 @@ import jsclub.codefest2024.sdk.util.MsgPackUtil;
 import java.io.IOException;
 
 public class onPlayerInventoryUpdate implements Emitter.Listener {
-    private final io.socket.client.Socket socket;
     private final Inventory heroInventory;
     Gson gson = new Gson();
 
-    public onPlayerInventoryUpdate(io.socket.client.Socket socket, Inventory heroInventory) {
-        this.socket = socket;
+    public onPlayerInventoryUpdate(Inventory heroInventory) {
         this.heroInventory = heroInventory;
     }
 
