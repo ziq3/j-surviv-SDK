@@ -5,6 +5,9 @@ import jsclub.codefest2024.sdk.model.enemies.Enemy;
 import java.util.Map;
 
 public class EnemyFactory {
+    /**
+     * Available Armors
+     */
     private static final Map<String, Enemy> enemyMap = Map.of(
         "CROW", new Enemy("CROW", 10),
         "PARENT", new Enemy("PARENT", 15),
@@ -13,10 +16,25 @@ public class EnemyFactory {
         "GRANDPA", new Enemy("GRANDPA", 15)
     );
 
+    /**
+     * Find enemy by id.
+     *
+     * @param id String to find enemy.
+     * @return Enemy mapped with id.
+     */
     public static Enemy getEnemyById(String id) {
         return enemyMap.get(id);
     }
 
+    /**
+     * Find enemy by id.
+     * Set position for enemy
+     *
+     * @param id String to find enemy.
+     * @param x,y int to set position.
+     * @return Enemy with updated position,id.
+     * @throws CloneNotSupportedException If clone is not supported.
+     */
     public static Enemy getEnemy(String id, int x, int y) throws CloneNotSupportedException {
         Enemy enemyBase = getEnemyById(id);
 

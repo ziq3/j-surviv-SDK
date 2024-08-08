@@ -32,6 +32,12 @@ public class GameMap {
 
     public GameMap() {}
 
+    /**
+     * Decode message from server when initializing map.
+     * update map size and indestructible obstacles attributes
+     *
+     * @param arg The message parsed from server.
+     */
     public void updateOnInitMap(Object arg) {
         try {
             String message = MsgPackUtil.decode(arg);
@@ -50,6 +56,12 @@ public class GameMap {
         }
     }
 
+    /**
+     * Decode message from server when updating map.
+     * update dark area size and items information
+     *
+     * @param arg The message parsed from server.
+     */
     public void updateOnUpdateMap(Object arg) {
         try {
             String message = MsgPackUtil.decode(arg);
@@ -108,6 +120,13 @@ public class GameMap {
         }
     }
 
+    /**
+     * find element by position
+     *
+     * @param x,y int Position of element.
+     * @return The Element mapped with position.
+     */
+
     public Element getElementByIndex(int x, int y) {
         Element element = null;
         element = this.findElementInListByIndex(x, y, this.listIndestructibleObstacles);
@@ -153,6 +172,10 @@ public class GameMap {
         }
         return null;
     }
+
+    /**
+     * get,set functions
+     */
 
     public List<Weapon> getAllGun() {
         List<Weapon> guns = new ArrayList<>();
