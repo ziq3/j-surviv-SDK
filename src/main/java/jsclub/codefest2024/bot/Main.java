@@ -1,14 +1,17 @@
 package jsclub.codefest2024.bot;
 
 import io.socket.emitter.Emitter;
+import jsclub.codefest2024.sdk.algorithm.ShortestPath;
 import jsclub.codefest2024.sdk.model.GameMap;
 import jsclub.codefest2024.sdk.Hero;
+import jsclub.codefest2024.sdk.model.weapon.Weapon;
 
 import java.io.IOException;
+import java.util.List;
 
 public class Main {
     private static final String SERVER_URL = "https://cf-server.jsclub.dev";
-    private static final String GAME_ID = "123704";
+    private static final String GAME_ID = "101073";
     private static final String PLAYER_NAME = "player1";
 
     private static long lastCallTime = 0;  // External variable to track time across calls
@@ -35,7 +38,19 @@ public class Main {
                     GameMap gameMap = hero.getGameMap();
                     gameMap.updateOnUpdateMap(args[0]);
 
-                    hero.move(randomMove());
+                    Weapon gun = gameMap.getAllGun().get(0);
+                    System.out.println(gun);
+                    System.out.println(gameMap.getCurrentPlayer());
+                    String path = ShortestPath.getShortestPath(
+                            gameMap,
+                            List.of(),
+                            gameMap.getCurrentPlayer(),
+                            gun,
+                            false
+                    );
+
+                    System.out.println(path);
+                    hero.move(path);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
