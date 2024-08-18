@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Main {
     private static final String SERVER_URL = "https://cf-server.jsclub.dev";
-    private static final String GAME_ID = "101073";
+    private static final String GAME_ID = "181430";
     private static final String PLAYER_NAME = "player1";
 
     private static long lastCallTime = 0;  // External variable to track time across calls
@@ -37,6 +37,8 @@ public class Main {
                 try {
                     GameMap gameMap = hero.getGameMap();
                     gameMap.updateOnUpdateMap(args[0]);
+
+                    System.out.println(gameMap);
 
                     Weapon gun = gameMap.getAllGun().get(0);
                     System.out.println(gun);
