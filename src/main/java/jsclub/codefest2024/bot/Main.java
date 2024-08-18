@@ -8,9 +8,11 @@ import java.io.IOException;
 
 public class Main {
     private static final String SERVER_URL = "https://cf-server.jsclub.dev";
+    private static final String GAME_ID = "game1";
+    private static final String PLAYER_NAME = "player1";
 
     public static void main(String[] args) throws IOException {
-        Hero hero = new Hero("player1", "game1");
+        Hero hero = new Hero(GAME_ID, PLAYER_NAME);
 
         Emitter.Listener onMapUpdate = new Emitter.Listener() {
             @Override
