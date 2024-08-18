@@ -13,7 +13,7 @@ public class WeaponFactory {
         weaponMap.put("LEGO_GUN", new Weapon("LEGO_GUN", ElementType.GUN, 15, 10, 10, 4));
         weaponMap.put("RUBBER_GUN", new Weapon("RUBBER_GUN", ElementType.GUN, 7, 10, 10, 4));
         weaponMap.put("BADMINTON", new Weapon("BADMINTON", ElementType.GUN, 5, 15, 5, 4));
-        weaponMap.put("BLOOM", new Weapon("BROOM", ElementType.MELEE, 20, 25, 0, 2));
+        weaponMap.put("BROOM", new Weapon("BROOM", ElementType.MELEE, 20, 25, 0, 2));
         weaponMap.put("SANDAL", new Weapon("SANDAL", ElementType.MELEE, 20, 15, 0, 1));
         weaponMap.put("LIGHT_SABER", new Weapon("LIGHT_SABER", ElementType.MELEE, 20, 15, 0, 2));
         weaponMap.put("HAND", new Weapon("HAND", ElementType.MELEE, 5, 5, 0, 1));
