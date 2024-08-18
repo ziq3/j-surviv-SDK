@@ -19,7 +19,7 @@ public class Hero {
     private final Inventory inventory;
     private Emitter.Listener onMapUpdate;
 
-    public Hero(String playerName, String gameID) {
+    public Hero(String gameID, String playerName) {
         this.playerName = playerName;
         this.gameID = gameID;
         this.gameMap = new GameMap();
