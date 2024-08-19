@@ -14,6 +14,9 @@ public class Player extends Element {
     @SerializedName("damage_reduction")
     private int damageReduction;
 
+    @SerializedName("is_alive")
+    private boolean isAlive;
+
     private int point;
     private int hp;
 
@@ -39,5 +42,9 @@ public class Player extends Element {
 
     public int getHp() {
         return hp;
+    }
+
+    public boolean getIsAlive() {
+        return isAlive;
     }
 }

@@ -65,22 +65,24 @@ public class Hero {
         }
     }
 
-    public void shoot() throws IOException {
+    public void shoot(String direction) throws IOException {
         Socket socket = socketClient.getSocket();
 
         if (socket != null) {
-            String data = "{}";
-            byte[] bytes = MsgPackUtil.encodeFromObject(data);
+            PlayerShootAction botShoot = new PlayerShootAction(direction);
+
+            byte[] bytes = MsgPackUtil.encodeFromObject(botShoot);
             socket.emit(EventName.EMIT_SHOOT, (Object) bytes);
         }
     }
 
-    public void attack() throws IOException {
+    public void attack(String direction) throws IOException {
         Socket socket = socketClient.getSocket();
 
         if (socket != null) {
-            String data = "{}";
-            byte[] bytes = MsgPackUtil.encodeFromObject(data);
+            PlayerAttackAction botAttack = new PlayerAttackAction(direction);
+
+            byte[] bytes = MsgPackUtil.encodeFromObject(botAttack);
             socket.emit(EventName.EMIT_ATTACK, (Object) bytes);
         }
     }
