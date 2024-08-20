@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class PlayerRevokeItemAction {
     @SerializedName("item_id")
-    private int itemId;
+    private String itemId;
 
-    public PlayerRevokeItemAction(int itemId) {
+    public PlayerRevokeItemAction(String itemId) {
         this.itemId = itemId;
     }
 }

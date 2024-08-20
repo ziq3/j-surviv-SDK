@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class PlayerUseItemAction {
     @SerializedName("item_id")
-    private int itemId;
+    private String itemId;
 
-    public PlayerUseItemAction(int itemId) {
+    public PlayerUseItemAction(String itemId) {
         this.itemId = itemId;
     }
 }

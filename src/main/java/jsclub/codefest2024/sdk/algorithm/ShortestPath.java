@@ -2,6 +2,7 @@ package jsclub.codefest2024.sdk.algorithm;
 
 import jsclub.codefest2024.sdk.base.Node;
 import jsclub.codefest2024.sdk.model.GameMap;
+import jsclub.codefest2024.sdk.model.obstacles.Obstacle;
 
 import java.util.ArrayList;
 import java.util.List;
