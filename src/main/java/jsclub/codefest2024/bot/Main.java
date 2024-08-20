@@ -11,8 +11,8 @@ import java.util.List;
 
 public class Main {
     private static final String SERVER_URL = "https://cf-server.jsclub.dev";
-    private static final String GAME_ID = "181430";
-    private static final String PLAYER_NAME = "player1";
+    private static final String GAME_ID = "173357";
+    private static final String PLAYER_NAME = "vunt";
 
     private static long lastCallTime = 0;  // External variable to track time across calls
 
@@ -30,7 +30,7 @@ public class Main {
                 long currentTime = System.currentTimeMillis();
                 if (lastCallTime != 0) {
                     long timeDifference = currentTime - lastCallTime;
-                    System.out.println("Time between calls: " + timeDifference + " ms");
+                    //System.out.println("Time between calls: " + timeDifference + " ms");
                 }
                 lastCallTime = currentTime;  // Update the last call time
 
@@ -41,8 +41,8 @@ public class Main {
                     System.out.println(gameMap);
 
                     Weapon gun = gameMap.getAllGun().get(0);
-                    System.out.println(gun);
-                    System.out.println(gameMap.getCurrentPlayer());
+                    //System.out.println(gun);
+                    //System.out.println(gameMap.getCurrentPlayer());
                     String path = ShortestPath.getShortestPath(
                             gameMap,
                             List.of(),
