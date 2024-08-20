@@ -11,7 +11,6 @@ public class ObstacleFactory {
         "SPECIAL_CHEST", new Obstacle("SPECIAL_CHEST", ElementType.CHEST ,20),
         "GAS_TANK", new Obstacle("GAS_TANK", ElementType.TRAP,40),
         "FLOWER_VASE", new Obstacle("FLOWER_VASE", ElementType.TRAP,40),
-        "FLOWER_VASE_FRAGMENT", new Obstacle("FLOWER_VASE_FRAGMENT", ElementType.TRAP,0),
         "INDESTRUCTIBLE_OBSTACLE", new Obstacle("INDESTRUCTIBLE_OBSTACLE", ElementType.INDESTRUCTIBLE_OBSTACLE)
     );
 
