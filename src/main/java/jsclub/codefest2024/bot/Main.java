@@ -2,8 +2,10 @@ package jsclub.codefest2024.bot;
 
 import io.socket.emitter.Emitter;
 import jsclub.codefest2024.sdk.algorithm.ShortestPath;
+import jsclub.codefest2024.sdk.base.Node;
 import jsclub.codefest2024.sdk.model.GameMap;
 import jsclub.codefest2024.sdk.Hero;
+import jsclub.codefest2024.sdk.model.players.Player;
 import jsclub.codefest2024.sdk.model.weapon.Weapon;
 
 import java.io.IOException;
@@ -11,8 +13,8 @@ import java.util.List;
 
 public class Main {
     private static final String SERVER_URL = "https://cf-server.jsclub.dev";
-    private static final String GAME_ID = "173357";
-    private static final String PLAYER_NAME = "vunt";
+    private static final String GAME_ID = "170409";
+    private static final String PLAYER_NAME = "ptd";
 
     static String p = "urrl";
 
@@ -40,26 +42,27 @@ public class Main {
                     GameMap gameMap = hero.getGameMap();
                     gameMap.updateOnUpdateMap(args[0]);
 
-                    Weapon melee = hero.getInventory().getMelee();
-                    Weapon gun = hero.getInventory().getGun();
-
-                    System.out.println("Melee:" + melee);
-                    System.out.println("Gun:" + gun);
-//                    if(melee != null){
-//                        hero.revokeItem(melee.getId());
-//                    }
-//                    if(gun != null){
-//                        hero.revokeItem(gun.getId());
-//                    }
-
-                    List<Weapon> weapon = gameMap.getListWeapons();
-                    for(Weapon w : weapon) {
-                        if(w.getX() == gameMap.getCurrentPlayer().x && w.getY() == gameMap.getCurrentPlayer().y) {
-                            System.out.println("LỤM");
-                            hero.pickupItem();
-
+                    Player player = gameMap.getCurrentPlayer();
+                    Weapon target = null;
+                    double distance = 10000000;
+                    for (Weapon weapon : gameMap.getAllGun()) {
+                        if (distance > Math.sqrt(
+                                (player.x - weapon.x) * (player.x - weapon.x)
+                                + (player.y - weapon.y) * (player.y - weapon.y)
+                        )) {
+                            distance = (player.x - weapon.x) * (player.x - weapon.x)
+                                    + (player.y - weapon.y) * (player.y - weapon.y);
+                            target = weapon;
                         }
                     }
+
+                    hero.move(ShortestPath.getShortestPath(
+                            gameMap,
+                            List.of(),
+                            player,
+                            target,
+                            false
+                    ));
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
