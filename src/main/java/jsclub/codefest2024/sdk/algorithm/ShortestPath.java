@@ -19,15 +19,20 @@ public class ShortestPath {
 
         int mapSize = gameMap.getMapSize();
         int darkAreaSize = gameMap.getDarkAreaSize();
-
-        ArrayList<ArrayList<Integer>> isRestrictedNodes = new ArrayList<>(mapSize + 1);
-        ArrayList<ArrayList<Integer>> g = new ArrayList<>(mapSize + 1);
-        ArrayList<ArrayList<Integer>> trace = new ArrayList<>(mapSize + 1);
+        List<Obstacle> listIndestructibleObstacles = gameMap.getListIndestructibleObstacles();
+        List<Obstacle> listChests = gameMap.getListChests();
+        System.out.println("mapSize: " + mapSize);
+        System.out.println("darkAreaSize: " + darkAreaSize);
+        System.out.println("cur node: " + current.x + ' ' + current.y);
+        System.out.println("target node: " + target.x + ' ' + target.y);
+        ArrayList<ArrayList<Integer>> isRestrictedNodes = new ArrayList<>(mapSize + 5);
+        ArrayList<ArrayList<Integer>> g = new ArrayList<>(mapSize + 5);
+        ArrayList<ArrayList<Integer>> trace = new ArrayList<>(mapSize + 5);
 
         for (int i = 0; i < mapSize + 1; i++) {
-            isRestrictedNodes.add(new ArrayList<>(mapSize + 1));
-            g.add(new ArrayList<>(mapSize + 1));
-            trace.add(new ArrayList<>(mapSize + 1));
+            isRestrictedNodes.add(new ArrayList<>(mapSize + 5));
+            g.add(new ArrayList<>(mapSize + 5));
+            trace.add(new ArrayList<>(mapSize + 5));
 
             for (int j = 0; j < mapSize + 1; j++) {
                 isRestrictedNodes.get(i).add(0);
@@ -37,8 +42,25 @@ public class ShortestPath {
         }
 
         for (Node point : restrictedNodes) {
-            if (point.x >= 1 && point.x <= mapSize && point.y >= 1 && point.y <= mapSize) {
+            if (point.x >= 0 && point.x <= mapSize && point.y >= 0 && point.y <= mapSize) {
                 isRestrictedNodes.get(point.x).set(point.y, 1);
+            }
+        }
+
+        for (Node point : listIndestructibleObstacles) {
+            if (point.x >= 0 && point.x <= mapSize && point.y >= 0 && point.y <= mapSize) {
+                isRestrictedNodes.get(point.x).set(point.y, 1);
+                //System.out.println("restricted node: " + point.x + " " + point.y);
+            }
+        }
+
+        for (Node point : listChests) {
+            if (point.x >= 0 && point.x <= mapSize && point.y >= 0 && point.y <= mapSize) {
+                isRestrictedNodes.get(point.x).set(point.y, 1);
+                isRestrictedNodes.get(point.x).set(point.y + 1, 1);
+                isRestrictedNodes.get(point.x + 1).set(point.y, 1);
+                isRestrictedNodes.get(point.x + 1).set(point.y + 1, 1);
+                //System.out.println("restricted node: " + point.x + " " + point.y);
             }
         }
 
@@ -77,10 +99,10 @@ public class ShortestPath {
                 int x = u.x + Dx[dir];
                 int y = u.y + Dy[dir];
 
-                if (x < 1 || y < 1 || x > mapSize || y > mapSize) continue;
+                if (x < 0 || y < 0 || x > mapSize || y > mapSize) continue;
                 if (isRestrictedNodes.get(x).get(y) == 1) continue;
                 if (!skipDarkArea &&
-                        (x <= darkAreaSize || y <= darkAreaSize ||
+                        (x < darkAreaSize || y < darkAreaSize ||
                                 x >= mapSize - darkAreaSize + 1 || y >= mapSize - darkAreaSize + 1))
                     continue;
 

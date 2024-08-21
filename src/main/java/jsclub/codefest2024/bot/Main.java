@@ -11,8 +11,8 @@ import java.util.List;
 
 public class Main {
     private static final String SERVER_URL = "https://cf-server.jsclub.dev";
-    private static final String GAME_ID = "167596";
-    private static final String PLAYER_NAME = "player1";
+    private static final String GAME_ID = "173357";
+    private static final String PLAYER_NAME = "vunt";
 
     static String p = "urrl";
 
@@ -32,7 +32,7 @@ public class Main {
                 long currentTime = System.currentTimeMillis();
                 if (lastCallTime != 0) {
                     long timeDifference = currentTime - lastCallTime;
-                    System.out.println("Time between calls: " + timeDifference + " ms");
+                    //System.out.println("Time between calls: " + timeDifference + " ms");
                 }
                 lastCallTime = currentTime;  // Update the last call time
 
