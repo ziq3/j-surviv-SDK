@@ -10,9 +10,9 @@ public class EnemyFactory {
 //        "PARENT", new Enemy("PARENT", 15),
 //        "NINJA_LEAD", new Enemy("NINJA_LEAD", 15),
 //        "DOG", new Enemy("DOG", 15),
-//        "GRANDPA", new Enemy("GRANDPA", 15)
-        "ENEMY", new Enemy("ENEMY", 15),
-    "FLOWER_VASE_FRAGMENT", new Enemy("FLOWER_VASE_FRAGMENT", 2)
+//        "GRANDPA", new Enemy("GRANDPA", 15),
+//        "FLOWER_VASE_FRAGMENT", new Enemy("FLOWER_VASE_FRAGMENT", 2),
+        "ENEMY", new Enemy("ENEMY", 15)
     );
 
     public static Enemy getEnemyById(String id) {
