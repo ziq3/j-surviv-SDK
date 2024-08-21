@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class WeaponFactory {
+    /**
+     * Available Weapons
+     */
     private static final Map<String, Weapon> weaponMap = new HashMap<>();
     static {
         weaponMap.put("WATER_GUN", new Weapon("WATER_GUN", ElementType.GUN, 10, 20, 20, 4));
@@ -24,10 +27,25 @@ public class WeaponFactory {
         weaponMap.put("WATER_BALL", new Weapon("WATER_BALL", ElementType.THROWABLE, 10, 25, 0, 5));
     }
 
+    /**
+     * Find weapon by id.
+     *
+     * @param id String to find weapon.
+     * @return Weapon mapped with id.
+     */
     public static Weapon getWeaponById(String id) {
         return weaponMap.get(id);
     }
 
+    /**
+     * Find weapon by id.
+     * Set position for weapon
+     *
+     * @param id String to find weapon.
+     * @param x,y int to set position.
+     * @return Weapon with updated position,id.
+     * @throws CloneNotSupportedException If clone is not supported.
+     */
     public static Weapon getWeapon(String id, int x, int y) throws CloneNotSupportedException {
         Weapon weaponBase = weaponMap.get(id);
 
