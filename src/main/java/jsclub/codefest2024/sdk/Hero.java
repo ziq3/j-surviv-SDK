@@ -108,7 +108,7 @@ public class Hero {
         }
     }
 
-    public void useItem(int itemId) throws IOException {
+    public void useItem(String itemId) throws IOException {
         Socket socket = socketClient.getSocket();
 
         if (socket != null) {
@@ -119,7 +119,7 @@ public class Hero {
         }
     }
 
-    public void revokeItem(int itemId) throws IOException {
+    public void revokeItem(String itemId) throws IOException {
         Socket socket = socketClient.getSocket();
 
         if (socket != null) {

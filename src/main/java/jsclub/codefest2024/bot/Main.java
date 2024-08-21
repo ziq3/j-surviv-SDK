@@ -14,6 +14,8 @@ public class Main {
     private static final String GAME_ID = "173357";
     private static final String PLAYER_NAME = "vunt";
 
+    static String p = "urrl";
+
     private static long lastCallTime = 0;  // External variable to track time across calls
 
     public static String randomMove() {
@@ -38,21 +40,26 @@ public class Main {
                     GameMap gameMap = hero.getGameMap();
                     gameMap.updateOnUpdateMap(args[0]);
 
-                    System.out.println(gameMap);
+                    Weapon melee = hero.getInventory().getMelee();
+                    Weapon gun = hero.getInventory().getGun();
 
-                    Weapon gun = gameMap.getAllGun().get(0);
-                    //System.out.println(gun);
-                    //System.out.println(gameMap.getCurrentPlayer());
-                    String path = ShortestPath.getShortestPath(
-                            gameMap,
-                            List.of(),
-                            gameMap.getCurrentPlayer(),
-                            gun,
-                            false
-                    );
+                    System.out.println("Melee:" + melee);
+                    System.out.println("Gun:" + gun);
+//                    if(melee != null){
+//                        hero.revokeItem(melee.getId());
+//                    }
+//                    if(gun != null){
+//                        hero.revokeItem(gun.getId());
+//                    }
 
-                    System.out.println(path);
-                    hero.move(path);
+                    List<Weapon> weapon = gameMap.getListWeapons();
+                    for(Weapon w : weapon) {
+                        if(w.getX() == gameMap.getCurrentPlayer().x && w.getY() == gameMap.getCurrentPlayer().y) {
+                            System.out.println("LỤM");
+                            hero.pickupItem();
+
+                        }
+                    }
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
