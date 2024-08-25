@@ -81,14 +81,14 @@ public class ShortestPath {
             Node u = openSet.poll();
 
             if (u.x == target.x && u.y == target.y) {
-                while (target.x != current.x || target.y != current.y) {
-                    int dir = trace.get(target.x).get(target.y);
+                while (u.x != current.x || u.y != current.y) {
+                    int dir = trace.get(u.x).get(u.y);
                     if (dir == 0) ans.append('l');
                     else if (dir == 1) ans.append('r');
                     else if (dir == 2) ans.append('d');
                     else ans.append('u');
-                    target.x -= Dx[dir];
-                    target.y -= Dy[dir];
+                    u.x -= Dx[dir];
+                    u.y -= Dy[dir];
                 }
 
                 ans.reverse();
