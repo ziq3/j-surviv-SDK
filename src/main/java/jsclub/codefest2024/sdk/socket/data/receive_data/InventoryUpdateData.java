@@ -6,7 +6,7 @@ import jsclub.codefest2024.sdk.model.ElementType;
 
 public class InventoryUpdateData {
 
-    @SerializedName("type")
+    @SerializedName("item_type")
     public ElementType itemType;
 
     @SerializedName("id")
