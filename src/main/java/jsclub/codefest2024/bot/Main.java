@@ -2,7 +2,6 @@ package jsclub.codefest2024.bot;
 
 import io.socket.emitter.Emitter;
 import jsclub.codefest2024.sdk.algorithm.ShortestPath;
-import jsclub.codefest2024.sdk.base.Node;
 import jsclub.codefest2024.sdk.model.GameMap;
 import jsclub.codefest2024.sdk.Hero;
 import jsclub.codefest2024.sdk.model.players.Player;
@@ -31,30 +30,12 @@ public class Main {
         Emitter.Listener onMapUpdate = new Emitter.Listener() {
             @Override
             public void call(Object... args) {
-                long currentTime = System.currentTimeMillis();
-                if (lastCallTime != 0) {
-                    long timeDifference = currentTime - lastCallTime;
-                    //System.out.println("Time between calls: " + timeDifference + " ms");
-                }
-                lastCallTime = currentTime;  // Update the last call time
-
                 try {
                     GameMap gameMap = hero.getGameMap();
                     gameMap.updateOnUpdateMap(args[0]);
 
                     Player player = gameMap.getCurrentPlayer();
-                    Weapon target = null;
-                    double distance = 10000000;
-                    for (Weapon weapon : gameMap.getAllGun()) {
-                        if (distance > Math.sqrt(
-                                (player.x - weapon.x) * (player.x - weapon.x)
-                                + (player.y - weapon.y) * (player.y - weapon.y)
-                        )) {
-                            distance = (player.x - weapon.x) * (player.x - weapon.x)
-                                    + (player.y - weapon.y) * (player.y - weapon.y);
-                            target = weapon;
-                        }
-                    }
+                    Weapon target = getNearestWeapon(gameMap, player);
 
                     hero.move(ShortestPath.getShortestPath(
                             gameMap,
@@ -71,5 +52,22 @@ public class Main {
 
         hero.setOnMapUpdate(onMapUpdate);
         hero.start(SERVER_URL);
+    }
+
+    private static Weapon getNearestWeapon(GameMap gameMap, Player player) {
+        List<Weapon> guns = gameMap.getAllGun();
+        Weapon target = guns.get(0);
+        double distance = 10000000;
+        for (Weapon weapon : guns) {
+            if (distance > Math.sqrt(
+                    (player.x - weapon.x) * (player.x - weapon.x)
+                    + (player.y - weapon.y) * (player.y - weapon.y)
+            )) {
+                distance = (player.x - weapon.x) * (player.x - weapon.x)
+                        + (player.y - weapon.y) * (player.y - weapon.y);
+                target = weapon;
+            }
+        }
+        return target;
     }
 }
