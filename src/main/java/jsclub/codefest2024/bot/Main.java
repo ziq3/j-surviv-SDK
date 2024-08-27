@@ -14,7 +14,7 @@ public class Main {
     private static final String SERVER_URL = "https://cf-server.jsclub.dev";
     private static final String GAME_ID = "170409";
     private static final String PLAYER_NAME = "ptd";
-    
+
     public static String randomMove() {
         String[] moves = {"u", "d", "l", "r"};
         return moves[(int) (Math.random() * moves.length)];
