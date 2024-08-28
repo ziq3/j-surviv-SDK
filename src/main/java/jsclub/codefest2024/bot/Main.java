@@ -55,10 +55,9 @@ public class Main {
         Weapon target = guns.get(0);
         double distance = 10000000;
         for (Weapon weapon : guns) {
-            if (distance > Math.sqrt(
-                    (player.x - weapon.x) * (player.x - weapon.x)
-                    + (player.y - weapon.y) * (player.y - weapon.y)
-            )) {
+            if (distance > (player.x - weapon.x) * (player.x - weapon.x)
+                    + (player.y - weapon.y) * (player.y - weapon.y))
+            {
                 distance = (player.x - weapon.x) * (player.x - weapon.x)
                         + (player.y - weapon.y) * (player.y - weapon.y);
                 target = weapon;
