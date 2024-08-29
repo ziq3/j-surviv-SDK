@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Main {
     private static final String SERVER_URL = "https://cf-server.jsclub.dev";
-    private static final String GAME_ID = "170409";
+    private static final String GAME_ID = "159566";
     private static final String PLAYER_NAME = "ptd";
 
     public static String randomMove() {
@@ -56,8 +56,7 @@ public class Main {
         double distance = 10000000;
         for (Weapon weapon : guns) {
             if (distance > (player.x - weapon.x) * (player.x - weapon.x)
-                    + (player.y - weapon.y) * (player.y - weapon.y))
-            {
+                    + (player.y - weapon.y) * (player.y - weapon.y)) {
                 distance = (player.x - weapon.x) * (player.x - weapon.x)
                         + (player.y - weapon.y) * (player.y - weapon.y);
                 target = weapon;
