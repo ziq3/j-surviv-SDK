@@ -19,5 +19,5 @@
 * Cũng cấp thuật toán tìm đường (A* Search).
  
 **Tài liệu:**
-*  [Getting-Started](https://github.com/fu-js/j-surviv-SDK/wiki/Getting-Started) - Hướng dẫn cài đặt và connect.
+*  [Getting-Started](https://github.com/fu-js/j-surviv-SDK/wiki/Getting-Started) - Hướng dẫn cài đặt và kết nối.
 *  [API-Specification](./API-Specification) - Tài liệu đặc tả các method SDK cung cấp.
