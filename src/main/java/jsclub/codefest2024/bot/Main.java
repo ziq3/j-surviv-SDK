@@ -6,13 +6,14 @@ import jsclub.codefest2024.sdk.model.GameMap;
 import jsclub.codefest2024.sdk.Hero;
 import jsclub.codefest2024.sdk.model.players.Player;
 import jsclub.codefest2024.sdk.model.weapon.Weapon;
+import jsclub.codefest2024.sdk.util.PathUtils;
 
 import java.io.IOException;
 import java.util.List;
 
 public class Main {
     private static final String SERVER_URL = "https://cf-server.jsclub.dev";
-    private static final String GAME_ID = "159566";
+    private static final String GAME_ID = "185815";
     private static final String PLAYER_NAME = "ptd";
 
     public static String randomMove() {
@@ -33,13 +34,21 @@ public class Main {
                     Player player = gameMap.getCurrentPlayer();
                     Weapon target = getNearestWeapon(gameMap, player);
 
-                    hero.move(ShortestPath.getShortestPath(
-                            gameMap,
-                            List.of(),
-                            player,
-                            target,
-                            false
-                    ));
+                    if (player.x != target.x || player.y != target.y) {
+                        String path = PathUtils.getShortestPath(
+                                gameMap,
+                                List.of(),
+                                player,
+                                target,
+                                false
+                        );
+
+                        System.out.println("path: " + path);
+                        hero.move(path);
+                    }
+                    else {
+                        hero.pickupItem();
+                    }
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
