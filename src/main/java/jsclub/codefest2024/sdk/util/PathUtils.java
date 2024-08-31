@@ -12,13 +12,13 @@ import java.util.PriorityQueue;
 import static java.lang.Math.abs;
 
 public class PathUtils {
-    // Khoang cach ngan nhat tu Node x den Node y
+    // Calculates the Manhattan distance between Node x and Node y
     public static int distance(Node x, Node y) {
         return Math.abs(x.x - y.x) + Math.abs(x.y - y.y);
     }
 
-    // Kiem tra Node x co lam trong bo khong
-    public static boolean checkInsideDarkArea(Node x, int darkAreaSize, int mapSize) {
+    // Checks if Node x is within the safe area
+    public static boolean checkInsideSafeArea(Node x, int darkAreaSize, int mapSize) {
         return (x.x >= darkAreaSize && x.y >= darkAreaSize &&
                 x.x <= mapSize - darkAreaSize && x.y <= mapSize - darkAreaSize);
     }
@@ -106,7 +106,7 @@ public class PathUtils {
 
                 if (x < 0 || y < 0 || x > mapSize || y > mapSize) continue;
                 if (isRestrictedNodes.get(x).get(y) == 1) continue;
-                if (!skipDarkArea && !checkInsideDarkArea(new Node(x, y), darkAreaSize, mapSize))
+                if (!skipDarkArea && !checkInsideSafeArea(new Node(x, y), darkAreaSize, mapSize))
                     continue;
 
                 int cost = g.get(u.x).get(u.y) + 1;
