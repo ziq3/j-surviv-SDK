@@ -54,15 +54,15 @@ public class ShortestPath {
             }
         }
 
-        for (Node point : listChests) {
-            if (point.x >= 0 && point.x <= mapSize && point.y >= 0 && point.y <= mapSize) {
-                isRestrictedNodes.get(point.x).set(point.y, 1);
-                isRestrictedNodes.get(point.x).set(point.y + 1, 1);
-                isRestrictedNodes.get(point.x + 1).set(point.y, 1);
-                isRestrictedNodes.get(point.x + 1).set(point.y + 1, 1);
-                //System.out.println("restricted node: " + point.x + " " + point.y);
-            }
-        }
+//        for (Node point : listChests) {
+//            if (point.x >= 0 && point.x <= mapSize && point.y >= 0 && point.y <= mapSize) {
+//                isRestrictedNodes.get(point.x).set(point.y, 1);
+//                isRestrictedNodes.get(point.x).set(point.y + 1, 1);
+//                isRestrictedNodes.get(point.x + 1).set(point.y, 1);
+//                isRestrictedNodes.get(point.x + 1).set(point.y + 1, 1);
+//                //System.out.println("restricted node: " + point.x + " " + point.y);
+//            }
+//        }
 
         PriorityQueue<Node> openSet = new PriorityQueue<>(new Comparator<Node>() {
             @Override
