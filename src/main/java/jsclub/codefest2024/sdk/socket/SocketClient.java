@@ -12,7 +12,7 @@ public class SocketClient {
     private Socket socket;
     private final Inventory heroInventory;
     private final GameMap gameMap;
-    
+
     public void connectToServer(String serverUrl, Emitter.Listener onMapUpdate) {
         if (socket != null) {
             socket.disconnect();
@@ -32,6 +32,14 @@ public class SocketClient {
                 socket.on(EventName.ON_INVENTORY_UPDATE, new onPlayerInventoryUpdate(heroInventory));
 
                 socket.on(EventName.ON_MAP_UPDATE, onMapUpdate);
+
+                socket.on(EventName.ON_PLAYER_REMOVE, new Emitter.Listener() {
+                    @Override
+                    public void call(Object... args) {
+                        System.out.println("You've been kicked out of the server");
+                        System.exit(0);
+                    }
+                });
             }
         });
 
