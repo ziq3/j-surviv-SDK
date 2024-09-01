@@ -93,7 +93,7 @@ public class ShortestPath {
                 if (isRestrictedNodes.get(x).get(y) == 1) continue;
                 if (!skipDarkArea &&
                         (x < darkAreaSize || y < darkAreaSize ||
-                                x >= mapSize - darkAreaSize + 1 || y >= mapSize - darkAreaSize + 1))
+                                x >= mapSize - darkAreaSize || y >= mapSize - darkAreaSize))
                     continue;
 
                 int cost = g.get(u.x).get(u.y) + 1;

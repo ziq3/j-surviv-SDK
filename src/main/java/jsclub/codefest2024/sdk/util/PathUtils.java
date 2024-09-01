@@ -110,7 +110,7 @@ public class PathUtils {
                 int x = u.x + Dx[dir];
                 int y = u.y + Dy[dir];
 
-                if (x < 0 || y < 0 || x > mapSize || y > mapSize) continue;
+                if (x < 0 || y < 0 || x >= mapSize || y >= mapSize) continue;
                 if (isRestrictedNodes.get(x).get(y) == 1) continue;
                 if (!skipDarkArea && !checkInsideSafeArea(new Node(x, y), darkAreaSize, mapSize))
                     continue;
