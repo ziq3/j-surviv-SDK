@@ -30,7 +30,6 @@ public class PathUtils {
         int mapSize = gameMap.getMapSize();
         int darkAreaSize = gameMap.getDarkAreaSize();
         List<Obstacle> listIndestructibleObstacles = gameMap.getListIndestructibleObstacles();
-        List<Obstacle> listChests = gameMap.getListChests();
         ArrayList<ArrayList<Integer>> isRestrictedNodes = new ArrayList<>(mapSize + 5);
         ArrayList<ArrayList<Integer>> g = new ArrayList<>(mapSize + 5);
         ArrayList<ArrayList<Integer>> trace = new ArrayList<>(mapSize + 5);
@@ -56,15 +55,6 @@ public class PathUtils {
         for (Node point : listIndestructibleObstacles) {
             if (point.x >= 0 && point.x <= mapSize && point.y >= 0 && point.y <= mapSize) {
                 isRestrictedNodes.get(point.x).set(point.y, 1);
-            }
-        }
-
-        for (Node point : listChests) {
-            if (point.x >= 0 && point.x <= mapSize && point.y >= 0 && point.y <= mapSize) {
-                isRestrictedNodes.get(point.x).set(point.y, 1);
-                isRestrictedNodes.get(point.x).set(point.y + 1, 1);
-                isRestrictedNodes.get(point.x + 1).set(point.y, 1);
-                isRestrictedNodes.get(point.x + 1).set(point.y + 1, 1);
             }
         }
 
