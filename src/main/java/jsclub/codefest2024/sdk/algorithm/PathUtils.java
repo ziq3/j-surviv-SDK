@@ -9,8 +9,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 
-import static java.lang.Math.abs;
-
 public class PathUtils {
     // Calculates the Manhattan distance between Node x and Node y
     private static int distance(Node x, Node y) {
