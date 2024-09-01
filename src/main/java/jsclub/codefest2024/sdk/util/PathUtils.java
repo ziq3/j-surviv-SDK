@@ -17,10 +17,16 @@ public class PathUtils {
         return Math.abs(x.x - y.x) + Math.abs(x.y - y.y);
     }
 
+    public static int shortestDistance(GameMap gameMap, List<Node> restrictedNodes, Node current, Node target, boolean skipDarkArea) {
+        String path = getShortestPath(gameMap, restrictedNodes, current, target, skipDarkArea);
+        if (path == null) return 1000000000;
+        return path.length();
+    }
+
     // Checks if Node x is within the safe area
     public static boolean checkInsideSafeArea(Node x, int darkAreaSize, int mapSize) {
         return (x.x >= darkAreaSize && x.y >= darkAreaSize &&
-                x.x <= mapSize - darkAreaSize && x.y <= mapSize - darkAreaSize);
+                x.x < mapSize - darkAreaSize && x.y < mapSize - darkAreaSize);
     }
 
     // The algorithm to find the shortest path from the current node to the target node
