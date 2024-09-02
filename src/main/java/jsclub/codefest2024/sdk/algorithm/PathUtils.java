@@ -45,13 +45,13 @@ public class PathUtils {
         }
 
         for (Node point : restrictedNodes) {
-            if (point.x >= 0 && point.x <= mapSize && point.y >= 0 && point.y <= mapSize) {
+            if (point.x >= 0 && point.x < mapSize && point.y >= 0 && point.y < mapSize) {
                 isRestrictedNodes.get(point.x).set(point.y, 1);
             }
         }
 
         for (Node point : listIndestructibleObstacles) {
-            if (point.x >= 0 && point.x <= mapSize && point.y >= 0 && point.y <= mapSize) {
+            if (point.x >= 0 && point.x < mapSize && point.y >= 0 && point.y < mapSize) {
                 isRestrictedNodes.get(point.x).set(point.y, 1);
             }
         }
