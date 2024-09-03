@@ -10,10 +10,10 @@ public class ObstacleFactory {
      * Available Obstacles
      */
     private static final Map<String, Obstacle> obstacleMap = Map.of(
-        "CHEST", new Obstacle("CHEST", ElementType.CHEST ,20),
-        "SPECIAL_CHEST", new Obstacle("SPECIAL_CHEST", ElementType.CHEST ,20),
-        "GAS_TANK", new Obstacle("GAS_TANK", ElementType.TRAP,40),
-        "FLOWER_VASE", new Obstacle("FLOWER_VASE", ElementType.TRAP,40),
+        "CHEST", new Obstacle("CHEST", ElementType.CHEST ,40),
+        "SPECIAL_CHEST", new Obstacle("SPECIAL_CHEST", ElementType.CHEST ,40),
+        "GAS_TANK", new Obstacle("GAS_TANK", ElementType.TRAP,0),
+        "FLOWER_VASE", new Obstacle("FLOWER_VASE", ElementType.TRAP,0),
         "INDESTRUCTIBLE_OBSTACLE", new Obstacle("INDESTRUCTIBLE_OBSTACLE", ElementType.INDESTRUCTIBLE_OBSTACLE)
     );
 

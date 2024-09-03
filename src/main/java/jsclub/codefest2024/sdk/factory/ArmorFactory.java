@@ -12,8 +12,8 @@ public class ArmorFactory {
      */
     public static final Map<String, Armor> armorMap = Map.of(
         "VEST", new Armor("VEST", 20, 3),
-        "POT", new Armor("POT", 20, 2),
-        "HELMET", new Armor("HELMET", 20, 1)
+        "POT", new Armor("POT", 10, 2),
+        "HELMET", new Armor("HELMET", 5, 1)
     );
     /**
      * Find armor by id.

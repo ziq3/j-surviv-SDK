@@ -12,19 +12,19 @@ public class WeaponFactory {
      */
     private static final Map<String, Weapon> weaponMap = new HashMap<>();
     static {
-        weaponMap.put("WATER_GUN", new Weapon("WATER_GUN", ElementType.GUN, 10, 20, 20, 4));
-        weaponMap.put("LEGO_GUN", new Weapon("LEGO_GUN", ElementType.GUN, 15, 10, 10, 4));
-        weaponMap.put("RUBBER_GUN", new Weapon("RUBBER_GUN", ElementType.GUN, 7, 10, 10, 4));
-        weaponMap.put("BADMINTON", new Weapon("BADMINTON", ElementType.GUN, 5, 15, 5, 4));
-        weaponMap.put("BROOM", new Weapon("BROOM", ElementType.MELEE, 20, 25, 0, 2));
-        weaponMap.put("SANDAL", new Weapon("SANDAL", ElementType.MELEE, 20, 15, 0, 1));
-        weaponMap.put("LIGHT_SABER", new Weapon("LIGHT_SABER", ElementType.MELEE, 20, 15, 0, 2));
-        weaponMap.put("HAND", new Weapon("HAND", ElementType.MELEE, 5, 5, 0, 1));
-        weaponMap.put("PAPER_AIRPLANE", new Weapon("PAPER_AIRPLANE", ElementType.THROWABLE, 10, 10, 0, 5));
-        weaponMap.put("BALL", new Weapon("BALL", ElementType.THROWABLE, 10, 20, 0, 5));
-        weaponMap.put("PAPER_DART", new Weapon("PAPER_DART", ElementType.THROWABLE, 10, 25, 0, 5));
-        weaponMap.put("TEDDY_BEAR", new Weapon("TEDDY_BEAR", ElementType.THROWABLE, 10, 15, 0, 5));
-        weaponMap.put("WATER_BALL", new Weapon("WATER_BALL", ElementType.THROWABLE, 10, 25, 0, 5));
+        weaponMap.put("WATER_GUN", new Weapon("WATER_GUN", ElementType.GUN, 35, 70, 10, 8));
+        weaponMap.put("LEGO_GUN", new Weapon("LEGO_GUN", ElementType.GUN, 30, 60, 15, 8));
+        weaponMap.put("RUBBER_GUN", new Weapon("RUBBER_GUN", ElementType.GUN, 25, 50, 15, 8));
+        weaponMap.put("BADMINTON", new Weapon("BADMINTON", ElementType.GUN, 25, 50, 20, 8));
+        weaponMap.put("BROOM", new Weapon("BROOM", ElementType.MELEE, 15, 30, 0, 2));
+        weaponMap.put("SANDAL", new Weapon("SANDAL", ElementType.MELEE, 15, 30, 0, 1));
+        weaponMap.put("LIGHT_SABER", new Weapon("LIGHT_SABER", ElementType.MELEE, 20, 40, 0, 2));
+        weaponMap.put("HAND", new Weapon("HAND", ElementType.MELEE, 5, 10, 0, 1));
+        weaponMap.put("PAPER_AIRPLANE", new Weapon("PAPER_AIRPLANE", ElementType.THROWABLE, 25, 50, 0, 6));
+        weaponMap.put("BALL", new Weapon("BALL", ElementType.THROWABLE, 25, 50, 0, 6));
+        weaponMap.put("PAPER_DART", new Weapon("PAPER_DART", ElementType.THROWABLE, 25, 50, 0, 6));
+        weaponMap.put("TEDDY_BEAR", new Weapon("TEDDY_BEAR", ElementType.THROWABLE, 25, 50, 0, 6));
+        weaponMap.put("WATER_BALL", new Weapon("WATER_BALL", ElementType.THROWABLE, 25, 50, 0, 6));
     }
 
     /**

@@ -15,7 +15,7 @@ public class EnemyFactory {
 //        "DOG", new Enemy("DOG", 15),
 //        "GRANDPA", new Enemy("GRANDPA", 15),
 //        "FLOWER_VASE_FRAGMENT", new Enemy("FLOWER_VASE_FRAGMENT", 2),
-        "ENEMY", new Enemy("ENEMY", 15)
+        "ENEMY", new Enemy("ENEMY", 10)
     );
 
     /**
