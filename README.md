@@ -1,4 +1,4 @@
-<p align="center"><img width="100%" src="https://scontent.fsgn14-1.fna.fbcdn.net/v/t39.30808-6/454895669_1018410123621576_169797688962045743_n.png?_nc_cat=101&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeHf_jAWkklZCrG8G2SpTv-pefZBf5_L6m159kF_n8vqbdaRuAFX6lk5KGaaSoL1y1m85QISwFPrgBwYcC9rDEvB&_nc_ohc=I4GEHHcINhkQ7kNvgH8b40U&_nc_ht=scontent.fsgn14-1.fna&oh=00_AYBGRJemUHGQAbGkHHuzUt25Ah5p-i_S-3vQCok10k6BtQ&oe=66D36702" alt="icon"></p>
+<p align="center"><img width="100%" src="/asset/cover.png" alt="icon"></p>
 <h2 align="center">Codefest 2024 - SDK</h2>
 
 
