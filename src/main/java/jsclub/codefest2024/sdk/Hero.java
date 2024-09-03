@@ -43,7 +43,7 @@ public class Hero {
         return gameID;
     }
 
-    public void joinGame() throws IOException{
+    public void joinGame() throws IOException {
         Socket socket = socketClient.getSocket();
 
         if (socket != null) {
@@ -54,17 +54,29 @@ public class Hero {
         }
     }
 
-    public void move(String move) throws IOException {
+    /**
+     * Moves the player in the specified direction ('l', 'r', 'u', 'd').
+     *
+     * @param direction the direction in which to move the player
+     * @throws IOException if an I/O error occurs
+     */
+    public void move(String direction) throws IOException {
         Socket socket = socketClient.getSocket();
 
         if (socket != null) {
-            PlayerMoveAction botMove = new PlayerMoveAction(move);
+            PlayerMoveAction botMove = new PlayerMoveAction(direction);
 
             byte[] bytes = MsgPackUtil.encodeFromObject(botMove);
             socket.emit(EventName.EMIT_MOVE, (Object) bytes);
         }
     }
 
+    /**
+     * Shoots a projectile in the specified direction ('l', 'r', 'u', 'd').
+     *
+     * @param direction the direction in which to shoot
+     * @throws IOException if an I/O error occurs
+     */
     public void shoot(String direction) throws IOException {
         Socket socket = socketClient.getSocket();
 
@@ -76,6 +88,12 @@ public class Hero {
         }
     }
 
+    /**
+     * Performs a melee attack in the specified direction ('l', 'r', 'u', 'd').
+     *
+     * @param direction the direction in which to attack
+     * @throws IOException if an I/O error occurs
+     */
     public void attack(String direction) throws IOException {
         Socket socket = socketClient.getSocket();
 
@@ -87,6 +105,12 @@ public class Hero {
         }
     }
 
+    /**
+     * Throws a throwable object in the specified direction ('l', 'r', 'u', 'd').
+     *
+     * @param direction the direction in which to throw the object
+     * @throws IOException if an I/O error occurs
+     */
     public void throwItem(String direction) throws IOException {
         Socket socket = socketClient.getSocket();
 
@@ -98,6 +122,11 @@ public class Hero {
         }
     }
 
+    /**
+     * Picks up an item at the player's current position.
+     *
+     * @throws IOException if an I/O error occurs
+     */
     public void pickupItem() throws IOException {
         Socket socket = socketClient.getSocket();
 
@@ -108,6 +137,12 @@ public class Hero {
         }
     }
 
+    /**
+     * Uses an item with the specified ID.
+     *
+     * @param itemId the ID of the item to use
+     * @throws IOException if an I/O error occurs
+     */
     public void useItem(String itemId) throws IOException {
         Socket socket = socketClient.getSocket();
 
@@ -119,6 +154,12 @@ public class Hero {
         }
     }
 
+    /**
+     * Revokes an item with the specified ID.
+     *
+     * @param itemId the ID of the item to revoke
+     * @throws IOException if an I/O error occurs
+     */
     public void revokeItem(String itemId) throws IOException {
         Socket socket = socketClient.getSocket();
 
@@ -134,6 +175,11 @@ public class Hero {
         return playerName;
     }
 
+    /**
+     * Retrieves the current game map information.
+     *
+     * @return the current game map
+     */
     public GameMap getGameMap() {
         return gameMap;
     }
@@ -142,6 +188,11 @@ public class Hero {
         this.onMapUpdate = onMapUpdate;
     }
 
+    /**
+     * Retrieves the player's inventory information.
+     *
+     * @return the player's inventory
+     */
     public Inventory getInventory() {
         return inventory;
     }
