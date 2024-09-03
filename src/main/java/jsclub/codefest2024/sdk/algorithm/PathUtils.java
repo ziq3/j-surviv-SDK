@@ -10,18 +10,33 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 public class PathUtils {
-    // Calculates the Manhattan distance between Node x and Node y
+    /**
+     * Calculates the Manhattan distance between Node x and Node y
+     *
+     * @param x,y Node to calculate distance between 2 nodes.
+     * @return distance with int value.
+     */
     private static int distance(Node x, Node y) {
         return Math.abs(x.x - y.x) + Math.abs(x.y - y.y);
     }
 
-    // Checks if Node x is within the safe area
+    /**
+     * Checks if Node x is within the safe area
+     *
+     * @param x Node, darkAreaSize int, mapSize int  to check.
+     * @return boolean value.
+     */
     public static boolean checkInsideSafeArea(Node x, int darkAreaSize, int mapSize) {
         return (x.x >= darkAreaSize && x.y >= darkAreaSize &&
                 x.x < mapSize - darkAreaSize && x.y < mapSize - darkAreaSize);
     }
 
-    // The algorithm to find the shortest path from the current node to the target node
+    /**
+     * The algorithm to find the shortest path from the current node to the target node
+     *
+     * @param  gameMap GameMap, restrictedNodes List<Node> , current Node , target Node , skipDarkArea boolean to calculate moves.
+     * @return String value as move string.
+     */
     public static String getShortestPath(GameMap gameMap, List<Node> restrictedNodes, Node current, Node target, boolean skipDarkArea) {
         int[] Dx = {-1, 1, 0, 0};
         int[] Dy = {0, 0, -1, 1};
