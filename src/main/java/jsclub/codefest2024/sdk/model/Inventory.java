@@ -12,7 +12,7 @@ public class Inventory {
     private Weapon gun;
     private Weapon melee;
     private Weapon throwable;
-    private List<Armor> listArmor;
+    private List<Armor> listArmor  = new ArrayList<>();;
     private List<HealingItem> listHealingItem = new ArrayList<>();
 
     public Inventory() {
