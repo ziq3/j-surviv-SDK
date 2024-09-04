@@ -52,11 +52,11 @@ public class Inventory {
         this.listHealingItem = listHealingItem;
     }
 
-    public List<Armor> getArmor() {
+    public List<Armor> getListArmor() {
         return listArmor;
     }
 
-    public void setArmor(List<Armor> listArmor) {
+    public void setListArmor(List<Armor> listArmor) {
         this.listArmor = listArmor;
     }
 }
