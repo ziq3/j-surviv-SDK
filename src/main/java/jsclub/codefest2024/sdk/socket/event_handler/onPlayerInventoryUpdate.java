@@ -39,7 +39,7 @@ public class onPlayerInventoryUpdate implements Emitter.Listener {
                             heroInventory.setMelee(WeaponFactory.getWeaponById(id));
                             break;
                         case THROWABLE:
-                            heroInventory.getListThrowable().add(WeaponFactory.getWeaponById(id));
+                            heroInventory.setThrowable(WeaponFactory.getWeaponById(id));
                             break;
                         case ARMOR:
                             heroInventory.setArmor(ArmorFactory.getArmorById(id));
@@ -58,7 +58,7 @@ public class onPlayerInventoryUpdate implements Emitter.Listener {
                             heroInventory.setMelee(WeaponFactory.getWeaponById("HAND"));
                             break;
                         case THROWABLE:
-                            heroInventory.getListThrowable().remove(WeaponFactory.getWeaponById(id));
+                            heroInventory.setThrowable(null);
                             break;
                         case ARMOR:
                             heroInventory.setArmor(null);
