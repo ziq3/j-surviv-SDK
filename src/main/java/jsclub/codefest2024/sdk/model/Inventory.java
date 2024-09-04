@@ -12,7 +12,7 @@ public class Inventory {
     private Weapon gun;
     private Weapon melee;
     private Weapon throwable;
-    private Armor armor;
+    private List<Armor> listArmor;
     private List<HealingItem> listHealingItem = new ArrayList<>();
 
     public Inventory() {
@@ -52,11 +52,11 @@ public class Inventory {
         this.listHealingItem = listHealingItem;
     }
 
-    public Armor getArmor() {
-        return armor;
+    public List<Armor> getArmor() {
+        return listArmor;
     }
 
-    public void setArmor(Armor armor) {
-        this.armor = armor;
+    public void setArmor(List<Armor> listArmor) {
+        this.listArmor = listArmor;
     }
 }
