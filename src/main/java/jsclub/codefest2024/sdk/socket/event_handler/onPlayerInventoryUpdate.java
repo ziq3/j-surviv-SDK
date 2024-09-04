@@ -42,7 +42,7 @@ public class onPlayerInventoryUpdate implements Emitter.Listener {
                             heroInventory.setThrowable(WeaponFactory.getWeaponById(id));
                             break;
                         case ARMOR:
-                            heroInventory.setArmor(ArmorFactory.getArmorById(id));
+                            heroInventory.getListArmor().add(ArmorFactory.getArmorById(id));
                             break;
                         case HEALING_ITEM:
                             heroInventory.getListHealingItem().add(HealingItemFactory.getHealingItemById(id));
@@ -61,7 +61,7 @@ public class onPlayerInventoryUpdate implements Emitter.Listener {
                             heroInventory.setThrowable(null);
                             break;
                         case ARMOR:
-                            heroInventory.setArmor(null);
+                            heroInventory.getListArmor().remove(ArmorFactory.getArmorById(id));
                             break;
                         case HEALING_ITEM:
                             heroInventory.getListHealingItem().remove(HealingItemFactory.getHealingItemById(id));
