@@ -11,7 +11,7 @@ import java.util.List;
 public class Inventory {
     private Weapon gun;
     private Weapon melee;
-    private List<Weapon> listThrowable = new ArrayList<>();
+    private Weapon throwable;
     private Armor armor;
     private List<HealingItem> listHealingItem = new ArrayList<>();
 
@@ -36,12 +36,12 @@ public class Inventory {
         this.melee = melee;
     }
 
-    public List<Weapon> getListThrowable() {
-        return listThrowable;
+    public Weapon getThrowable() {
+        return throwable;
     }
 
-    public void setListThrowable(List<Weapon> listThrowable) {
-        this.listThrowable = listThrowable;
+    public void setThrowable(Weapon throwable) {
+        this.throwable = throwable;
     }
 
     public List<HealingItem> getListHealingItem() {
