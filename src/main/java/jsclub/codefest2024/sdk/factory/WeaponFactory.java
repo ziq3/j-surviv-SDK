@@ -12,13 +12,13 @@ public class WeaponFactory {
      */
     private static final Map<String, Weapon> weaponMap = new HashMap<>();
     static {
-        weaponMap.put("WATER_GUN", new Weapon("WATER_GUN", ElementType.GUN, 35, 70, 10, 8));
-        weaponMap.put("LEGO_GUN", new Weapon("LEGO_GUN", ElementType.GUN, 30, 60, 15, 8));
-        weaponMap.put("RUBBER_GUN", new Weapon("RUBBER_GUN", ElementType.GUN, 25, 50, 15, 8));
-        weaponMap.put("BADMINTON", new Weapon("BADMINTON", ElementType.GUN, 25, 50, 20, 8));
-        weaponMap.put("BROOM", new Weapon("BROOM", ElementType.MELEE, 15, 30, 0, 2));
-        weaponMap.put("SANDAL", new Weapon("SANDAL", ElementType.MELEE, 15, 30, 0, 1));
-        weaponMap.put("LIGHT_SABER", new Weapon("LIGHT_SABER", ElementType.MELEE, 20, 40, 0, 2));
+        weaponMap.put("WATER_GUN", new Weapon("WATER_GUN", ElementType.GUN, 30, 60, 5, 4));
+        weaponMap.put("LEGO_GUN", new Weapon("LEGO_GUN", ElementType.GUN, 25, 50, 5, 4));
+        weaponMap.put("RUBBER_GUN", new Weapon("RUBBER_GUN", ElementType.GUN, 20, 40, 10, 4));
+        weaponMap.put("BADMINTON", new Weapon("BADMINTON", ElementType.GUN, 20, 40, 10, 4));
+        weaponMap.put("BROOM", new Weapon("BROOM", ElementType.MELEE, 45, 90, 0, 1));
+        weaponMap.put("SANDAL", new Weapon("SANDAL", ElementType.MELEE, 45, 90, 0, 1));
+        weaponMap.put("LIGHT_SABER", new Weapon("LIGHT_SABER", ElementType.MELEE, 55, 110, 0, 1));
         weaponMap.put("HAND", new Weapon("HAND", ElementType.MELEE, 5, 10, 0, 1));
         weaponMap.put("PAPER_AIRPLANE", new Weapon("PAPER_AIRPLANE", ElementType.THROWABLE, 25, 50, 0, 6));
         weaponMap.put("BALL", new Weapon("BALL", ElementType.THROWABLE, 25, 50, 0, 6));
