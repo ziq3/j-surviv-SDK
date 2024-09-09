@@ -11,20 +11,21 @@ public class WeaponFactory {
      * Available Weapons
      */
     private static final Map<String, Weapon> weaponMap = new HashMap<>();
+
     static {
-        weaponMap.put("WATER_GUN", new Weapon("WATER_GUN", ElementType.GUN, 30, 60, 5, 4));
-        weaponMap.put("LEGO_GUN", new Weapon("LEGO_GUN", ElementType.GUN, 25, 50, 5, 4));
-        weaponMap.put("RUBBER_GUN", new Weapon("RUBBER_GUN", ElementType.GUN, 20, 40, 10, 4));
-        weaponMap.put("BADMINTON", new Weapon("BADMINTON", ElementType.GUN, 20, 40, 10, 4));
-        weaponMap.put("BROOM", new Weapon("BROOM", ElementType.MELEE, 45, 90, 0, 1));
-        weaponMap.put("SANDAL", new Weapon("SANDAL", ElementType.MELEE, 45, 90, 0, 1));
-        weaponMap.put("LIGHT_SABER", new Weapon("LIGHT_SABER", ElementType.MELEE, 55, 110, 0, 1));
-        weaponMap.put("HAND", new Weapon("HAND", ElementType.MELEE, 5, 10, 0, 1));
-        weaponMap.put("PAPER_AIRPLANE", new Weapon("PAPER_AIRPLANE", ElementType.THROWABLE, 25, 50, 0, 6));
-        weaponMap.put("BALL", new Weapon("BALL", ElementType.THROWABLE, 25, 50, 0, 6));
-        weaponMap.put("PAPER_DART", new Weapon("PAPER_DART", ElementType.THROWABLE, 25, 50, 0, 6));
-        weaponMap.put("TEDDY_BEAR", new Weapon("TEDDY_BEAR", ElementType.THROWABLE, 25, 50, 0, 6));
-        weaponMap.put("WATER_BALL", new Weapon("WATER_BALL", ElementType.THROWABLE, 25, 50, 0, 6));
+        weaponMap.put("WATER_GUN", new Weapon("WATER_GUN", ElementType.GUN, 2, 4, 30, 60, 5, 4));
+        weaponMap.put("LEGO_GUN", new Weapon("LEGO_GUN", ElementType.GUN, 2, 4, 25, 50, 5, 4));
+        weaponMap.put("RUBBER_GUN", new Weapon("RUBBER_GUN", ElementType.GUN, 1, 4, 20, 40, 10, 4));
+        weaponMap.put("BADMINTON", new Weapon("BADMINTON", ElementType.GUN, 1, 4, 20, 40, 10, 4));
+        weaponMap.put("BROOM", new Weapon("BROOM", ElementType.MELEE, 1, 6, 45, 90, 0, 1));
+        weaponMap.put("SANDAL", new Weapon("SANDAL", ElementType.MELEE, 2, 6, 45, 90, 0, 1));
+        weaponMap.put("LIGHT_SABER", new Weapon("LIGHT_SABER", ElementType.MELEE, 3, 8, 55, 110, 0, 1));
+        weaponMap.put("HAND", new Weapon("HAND", ElementType.MELEE, 0, 1, 5, 10, 0, 1));
+        weaponMap.put("PAPER_AIRPLANE", new Weapon("PAPER_AIRPLANE", ElementType.THROWABLE, 2, 0, 25, 50, 0, 6));
+        weaponMap.put("BALL", new Weapon("BALL", ElementType.THROWABLE, 2, 0, 25, 50, 0, 6));
+        weaponMap.put("PAPER_DART", new Weapon("PAPER_DART", ElementType.THROWABLE, 2, 0, 25, 50, 0, 6));
+        weaponMap.put("TEDDY_BEAR", new Weapon("TEDDY_BEAR", ElementType.THROWABLE, 2, 0, 25, 50, 0, 6));
+        weaponMap.put("WATER_BALL", new Weapon("WATER_BALL", ElementType.THROWABLE, 2, 0, 25, 50, 0, 6));
     }
 
     /**
@@ -41,7 +42,7 @@ public class WeaponFactory {
      * Find weapon by id.
      * Set position for weapon
      *
-     * @param id String to find weapon.
+     * @param id  String to find weapon.
      * @param x,y int to set position.
      * @return Weapon with updated position,id.
      * @throws CloneNotSupportedException If clone is not supported.

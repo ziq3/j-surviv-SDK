@@ -12,15 +12,17 @@ public class Weapon extends Element {
     private int capacity = 0;
     private int range = 0;
 
-    public Weapon(String id, ElementType type, int damage, int obstacleDamage, int capacity, int range) {
+    public Weapon(String id, ElementType type,int point, int cooldown, int damage, int obstacleDamage, int capacity, int range) {
         super(id);
+        this.point = point;
+        this.cooldown = cooldown;
         this.damage = damage;
         this.obstacleDamage = obstacleDamage;
         this.capacity = capacity;
         this.range = range;
 
         this.setType(type);
-        this.setDefaultParam();
+//        this.setDefaultParam();
     }
 
     public void setDefaultParam() {
