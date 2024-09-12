@@ -63,7 +63,7 @@ public class GameMap {
      *
      * @param arg The message parsed from server.
      */
-    public void updateOnUpdateMap(Object arg, Player currentPlayer, Hero hero) {
+    public void updateOnUpdateMap(Object arg, Hero hero) {
         try {
             Gson gson = new Gson();
             String message = MsgPackUtil.decode(arg);
