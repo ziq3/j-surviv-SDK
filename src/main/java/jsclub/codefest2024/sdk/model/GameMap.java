@@ -119,20 +119,13 @@ public class GameMap {
             setCurrentPlayer(mapData.currentPlayer);
 
             if (!currentPlayer.getIsAlive()) {
-                resetInventory(hero);
+                hero.getInventory().reset();
             }
         } catch (CloneNotSupportedException | IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void resetInventory(Hero hero) {
-        hero.getInventory().setGun(null);
-        hero.getInventory().setMelee(WeaponFactory.getWeaponById("HAND"));
-        hero.getInventory().setThrowable(null);
-        hero.getInventory().setListArmor(new ArrayList<>());
-        hero.getInventory().setListHealingItem(new ArrayList<>());
-    }
 
     /**
      * find element by position

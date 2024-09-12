@@ -12,7 +12,8 @@ public class Inventory {
     private Weapon gun;
     private Weapon melee;
     private Weapon throwable;
-    private List<Armor> listArmor  = new ArrayList<>();;
+    private List<Armor> listArmor = new ArrayList<>();
+    ;
     private List<HealingItem> listHealingItem = new ArrayList<>();
 
     public Inventory() {
@@ -58,5 +59,13 @@ public class Inventory {
 
     public void setListArmor(List<Armor> listArmor) {
         this.listArmor = listArmor;
+    }
+
+    public void reset() {
+        this.setGun(null);
+        this.setMelee(WeaponFactory.getWeaponById("HAND"));
+        this.setThrowable(null);
+        this.setListArmor(new ArrayList<>());
+        this.setListHealingItem(new ArrayList<>());
     }
 }
