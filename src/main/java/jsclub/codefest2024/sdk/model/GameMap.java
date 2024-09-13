@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
+import jsclub.codefest2024.sdk.Hero;
 import jsclub.codefest2024.sdk.factory.*;
 import jsclub.codefest2024.sdk.model.enemies.*;
 import jsclub.codefest2024.sdk.model.equipments.*;
@@ -27,8 +28,11 @@ public class GameMap {
     private List<Bullet> listBullets = new ArrayList<>();
     private List<Player> otherPlayerInfo = new ArrayList<>();
     private Player currentPlayer;
+    private Inventory heroInventory;
 
-    public GameMap() {}
+    public GameMap(Inventory heroInventory) {
+        this.heroInventory = heroInventory;
+    }
 
     /**
      * Decode message from server when initializing map.
@@ -45,7 +49,7 @@ public class GameMap {
             setMapSize(mapData.mapSize);
 
             List<Obstacle> newListIndestructibleObstacles = new ArrayList<>();
-            for(Obstacle o : mapData.listIndestructible){
+            for (Obstacle o : mapData.listIndestructible) {
                 Obstacle indestructible = ObstacleFactory.getObstacle("INDESTRUCTIBLE_OBSTACLE", o.getX(), o.getY());
                 newListIndestructibleObstacles.add(indestructible);
             }
@@ -76,38 +80,38 @@ public class GameMap {
 
             setDarkAreaSize(mapData.darkAreaSize);
 
-            for(Enemy e : mapData.listEnemies){
+            for (Enemy e : mapData.listEnemies) {
                 Enemy enemy = EnemyFactory.getEnemy(e.getId(), e.getX(), e.getY());
                 newListEnemies.add(enemy);
             }
             setListEnemies(newListEnemies);
 
-            for(Obstacle t : mapData.listTraps) {
-                Obstacle trap = ObstacleFactory.getObstacle(t.getId(), t.getX(), t.getY(),t.getHp());
+            for (Obstacle t : mapData.listTraps) {
+                Obstacle trap = ObstacleFactory.getObstacle(t.getId(), t.getX(), t.getY(), t.getHp());
                 newListTraps.add(trap);
             }
             setListTraps(newListTraps);
 
-            for(Obstacle c : mapData.listChests) {
-                Obstacle chest = ObstacleFactory.getObstacle(c.getId(), c.getX(), c.getY(),c.getHp());
+            for (Obstacle c : mapData.listChests) {
+                Obstacle chest = ObstacleFactory.getObstacle(c.getId(), c.getX(), c.getY(), c.getHp());
                 newListChests.add(chest);
             }
             setListChests(newListChests);
 
-            for(Weapon w : mapData.listWeapons){
+            for (Weapon w : mapData.listWeapons) {
                 Weapon weapon = WeaponFactory.getWeapon(w.getId(), w.getX(), w.getY());
                 newListWeapons.add(weapon);
             }
             setListWeapons(newListWeapons);
 
-            for(HealingItem h: mapData.listHealingItems){
-                HealingItem healing = HealingItemFactory.getHealingItem(h.getId(), h.getX(),h.getY());
+            for (HealingItem h : mapData.listHealingItems) {
+                HealingItem healing = HealingItemFactory.getHealingItem(h.getId(), h.getX(), h.getY());
                 newListHealingItem.add(healing);
             }
             setListHealingItems(newListHealingItem);
 
-            for (Armor a: mapData.listArmors) {
-                Armor armor = ArmorFactory.getArmor(a.getId(),a.getX(),a.getY());
+            for (Armor a : mapData.listArmors) {
+                Armor armor = ArmorFactory.getArmor(a.getId(), a.getX(), a.getY());
                 newListArmor.add(armor);
             }
             setListArmors(newListArmor);
@@ -115,10 +119,15 @@ public class GameMap {
             setListBullets(mapData.listBullet);
             setOtherPlayerInfo(mapData.otherPlayers);
             setCurrentPlayer(mapData.currentPlayer);
+
+            if (!currentPlayer.getIsAlive()) {
+                this.heroInventory.reset();
+            }
         } catch (CloneNotSupportedException | IOException e) {
             throw new RuntimeException(e);
         }
     }
+
 
     /**
      * find element by position
@@ -130,41 +139,41 @@ public class GameMap {
     public Element getElementByIndex(int x, int y) {
         Element element = null;
         element = this.findElementInListByIndex(x, y, this.listIndestructibleObstacles);
-        if(element != null) return element;
+        if (element != null) return element;
 
         element = this.findElementInListByIndex(x, y, this.listEnemies);
-        if(element != null) return element;
+        if (element != null) return element;
 
         element = this.findElementInListByIndex(x, y, this.listTraps);
-        if(element != null) return element;
+        if (element != null) return element;
 
         element = this.findElementInListByIndex(x, y, this.listChests);
-        if(element != null) return element;
+        if (element != null) return element;
 
         element = this.findElementInListByIndex(x, y, this.listWeapons);
-        if(element != null) return element;
+        if (element != null) return element;
 
         element = this.findElementInListByIndex(x, y, this.listHealingItems);
-        if(element != null) return element;
+        if (element != null) return element;
 
         element = this.findElementInListByIndex(x, y, this.listArmors);
-        if(element != null) return element;
+        if (element != null) return element;
 
         element = this.findElementInListByIndex(x, y, this.listBullets);
-        if(element != null) return element;
+        if (element != null) return element;
 
         element = this.findElementInListByIndex(x, y, this.otherPlayerInfo);
-        if(element != null) return element;
+        if (element != null) return element;
 
-        if(this.currentPlayer.x == x && this.currentPlayer.y == y) {
+        if (this.currentPlayer.x == x && this.currentPlayer.y == y) {
             return this.currentPlayer;
         }
 
         return new Element(x, y, "ROAD", ElementType.ROAD);
     }
 
-    private Element findElementInListByIndex(int x, int y, List elements){
-        for(Object element : elements){
+    private Element findElementInListByIndex(int x, int y, List elements) {
+        for (Object element : elements) {
             Element e = (Element) element;
             if (e.getX() == x && e.getY() == y) {
                 return e;
