@@ -13,14 +13,16 @@ import java.io.IOException;
 
 public class Hero {
     private String playerName = "";
+    private String playerKey = "";
     private String gameID = "";
     private final SocketClient socketClient;
     private final GameMap gameMap;
     private final Inventory inventory;
     private Emitter.Listener onMapUpdate;
 
-    public Hero(String gameID, String playerName) {
+    public Hero(String gameID, String playerName, String playerKey) {
         this.playerName = playerName;
+        this.playerKey = playerKey;
         this.gameID = gameID;
         this.inventory = new Inventory();
         this.gameMap = new GameMap(this.getInventory());
@@ -32,7 +34,19 @@ public class Hero {
             throw new RuntimeException("onMapUpdate is not set");
         }
 
-        socketClient.connectToServer(serverURL + "/sdk", this.onMapUpdate);
+        if (this.playerName.isEmpty()) {
+            throw new RuntimeException("playerName is not set");
+        }
+
+        if (this.playerKey.isEmpty()) {
+            throw new RuntimeException("playerKey is not set");
+        }
+
+        if (this.gameID.isEmpty()) {
+            throw new RuntimeException("gameID is not set");
+        }
+
+        socketClient.connectToServer(serverURL, this.playerName, this.playerKey, this.onMapUpdate);
         this.joinGame();
     }
 
