@@ -22,7 +22,7 @@ public class Hero {
     public Hero(String gameID, String playerName) {
         this.playerName = playerName;
         this.gameID = gameID;
-        this.gameMap = new GameMap();
+        this.gameMap = new GameMap(this);
         this.inventory = new Inventory();
         this.socketClient = new SocketClient(this.inventory, this.gameMap);
     }
@@ -39,6 +39,7 @@ public class Hero {
     public String getPlayerID() {
         return playerName;
     }
+
     public String getGameID() {
         return gameID;
     }

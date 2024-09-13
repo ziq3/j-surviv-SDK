@@ -28,8 +28,10 @@ public class GameMap {
     private List<Bullet> listBullets = new ArrayList<>();
     private List<Player> otherPlayerInfo = new ArrayList<>();
     private Player currentPlayer;
+    private Inventory heroInventory;
 
-    public GameMap() {
+    public GameMap(Hero hero) {
+        heroInventory = hero.getInventory();
     }
 
     /**
@@ -63,7 +65,7 @@ public class GameMap {
      *
      * @param arg The message parsed from server.
      */
-    public void updateOnUpdateMap(Object arg, Hero hero) {
+    public void updateOnUpdateMap(Object arg) {
         try {
             Gson gson = new Gson();
             String message = MsgPackUtil.decode(arg);
@@ -119,7 +121,7 @@ public class GameMap {
             setCurrentPlayer(mapData.currentPlayer);
 
             if (!currentPlayer.getIsAlive()) {
-                hero.getInventory().reset();
+                this.heroInventory.reset();
             }
         } catch (CloneNotSupportedException | IOException e) {
             throw new RuntimeException(e);
