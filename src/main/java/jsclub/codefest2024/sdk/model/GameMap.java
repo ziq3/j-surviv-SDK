@@ -30,8 +30,8 @@ public class GameMap {
     private Player currentPlayer;
     private Inventory heroInventory;
 
-    public GameMap(Hero hero) {
-        heroInventory = hero.getInventory();
+    public GameMap(Inventory heroInventory) {
+        this.heroInventory = heroInventory;
     }
 
     /**
