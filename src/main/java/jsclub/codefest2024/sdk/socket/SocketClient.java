@@ -13,13 +13,13 @@ public class SocketClient {
     private final Inventory heroInventory;
     private final GameMap gameMap;
 
-    public void connectToServer(String serverUrl, Emitter.Listener onMapUpdate) {
+    public void connectToServer(String serverUrl, String playerName, String playerKey, Emitter.Listener onMapUpdate) {
         if (socket != null) {
             socket.disconnect();
             socket = null;
         }
 
-        socket = SocketUtil.init(serverUrl);
+        socket = SocketUtil.init(serverUrl + "/sdk", playerName, playerKey);
         if (socket == null) {
             return;
         }
@@ -54,6 +54,7 @@ public class SocketClient {
             @Override
             public void call(Object... args) {
                 System.err.println("Connection error: " + args[0]);
+                System.exit(1);
             }
         });
 
