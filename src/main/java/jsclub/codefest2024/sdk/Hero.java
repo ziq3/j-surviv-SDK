@@ -75,9 +75,15 @@ public class Hero {
         }
     }
 
-    private boolean validDirection(String direction) {
-        String validDir = "udlr";
-        return validDir.contains(direction);
+    private boolean invalidDirection(String direction) {
+        for(int i=0;i<direction.length();i++){
+            char ch = direction.charAt(i);
+            if(ch != 'u' && ch != 'd' && ch != 'l' && ch != 'r'){
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -91,7 +97,7 @@ public class Hero {
 
         if (direction.isEmpty()) {
             System.out.println("Direction cannot be null");
-        } else if (!validDirection(direction.substring(0, 1))) {
+        } else if (invalidDirection(direction)) {
             System.out.println("Invalid direction");
         } else if (socket != null) {
             PlayerMoveAction botMove = new PlayerMoveAction(direction);
@@ -115,7 +121,7 @@ public class Hero {
         if (direction.isEmpty()) {
             System.out.println("direction cannot be null");
         } else if (direction.length() == 1) {
-            if (!validDirection(direction)) {
+            if (invalidDirection(direction)) {
                 System.out.println("Invalid direction");
             } else if (socket != null && getInventory().getGun() != null) {
                 PlayerShootAction botShoot = new PlayerShootAction(direction);
@@ -144,7 +150,7 @@ public class Hero {
         if (direction.isEmpty()) {
             System.out.println("direction cannot be null");
         } else if (direction.length() == 1) {
-            if (!validDirection(direction)) {
+            if (invalidDirection(direction)) {
                 System.out.println("Invalid direction");
             } else if (socket != null) {
                 PlayerAttackAction botAttack = new PlayerAttackAction(direction);
@@ -170,7 +176,7 @@ public class Hero {
         if (direction.isEmpty()) {
             System.out.println("direction cannot be null");
         } else if (direction.length() == 1) {
-            if (!validDirection(direction)) {
+            if (invalidDirection(direction)) {
                 System.out.println("Invalid direction");
             } else if (socket != null && getInventory().getThrowable() != null) {
                 PlayerThrowItemAction botThrow = new PlayerThrowItemAction(direction);
