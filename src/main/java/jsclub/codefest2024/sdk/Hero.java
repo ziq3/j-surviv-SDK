@@ -83,12 +83,14 @@ public class Hero {
     }
 
     private boolean invalidDirection(String direction) {
+
         for (int i = 0; i < direction.length(); i++) {
             char ch = direction.charAt(i);
             if (ch != 'u' && ch != 'd' && ch != 'l' && ch != 'r') {
                 return true;
             }
         }
+
 
         return false;
     }
@@ -102,17 +104,20 @@ public class Hero {
     public void move(String direction) throws IOException {
         Socket socket = socketClient.getSocket();
 
-        if (direction.isEmpty()) {
-            throw new RuntimeException("move: Direction cannot be null");
-        } else if (invalidDirection(direction)) {
-            throw new RuntimeException("move: Invalid direction");
-        } else if (socket != null) {
+        if (direction.length() > 0) {
+            if (invalidDirection(direction)) {
+                System.out.println("DEBUG FROM SDK move ERROR : Invalid direction");
+                return;
+            }
+        }
+
+        if (socket != null) {
             PlayerMoveAction botMove = new PlayerMoveAction(direction);
 
             byte[] bytes = MsgPackUtil.encodeFromObject(botMove);
             socket.emit(EventName.EMIT_MOVE, (Object) bytes);
         } else {
-            throw new RuntimeException("move: Socket is null");
+            System.out.println("DEBUG FROM SDK move ERROR : Socket is null");
         }
     }
 
@@ -125,21 +130,21 @@ public class Hero {
     public void shoot(String direction) throws IOException {
         Socket socket = socketClient.getSocket();
 
-        if (direction.isEmpty()) {
-            throw new RuntimeException("shoot: direction cannot be null");
+        if (direction.isEmpty() || direction == null) {
+            System.out.println("DEBUG FROM SDK shoot ERROR : direction is null or empty");
         } else if (direction.length() == 1) {
             if (invalidDirection(direction)) {
-                throw new RuntimeException("shoot: Invalid direction");
+                System.out.println("DEBUG FROM SDK shoot ERROR : Invalid direction");
             } else if (socket != null && getInventory().getGun() != null) {
                 PlayerShootAction botShoot = new PlayerShootAction(direction);
 
                 byte[] bytes = MsgPackUtil.encodeFromObject(botShoot);
                 socket.emit(EventName.EMIT_SHOOT, (Object) bytes);
             } else {
-                throw new RuntimeException("shoot: Socket is null or inventory does not have gun");
+                System.out.println("DEBUG FROM SDK shoot ERROR : Socket is null or inventory does not have gun");
             }
         } else {
-            throw new RuntimeException("shoot: direction string length must be 1");
+            System.out.println("DEBUG FROM SDK shoot ERROR : direction string length must be 1");
         }
 
 
@@ -154,11 +159,11 @@ public class Hero {
     public void attack(String direction) throws IOException {
         Socket socket = socketClient.getSocket();
 
-        if (direction.isEmpty()) {
-            throw new RuntimeException("attack: direction cannot be null");
+        if (direction.isEmpty() || direction == null) {
+            System.out.println("DEBUG FROM SDK attack ERROR : direction is null or empty");
         } else if (direction.length() == 1) {
             if (invalidDirection(direction)) {
-                throw new RuntimeException("attack: Invalid direction");
+                System.out.println("DEBUG FROM SDK attack ERROR : Invalid direction");
             } else if (socket != null) {
                 PlayerAttackAction botAttack = new PlayerAttackAction(direction);
 
@@ -166,7 +171,7 @@ public class Hero {
                 socket.emit(EventName.EMIT_ATTACK, (Object) bytes);
             }
         } else {
-            throw new RuntimeException("attack: direction string length must be 1");
+            System.out.println("DEBUG FROM SDK attack ERROR : direction string length must be 1");
         }
 
     }
@@ -180,21 +185,21 @@ public class Hero {
     public void throwItem(String direction) throws IOException {
         Socket socket = socketClient.getSocket();
 
-        if (direction.isEmpty()) {
-            throw new RuntimeException("throwItem: direction cannot be null");
+        if (direction.isEmpty() || direction == null) {
+            System.out.println("DEBUG FROM SDK throwItem ERROR : direction is null or empty");
         } else if (direction.length() == 1) {
             if (invalidDirection(direction)) {
-                throw new RuntimeException("throwItem: Invalid direction");
+                System.out.println("DEBUG FROM SDK throwItem ERROR : Invalid direction");
             } else if (socket != null && getInventory().getThrowable() != null) {
                 PlayerThrowItemAction botThrow = new PlayerThrowItemAction(direction);
 
                 byte[] bytes = MsgPackUtil.encodeFromObject(botThrow);
                 socket.emit(EventName.EMIT_THROW, (Object) bytes);
             } else {
-                throw new RuntimeException("throwItem: Socket is null or inventory does not have throwable");
+                System.out.println("DEBUG FROM SDK throwItem ERROR : Socket is null or inventory does not have throwable");
             }
         } else {
-            throw new RuntimeException("throwItem: direction string length must be 1");
+            System.out.println("DEBUG FROM SDK throwItem ERROR : direction string length must be 1");
         }
     }
 
@@ -215,7 +220,7 @@ public class Hero {
             byte[] bytes = MsgPackUtil.encodeFromObject(data);
             socket.emit(EventName.EMIT_PICKUP_ITEM, (Object) bytes);
         } else {
-            throw new RuntimeException("pickupItem: Socket is null or current position does not have item");
+            System.out.println("DEBUG FROM SDK pickupItem ERROR : Socket is null or current position does not have item");
         }
     }
 
@@ -250,16 +255,19 @@ public class Hero {
         int indexOfItem = getInventory().getListHealingItem().indexOf(item);
 
         if (socket != null && getInventory().getListHealingItem().get(indexOfItem) != null) {
+            List<HealingItem> inventAfter = inventory.getListHealingItem();
+            inventAfter.remove(indexOfItem);
+            inventory.setListHealingItem(inventAfter);
             PlayerUseItemAction botUseItem = new PlayerUseItemAction(itemId);
 
             byte[] bytes = MsgPackUtil.encodeFromObject(botUseItem);
             socket.emit(EventName.EMIT_USE_ITEM, (Object) bytes);
         } else if (itemId.isEmpty()) {
-            throw new RuntimeException("useItem: itemId cannot be null");
+            System.out.println("DEBUG FROM SDK useItem ERROR : itemId is null or empty");
         } else if (indexOfItem == -1) {
-            throw new RuntimeException("useItem: Inventory does not have " + item.getId());
+            System.out.println("DEBUG FROM SDK useItem ERROR : Inventory does not have " + item.getId());
         } else {
-            throw new RuntimeException("useItem: Socket is null or cannot get item");
+            System.out.println("DEBUG FROM SDK useItem ERROR : Socket is null or cannot get item");
         }
     }
 
@@ -271,16 +279,15 @@ public class Hero {
      */
     public void revokeItem(String itemId) throws IOException {
         Socket socket = socketClient.getSocket();
-        if (itemId.isEmpty()) {
-            throw new RuntimeException("revokeItem: itemId cannot be null");
-        }
         if (socket != null) {
             PlayerRevokeItemAction botRevokeItem = new PlayerRevokeItemAction(itemId);
 
             byte[] bytes = MsgPackUtil.encodeFromObject(botRevokeItem);
             socket.emit(EventName.EMIT_REVOKE_ITEM, (Object) bytes);
+        } else if (itemId.isEmpty()) {
+            System.out.println("DEBUG FROM SDK revokeItem ERROR : itemId is null or empty");
         } else {
-            throw new RuntimeException("revokeItem: Socket is null or cannot get item");
+            System.out.println("DEBUG FROM SDK revokeItem ERROR : Socket is null or cannot get item");
         }
     }
 
