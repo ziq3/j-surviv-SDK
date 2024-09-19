@@ -104,12 +104,18 @@ public class Hero {
     public void move(String direction) throws IOException {
         Socket socket = socketClient.getSocket();
 
-        if (direction.length() > 0) {
-            if (invalidDirection(direction)) {
-                System.out.println("DEBUG FROM SDK move ERROR : Invalid direction");
-                return;
+        if(direction != null){
+            int dirLength = direction.length();
+            if (dirLength > 0) {
+                boolean invalid = invalidDirection((direction));
+                if (invalid) {
+                    System.out.println("DEBUG FROM SDK move ERROR : Invalid direction");
+                    return;
+                }
             }
         }
+
+
 
         if (socket != null) {
             PlayerMoveAction botMove = new PlayerMoveAction(direction);
