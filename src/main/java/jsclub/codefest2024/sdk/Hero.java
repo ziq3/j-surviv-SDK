@@ -83,11 +83,15 @@ public class Hero {
     }
 
     private boolean invalidDirection(String direction) {
-
-        for (int i = 0; i < direction.length(); i++) {
-            char ch = direction.charAt(i);
-            if (ch != 'u' && ch != 'd' && ch != 'l' && ch != 'r') {
-                return true;
+        if(direction != null){
+            int dirLength = direction.length();
+            if (dirLength > 0) {
+                for (int i = 0; i < direction.length(); i++) {
+                    char ch = direction.charAt(i);
+                    if (ch != 'u' && ch != 'd' && ch != 'l' && ch != 'r') {
+                        return true;
+                    }
+                }
             }
         }
 
@@ -104,17 +108,10 @@ public class Hero {
     public void move(String direction) throws IOException {
         Socket socket = socketClient.getSocket();
 
-        if(direction != null){
-            int dirLength = direction.length();
-            if (dirLength > 0) {
-                boolean invalid = invalidDirection((direction));
-                if (invalid) {
-                    System.out.println("DEBUG FROM SDK move ERROR : Invalid direction");
-                    return;
-                }
-            }
+        if (invalidDirection(direction)) {
+            System.out.println("DEBUG FROM SDK move ERROR : Invalid direction");
+            return;
         }
-
 
 
         if (socket != null) {
