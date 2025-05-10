@@ -11,9 +11,10 @@ public class ArmorFactory {
      * Available Armors
      */
     public static final Map<String, Armor> armorMap = Map.of(
-        "VEST", new Armor("VEST", 20, 3),
-        "POT", new Armor("POT", 10, 2),
-        "HELMET", new Armor("HELMET", 5, 1)
+        "WOODEN_HELMET", new Armor("WOODEN_HELMET", 5, 15),
+        "ARMOR", new Armor("ARMOR", 20, 15),
+        "MAGIC_HELMET", new Armor("MAGIC_HELMET", 20, 15),
+            "MAGIC_ARMOR", new Armor ("MAGIC_ARMOR", 30 , 15 )
     );
     /**
      * Find armor by id.
