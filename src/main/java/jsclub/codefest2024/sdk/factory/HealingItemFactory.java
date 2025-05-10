@@ -9,11 +9,11 @@ public class HealingItemFactory {
      * Available HealingItems
      */
     public static final Map<String, HealingItem> healingItemMap = Map.of(
-        "SNACK", new HealingItem("SNACK", 10, 1, 1),
-        "INSECTICIDE", new HealingItem("INSECTICIDE", 15, 1, 1),
-        "DRINK", new HealingItem("DRINK", 20, 2, 1),
-        "BANDAGES", new HealingItem("BANDAGES", 50, 2, 2),
-        "LUNCH_BOX", new HealingItem("LUNCH_BOX", 100, 4, 3)
+        "GOD_LEAF", new HealingItem("GOD_LEAF", 10, 0.5, 5),
+        "SPIRIT_TEAR", new HealingItem("SPIRIT_TEAR", 15, 0.5, 15),
+        "MERMAID_TAIL", new HealingItem("MERMAID_TAIL", 20, 1, 20),
+        "PHOENIX_FEATHERS", new HealingItem("PHOENIX_FEATHERS", 40, 1.5, 25),
+        "UNICORN_BLOOD", new HealingItem("UNICORN_BLOOD", 80, 3, 30)
     );
 
     /**
