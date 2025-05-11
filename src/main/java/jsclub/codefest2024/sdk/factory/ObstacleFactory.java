@@ -9,12 +9,33 @@ public class ObstacleFactory {
     /**
      * Available Obstacles
      */
-    private static final Map<String, Obstacle> obstacleMap = Map.of(
-        "CHEST", new Obstacle("CHEST", ElementType.CHEST ,40),
-        "SPECIAL_CHEST", new Obstacle("SPECIAL_CHEST", ElementType.CHEST ,40),
-        "GAS_TANK", new Obstacle("GAS_TANK", ElementType.TRAP,0),
-        "FLOWER_VASE", new Obstacle("FLOWER_VASE", ElementType.TRAP,0),
-        "INDESTRUCTIBLE_OBSTACLE", new Obstacle("INDESTRUCTIBLE_OBSTACLE", ElementType.INDESTRUCTIBLE_OBSTACLE)
+    private static final Map<String, Obstacle> obstacleMap = Map.ofEntries(
+        Map.entry("CHEST", new Obstacle("CHEST", ElementType.DESTRUCTIBLE_OBSTACLE ,20)),
+        Map.entry("DRAGON_EGG", new Obstacle("DRAGON_EGG", ElementType.DESTRUCTIBLE_OBSTACLE ,50)),
+        Map.entry("HUNT_TRAP", new Obstacle("HUNT_TRAP", ElementType.TRAP)),
+        Map.entry("SPIKES", new Obstacle("SPIKES", ElementType.TRAP)),
+        Map.entry("BANANA_PEEL", new Obstacle("BANANA_PEEL", ElementType.TRAP)),
+        Map.entry("SMALL_STONE", new Obstacle("SMALL_STONE", ElementType.INDESTRUCTIBLE_OBSTACLE)),
+        Map.entry("LARGE_STONE", new Obstacle("LARGE_STONE", ElementType.INDESTRUCTIBLE_OBSTACLE)),
+        Map.entry("POND", new Obstacle("POND", ElementType.INDESTRUCTIBLE_OBSTACLE)),
+        Map.entry("TREE", new Obstacle("TREE", ElementType.INDESTRUCTIBLE_OBSTACLE)),
+        Map.entry("WELL", new Obstacle("WELL", ElementType.INDESTRUCTIBLE_OBSTACLE)),
+        Map.entry("TREE_TRUNK", new Obstacle("TREE_TRUNK", ElementType.INDESTRUCTIBLE_OBSTACLE)),
+        Map.entry("DINASOUR_BONE", new Obstacle("DINASOUR_BONE", ElementType.INDESTRUCTIBLE_OBSTACLE)),
+        Map.entry("BLACK_ROSE", new Obstacle("BLACK_ROSE", ElementType.INDESTRUCTIBLE_OBSTACLE)),
+        Map.entry("WILD_ROSE", new Obstacle("WILD_ROSE", ElementType.INDESTRUCTIBLE_OBSTACLE)),
+        Map.entry("BUSH", new Obstacle("BUSH", ElementType.INDESTRUCTIBLE_OBSTACLE)),
+        Map.entry("STATUE", new Obstacle("STATUE", ElementType.INDESTRUCTIBLE_OBSTACLE)),
+        Map.entry("TORCH", new Obstacle("TORCH", ElementType.INDESTRUCTIBLE_OBSTACLE)),
+        Map.entry("ABANDONED_HOUSE", new Obstacle("ABANDONED_HOUSE", ElementType.INDESTRUCTIBLE_OBSTACLE)),
+        Map.entry("RIVER", new Obstacle("RIVER", ElementType.INDESTRUCTIBLE_OBSTACLE)),
+        Map.entry("FLAG", new Obstacle("FLAG", ElementType.INDESTRUCTIBLE_OBSTACLE)),
+        Map.entry("SWORD_STAND", new Obstacle("SWORD_STAND", ElementType.INDESTRUCTIBLE_OBSTACLE)),
+        Map.entry("COAL_ORE", new Obstacle("COAL_ORE", ElementType.INDESTRUCTIBLE_OBSTACLE)),
+        Map.entry("GLOWING_FLOWER", new Obstacle("GLOWING_FLOWER", ElementType.INDESTRUCTIBLE_OBSTACLE)),
+        Map.entry("ABANDONED_CHEST", new Obstacle("ABANDONED_CHEST", ElementType.INDESTRUCTIBLE_OBSTACLE)),
+        Map.entry("MUSHROOM", new Obstacle("MUSHROOM", ElementType.INDESTRUCTIBLE_OBSTACLE)),
+        Map.entry("MUSHROOM", new Obstacle("MUSHROOM", ElementType.INDESTRUCTIBLE_OBSTACLE))
     );
 
     /**
