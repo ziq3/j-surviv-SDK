@@ -2,7 +2,7 @@ package jsclub.codefest2024.sdk.socket.data.receive_data;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
-import jsclub.codefest2024.sdk.model.enemies.Enemy;
+import jsclub.codefest2024.sdk.model.npcs.Enemy;
 import jsclub.codefest2024.sdk.model.equipments.Armor;
 import jsclub.codefest2024.sdk.model.equipments.HealingItem;
 import jsclub.codefest2024.sdk.model.obstacles.Obstacle;
