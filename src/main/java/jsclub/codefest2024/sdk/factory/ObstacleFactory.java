@@ -35,7 +35,7 @@ public class ObstacleFactory {
         Map.entry("GLOWING_FLOWER", new Obstacle("GLOWING_FLOWER", ElementType.INDESTRUCTIBLE_OBSTACLE)),
         Map.entry("ABANDONED_CHEST", new Obstacle("ABANDONED_CHEST", ElementType.INDESTRUCTIBLE_OBSTACLE)),
         Map.entry("MUSHROOM", new Obstacle("MUSHROOM", ElementType.INDESTRUCTIBLE_OBSTACLE)),
-        Map.entry("MUSHROOM", new Obstacle("MUSHROOM", ElementType.INDESTRUCTIBLE_OBSTACLE))
+        Map.entry("RUINS", new Obstacle("RUINS", ElementType.INDESTRUCTIBLE_OBSTACLE))
     );
 
     /**
