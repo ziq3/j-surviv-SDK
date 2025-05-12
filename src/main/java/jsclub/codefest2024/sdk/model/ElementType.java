@@ -9,7 +9,7 @@ public enum ElementType {
     THROWABLE,
     ARMOR,
     HEALING_ITEM,
-    CHEST,
+    DESTRUCTIBLE_OBSTACLE,
     TRAP,
     INDESTRUCTIBLE_OBSTACLE,
     ROAD,
