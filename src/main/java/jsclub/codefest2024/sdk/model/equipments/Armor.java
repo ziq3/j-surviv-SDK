@@ -5,17 +5,17 @@ import jsclub.codefest2024.sdk.model.ElementType;
 
 public class Armor extends Element {
     private final int damageReduce;
-    private final int point;
+    private final int healthPoint;
 
-    public Armor(String id, int damageReduce, int point) {
+    public Armor(String id, int damageReduce, int healthPoint) {
         super(id);
         this.damageReduce = damageReduce;
-        this.point = point;
+        this.healthPoint = healthPoint;
         this.setType(ElementType.ARMOR);
     }
 
-    public int getPoint() {
-        return point;
+    public int getHealthPoint() {
+        return healthPoint;
     }
 
     public int getDamageReduce() {
