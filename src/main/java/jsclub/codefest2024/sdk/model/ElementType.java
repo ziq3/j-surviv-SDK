@@ -14,4 +14,5 @@ public enum ElementType {
     INDESTRUCTIBLE_OBSTACLE,
     ROAD,
     BULLET,
+    SPECIAL,
 }

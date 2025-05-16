@@ -5,91 +5,110 @@ import jsclub.codefest2024.sdk.model.Element;
 import jsclub.codefest2024.sdk.model.ElementType;
 
 public class Weapon extends Element {
-//    private int point = 0;
-//    private int damage = 0;
-//    private int obstacleDamage = 0;
-//    private int cooldown = 0;
-//    private int capacity = 0;
-//    private int range = 0;
     private int rarity = 0;
-    private int on_pickup_points = 0;
-    private int on_hits_points = 0;
+    private int pickupPoints = 0;
+    private int hitPoints = 0;
     private double cooldown = 0;
-    private int usageNumber = 0;
+    private int useCounts = 0;
     private int damage = 0;
     private int range = 0;
-    private int explosionArea = 0;
-    private String attackRange= "";
-    private int bulletSpeed = 0;
+    private int explosionRange = 0;
+    private AttackRange attackRange = null;
+    private Bullet bullet = new Bullet();
 
-    
-    
-//    public Weapon(String id, ElementType type,int point, int cooldown, int damage, int obstacleDamage, int capacity, int range) {
-//        super(id);
-//        this.point = point;
-//        this.cooldown = cooldown;
-//        this.damage = damage;
-//        this.obstacleDamage = obstacleDamage;
-//        this.capacity = capacity;
-//        this.range = range;
-//
-//        this.setType(type);
-////        this.setDefaultParam();
-//    }
-    public Weapon(String id, ElementType type, int rarity, int on_pickup_points, int on_hits_points, double cooldown, int usageNumber, int damage, int range, int explosionArea, String attackRange, int bulletSpeed) {
+    public Weapon(String id, ElementType type, int rarity, int pickupPoints, int hitPoints, double cooldown, int useCounts, int damage, int range, int explosionRange, AttackRange attackRange, Bullet bullet) {
         super(id);
         this.rarity = rarity;
-        this.on_pickup_points = on_pickup_points;
-        this.on_hits_points = on_hits_points;
+        this.pickupPoints = pickupPoints;
+        this.hitPoints = hitPoints;
         this.cooldown = cooldown;
-        this.usageNumber = usageNumber;
+        this.useCounts = useCounts;
         this.damage = damage;
         this.range = range;
-        this.explosionArea = explosionArea;
+        this.explosionRange = explosionRange;
         this.attackRange = attackRange;
-        this.bulletSpeed = bulletSpeed;
-        
+        this.bullet = bullet;
+
         this.setType(type);
-////        this.setDefaultParam();
     }
 
-//    public void setDefaultParam() {
-//        switch (this.getType()) {
-//            case GUN -> {
-//                this.point = 1;
-//                this.cooldown = 2;
-//            }
-//            case MELEE -> {
-//                this.point = 3;
-//                this.cooldown = 5;
-//            }
-//            case THROWABLE -> {
-//                this.point = 2;
-//            }
-//        }
-//    }
-//
-//    public int getPoint() {
-//        return point;
-//    }
-//
-//    public int getDamage() {
-//        return damage;
-//    }
-//
-//    public int getObstacleDamage() {
-//        return obstacleDamage;
-//    }
-//
-//    public int getCooldown() {
-//        return cooldown;
-//    }
-//
-//    public int getCapacity() {
-//        return capacity;
-//    }
-//
-//    public int getRange() {
-//        return range;
-//    }
+    public int getRarity() {
+        return rarity;
+    }
+
+    public int getPickupPoints() {
+        return pickupPoints;
+    }
+
+    public int getHitPoints() {
+        return hitPoints;
+    }
+
+    public double getCooldown() {
+        return cooldown;
+    }
+
+    public int getUseCounts() {
+        return useCounts;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public int getRange() {
+        return range;
+    }
+
+    public int getExplosionRange() {
+        return explosionRange;
+    }
+
+    public AttackRange getAttackRange() {
+        return attackRange;
+    }
+
+    public Bullet getBullet() {
+        return bullet;
+    }
+
+    public void setRarity(int rarity) {
+        this.rarity = rarity;
+    }
+
+    public void setPickupPoints(int pickupPoints) {
+        this.pickupPoints = pickupPoints;
+    }
+
+    public void setHitPoints(int hitPoints) {
+        this.hitPoints = hitPoints;
+    }
+
+    public void setCooldown(double cooldown) {
+        this.cooldown = cooldown;
+    }
+
+    public void setUseCounts(int useCounts) {
+        this.useCounts = useCounts;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    public void setRange(int range) {
+        this.range = range;
+    }
+
+    public void setExplosionRange(int explosionRange) {
+        this.explosionRange = explosionRange;
+    }
+
+    public void setAttackRange(AttackRange attackRange) {
+        this.attackRange = attackRange;
+    }
+
+    public void setBullet(Bullet bullet) {
+        this.bullet = bullet;
+    }
 }
