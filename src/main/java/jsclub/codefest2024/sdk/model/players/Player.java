@@ -3,6 +3,7 @@ package jsclub.codefest2024.sdk.model.players;
 import com.google.gson.annotations.SerializedName;
 import jsclub.codefest2024.sdk.model.Element;
 import jsclub.codefest2024.sdk.model.ElementType;
+import jsclub.codefest2024.sdk.model.effects.Effect;
 
 public class Player extends Element {
     @SerializedName("player_name")
@@ -16,6 +17,9 @@ public class Player extends Element {
 
     @SerializedName("is_alive")
     private boolean isAlive;
+
+    @SerializedName("effects")
+    private Effect[] effects;
 
     private int point;
     private int hp;
@@ -46,5 +50,9 @@ public class Player extends Element {
 
     public boolean getIsAlive() {
         return isAlive;
+    }
+
+    public Effect[] getEffects() {
+        return effects;
     }
 }
