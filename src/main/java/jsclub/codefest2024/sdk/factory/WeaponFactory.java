@@ -1,6 +1,7 @@
 package jsclub.codefest2024.sdk.factory;
 
 import jsclub.codefest2024.sdk.model.ElementType;
+import jsclub.codefest2024.sdk.model.weapon.AttackRange;
 import jsclub.codefest2024.sdk.model.weapon.Weapon;
 
 import java.util.HashMap;
@@ -13,20 +14,8 @@ public class WeaponFactory {
     private static final Map<String, Weapon> weaponMap = new HashMap<>();
 
     static {
-        weaponMap.put("WATER_GUN", new Weapon("WATER_GUN", ElementType.GUN, 2, 4, 30, 60, 5, 4));
-        weaponMap.put("LEGO_GUN", new Weapon("LEGO_GUN", ElementType.GUN, 2, 4, 25, 50, 5, 4));
-        weaponMap.put("RUBBER_GUN", new Weapon("RUBBER_GUN", ElementType.GUN, 1, 4, 20, 40, 10, 4));
-        weaponMap.put("BADMINTON", new Weapon("BADMINTON", ElementType.GUN, 1, 4, 20, 40, 10, 4));
-        weaponMap.put("BROOM", new Weapon("BROOM", ElementType.MELEE, 1, 6, 45, 90, 0, 1));
-        weaponMap.put("SANDAL", new Weapon("SANDAL", ElementType.MELEE, 2, 6, 45, 90, 0, 1));
-        weaponMap.put("LIGHT_SABER", new Weapon("LIGHT_SABER", ElementType.MELEE, 3, 8, 55, 110, 0, 1));
-        weaponMap.put("HAND", new Weapon("HAND", ElementType.MELEE, 0, 1, 5, 10, 0, 1));
-        weaponMap.put("PAPER_AIRPLANE", new Weapon("PAPER_AIRPLANE", ElementType.THROWABLE, 2, 0, 25, 50, 0, 6));
-        weaponMap.put("BALL", new Weapon("BALL", ElementType.THROWABLE, 2, 0, 25, 50, 0, 6));
-        weaponMap.put("PAPER_DART", new Weapon("PAPER_DART", ElementType.THROWABLE, 2, 0, 25, 50, 0, 6));
-        weaponMap.put("TEDDY_BEAR", new Weapon("TEDDY_BEAR", ElementType.THROWABLE, 2, 0, 25, 50, 0, 6));
-        weaponMap.put("WATER_BALL", new Weapon("WATER_BALL", ElementType.THROWABLE, 2, 0, 25, 50, 0, 6));
-    }
+        weaponMap.put("KNIFE", new Weapon("KNIFE", ElementType.MELEE, 20, 55, 25, 2.5, 0, 25,3,0, AttackRange.SHORT,null));
+      }
 
     /**
      * Find weapon by id.

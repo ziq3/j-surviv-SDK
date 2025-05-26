@@ -11,7 +11,7 @@ public class ArmorFactory {
      * Available Armors
      */
     public static final Map<String, Armor> armorMap = Map.of(
-        "VEST", new Armor("VEST", 20, 3),
+        "WOODEN_HELMET", new Armor("WOODEN_HELMET", 5, 15),
         "POT", new Armor("POT", 10, 2),
         "HELMET", new Armor("HELMET", 5, 1)
     );

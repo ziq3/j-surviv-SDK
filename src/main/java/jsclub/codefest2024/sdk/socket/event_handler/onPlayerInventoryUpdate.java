@@ -25,7 +25,6 @@ public class onPlayerInventoryUpdate implements Emitter.Listener {
         try {
             String message = MsgPackUtil.decode(args[0]);
             InventoryUpdateData inventoryUpdateData = gson.fromJson(message, InventoryUpdateData.class);
-
             ElementType type = inventoryUpdateData.itemType;
             String id = inventoryUpdateData.id;
             String action = inventoryUpdateData.action;
@@ -69,7 +68,6 @@ public class onPlayerInventoryUpdate implements Emitter.Listener {
                     }
                     break;
             }
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

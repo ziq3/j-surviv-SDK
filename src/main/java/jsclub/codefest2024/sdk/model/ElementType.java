@@ -6,6 +6,7 @@ public enum ElementType {
     GUN,
     MELEE,
     THROWABLE,
+    SPECIAL,
     ARMOR,
     HEALING_ITEM,
     CHEST,
@@ -13,4 +14,5 @@ public enum ElementType {
     INDESTRUCTIBLE_OBSTACLE,
     ROAD,
     BULLET,
+
 }

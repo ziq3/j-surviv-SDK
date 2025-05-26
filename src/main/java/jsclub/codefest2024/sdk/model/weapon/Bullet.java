@@ -5,8 +5,8 @@ import jsclub.codefest2024.sdk.model.Element;
 import jsclub.codefest2024.sdk.model.ElementType;
 
 public class Bullet extends Element {
-    private final int damage = 0;
-    private final int speed = 0;
+    private int damage = 0;
+    private int speed = 0;
 
     @SerializedName("destination_x")
     private final int destinationX = 0;
@@ -14,9 +14,16 @@ public class Bullet extends Element {
     @SerializedName("destination_y")
     private final int destinationY = 0;
 
-    public Bullet() {
+    public Bullet(){
         setId("BULLET");
         setType(ElementType.BULLET);
+    }
+
+    public Bullet(int damage, int speed) {
+        setId("BULLET");
+        setType(ElementType.BULLET);
+        this.damage = damage;
+        this.speed = speed;
     }
 
     public int getDamage() {
