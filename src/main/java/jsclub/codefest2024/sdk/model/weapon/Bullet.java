@@ -14,7 +14,7 @@ public class Bullet extends Element {
     @SerializedName("destination_y")
     private final int destinationY = 0;
 
-    public Bullet(){
+    public Bullet() {
         setId("BULLET");
         setType(ElementType.BULLET);
     }
@@ -25,7 +25,7 @@ public class Bullet extends Element {
         this.damage = damage;
         this.speed = speed;
     }
-
+    
     public int getDamage() {
         return damage;
     }

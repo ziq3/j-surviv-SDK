@@ -5,9 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
-import jsclub.codefest2024.sdk.Hero;
 import jsclub.codefest2024.sdk.factory.*;
-import jsclub.codefest2024.sdk.model.enemies.*;
+import jsclub.codefest2024.sdk.model.npcs.*;
 import jsclub.codefest2024.sdk.model.equipments.*;
 import jsclub.codefest2024.sdk.model.obstacles.*;
 import jsclub.codefest2024.sdk.model.players.Player;
