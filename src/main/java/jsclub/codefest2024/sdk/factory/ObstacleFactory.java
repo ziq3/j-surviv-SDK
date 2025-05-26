@@ -2,6 +2,7 @@ package jsclub.codefest2024.sdk.factory;
 
 import jsclub.codefest2024.sdk.model.ElementType;
 import jsclub.codefest2024.sdk.model.obstacles.Obstacle;
+import jsclub.codefest2024.sdk.model.obstacles.ObstacleTag;
 
 import java.util.Map;
 
@@ -10,32 +11,19 @@ public class ObstacleFactory {
      * Available Obstacles
      */
     private static final Map<String, Obstacle> obstacleMap = Map.ofEntries(
-        Map.entry("CHEST", new Obstacle("CHEST", ElementType.DESTRUCTIBLE_OBSTACLE ,20)),
-        Map.entry("DRAGON_EGG", new Obstacle("DRAGON_EGG", ElementType.DESTRUCTIBLE_OBSTACLE ,50)),
-        Map.entry("HUNT_TRAP", new Obstacle("HUNT_TRAP", ElementType.TRAP)),
-        Map.entry("SPIKES", new Obstacle("SPIKES", ElementType.TRAP)),
-        Map.entry("BANANA_PEEL", new Obstacle("BANANA_PEEL", ElementType.TRAP)),
-        Map.entry("SMALL_STONE", new Obstacle("SMALL_STONE", ElementType.INDESTRUCTIBLE_OBSTACLE)),
-        Map.entry("LARGE_STONE", new Obstacle("LARGE_STONE", ElementType.INDESTRUCTIBLE_OBSTACLE)),
-        Map.entry("POND", new Obstacle("POND", ElementType.INDESTRUCTIBLE_OBSTACLE)),
-        Map.entry("TREE", new Obstacle("TREE", ElementType.INDESTRUCTIBLE_OBSTACLE)),
-        Map.entry("WELL", new Obstacle("WELL", ElementType.INDESTRUCTIBLE_OBSTACLE)),
-        Map.entry("TREE_TRUNK", new Obstacle("TREE_TRUNK", ElementType.INDESTRUCTIBLE_OBSTACLE)),
-        Map.entry("DINASOUR_BONE", new Obstacle("DINASOUR_BONE", ElementType.INDESTRUCTIBLE_OBSTACLE)),
-        Map.entry("BLACK_ROSE", new Obstacle("BLACK_ROSE", ElementType.INDESTRUCTIBLE_OBSTACLE)),
-        Map.entry("WILD_ROSE", new Obstacle("WILD_ROSE", ElementType.INDESTRUCTIBLE_OBSTACLE)),
-        Map.entry("BUSH", new Obstacle("BUSH", ElementType.INDESTRUCTIBLE_OBSTACLE)),
-        Map.entry("STATUE", new Obstacle("STATUE", ElementType.INDESTRUCTIBLE_OBSTACLE)),
-        Map.entry("TORCH", new Obstacle("TORCH", ElementType.INDESTRUCTIBLE_OBSTACLE)),
-        Map.entry("ABANDONED_HOUSE", new Obstacle("ABANDONED_HOUSE", ElementType.INDESTRUCTIBLE_OBSTACLE)),
-        Map.entry("RIVER", new Obstacle("RIVER", ElementType.INDESTRUCTIBLE_OBSTACLE)),
-        Map.entry("FLAG", new Obstacle("FLAG", ElementType.INDESTRUCTIBLE_OBSTACLE)),
-        Map.entry("SWORD_STAND", new Obstacle("SWORD_STAND", ElementType.INDESTRUCTIBLE_OBSTACLE)),
-        Map.entry("COAL_ORE", new Obstacle("COAL_ORE", ElementType.INDESTRUCTIBLE_OBSTACLE)),
-        Map.entry("GLOWING_FLOWER", new Obstacle("GLOWING_FLOWER", ElementType.INDESTRUCTIBLE_OBSTACLE)),
-        Map.entry("ABANDONED_CHEST", new Obstacle("ABANDONED_CHEST", ElementType.INDESTRUCTIBLE_OBSTACLE)),
-        Map.entry("MUSHROOM", new Obstacle("MUSHROOM", ElementType.INDESTRUCTIBLE_OBSTACLE)),
-        Map.entry("RUINS", new Obstacle("RUINS", ElementType.INDESTRUCTIBLE_OBSTACLE))
+        Map.entry("CHEST", new Obstacle("CHEST", ElementType.OBSTACLE, ObstacleTag.DESTRUCTIBLE ,20)),
+        Map.entry("DRAGON_EGG", new Obstacle("DRAGON_EGG", ElementType.OBSTACLE, ObstacleTag.DESTRUCTIBLE ,50)),
+        Map.entry("HUNT_TRAP", new Obstacle("HUNT_TRAP", ElementType.OBSTACLE, ObstacleTag.TRAP, 0)),
+        Map.entry("SPIKES", new Obstacle("SPIKES", ElementType.OBSTACLE, ObstacleTag.TRAP, 0)),
+        Map.entry("BANANA_PEEL", new Obstacle("BANANA_PEEL", ElementType.OBSTACLE, ObstacleTag.TRAP , 0)),
+        Map.entry("INDESTRUCTIBLE", new Obstacle("INDESTRUCTIBLE", ElementType.OBSTACLE, ObstacleTag.INDESTRUCTIBLE , 0)),
+        Map.entry("POND", new Obstacle("POND", ElementType.OBSTACLE, ObstacleTag.CAN_GO_THROUGH)),      
+        Map.entry("STONE_DOOR", new Obstacle("STONE_DOOR", ElementType.OBSTACLE, ObstacleTag.CAN_GO_THROUGH)),      
+        Map.entry("BUSH", new Obstacle("BUSH", ElementType.OBSTACLE, ObstacleTag.CAN_GO_THROUGH)),      
+        Map.entry("ABANDONED_HOUSE", new Obstacle("ABANDONED_HOUSE", ElementType.OBSTACLE, ObstacleTag.CAN_GO_THROUGH)),      
+        Map.entry("PORTAL", new Obstacle("PORTAL", ElementType.OBSTACLE, ObstacleTag.CAN_GO_THROUGH)),      
+        Map.entry("ABANDONED_RUINS", new Obstacle("ABANDONED_RUINS", ElementType.OBSTACLE, ObstacleTag.CAN_GO_THROUGH)),      
+        Map.entry("RIVER", new Obstacle("RIVER", ElementType.OBSTACLE, ObstacleTag.CAN_SHOOT_THROUGH))      
     );
 
     /**
