@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
+import jsclub.codefest2024.sdk.buildings.Building;
 import jsclub.codefest2024.sdk.factory.*;
 import jsclub.codefest2024.sdk.model.npcs.*;
 import jsclub.codefest2024.sdk.model.equipments.*;
@@ -26,6 +27,8 @@ public class GameMap {
     private List<Armor> listArmors = new ArrayList<>();
     private List<Bullet> listBullets = new ArrayList<>();
     private List<Player> otherPlayerInfo = new ArrayList<>();
+    private List<Building> listBuildings = new ArrayList<>();
+
     private Player currentPlayer;
     private Inventory heroInventory;
 
@@ -263,6 +266,10 @@ public class GameMap {
         return currentPlayer;
     }
 
+    public List<Building> getListBuildings() {
+        return listBuildings;
+    }
+
     public void setMapSize(int mapSize) {
         this.mapSize = mapSize;
     }
@@ -309,6 +316,10 @@ public class GameMap {
 
     public void setCurrentPlayer(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
+    }
+
+    public void setListBuildings(List<Building> listBuildings) {
+        this.listBuildings = listBuildings;
     }
 
     @Override
