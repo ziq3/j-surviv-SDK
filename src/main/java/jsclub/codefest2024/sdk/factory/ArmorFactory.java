@@ -1,5 +1,7 @@
 package jsclub.codefest2024.sdk.factory;
 
+import jsclub.codefest2024.sdk.model.Element;
+import jsclub.codefest2024.sdk.model.ElementType;
 import jsclub.codefest2024.sdk.model.equipments.Armor;
 
 import java.io.IOException;
@@ -11,10 +13,10 @@ public class ArmorFactory {
      * Available Armors
      */
     public static final Map<String, Armor> armorMap = Map.of(
-        "WOODEN_HELMET", new Armor("WOODEN_HELMET", 5, 15),
-        "ARMOR", new Armor("ARMOR", 20, 15),
-        "MAGIC_HELMET", new Armor("MAGIC_HELMET", 20, 15),
-            "MAGIC_ARMOR", new Armor ("MAGIC_ARMOR", 30 , 15 )
+        "WOODEN_HELMET", new Armor("WOODEN_HELMET", ElementType.HELMET, 40, 20, 5),
+        "ARMOR", new Armor("ARMOR", ElementType.ARMOR, 30, 50, 20),
+        "MAGIC_HELMET", new Armor("MAGIC_HELMET", ElementType.HELMET, 20, 50, 20),
+            "MAGIC_ARMOR", new Armor ("MAGIC_ARMOR", ElementType.ARMOR , 10, 75, 30)
     );
     /**
      * Find armor by id.

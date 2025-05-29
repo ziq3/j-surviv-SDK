@@ -7,16 +7,28 @@ public class Effect {
     private String id;
 
     @SerializedName("time")
-    private String time;
+    private int time;
+
+    @SerializedName("damage")
+    private int damage;
 
     public Effect() {
     }
 
-    public String getTime() {
+    public Effect(int time, String id, int damage) {
+        this.time = time;
+        this.id = id;
+        this.damage = damage;
+    }
+
+    public int getTime() {
         return time;
     }
 
     public String getId() {
         return id;
     }
+
+
+    public int getDamage(){ return damage;};
 }
