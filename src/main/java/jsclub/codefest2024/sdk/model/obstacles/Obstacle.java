@@ -5,7 +5,7 @@ import jsclub.codefest2024.sdk.model.ElementType;
 
 public class Obstacle extends Element {
     private int hp = -1;
-    private ObstacleTag tag = ObstacleTag.CAN_GO_THROUGH;
+    private ObstacleTag tag = ObstacleTag.INDESTRUCTIBLE;
 
     public Obstacle(String id, ElementType type, ObstacleTag tag , int hp) {
         super(id);

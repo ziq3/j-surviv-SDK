@@ -16,13 +16,11 @@ public class ObstacleFactory {
         Map.entry("HUNT_TRAP", new Obstacle("HUNT_TRAP", ElementType.OBSTACLE, ObstacleTag.TRAP, 0)),
         Map.entry("SPIKES", new Obstacle("SPIKES", ElementType.OBSTACLE, ObstacleTag.TRAP, 0)),
         Map.entry("BANANA_PEEL", new Obstacle("BANANA_PEEL", ElementType.OBSTACLE, ObstacleTag.TRAP , 0)),
-        Map.entry("INDESTRUCTIBLE", new Obstacle("INDESTRUCTIBLE", ElementType.OBSTACLE, ObstacleTag.INDESTRUCTIBLE , 0)),
         Map.entry("POND", new Obstacle("POND", ElementType.OBSTACLE, ObstacleTag.CAN_GO_THROUGH)),      
         Map.entry("STONE_DOOR", new Obstacle("STONE_DOOR", ElementType.OBSTACLE, ObstacleTag.CAN_GO_THROUGH)),      
         Map.entry("BUSH", new Obstacle("BUSH", ElementType.OBSTACLE, ObstacleTag.CAN_GO_THROUGH)),      
-        Map.entry("ABANDONED_HOUSE", new Obstacle("ABANDONED_HOUSE", ElementType.OBSTACLE, ObstacleTag.CAN_GO_THROUGH)),      
+        Map.entry("ABANDONED_HOUSE_DOOR", new Obstacle("ABANDONED_HOUSE_DOOR", ElementType.OBSTACLE, ObstacleTag.CAN_GO_THROUGH)),      
         Map.entry("PORTAL", new Obstacle("PORTAL", ElementType.OBSTACLE, ObstacleTag.CAN_GO_THROUGH)),      
-        Map.entry("ABANDONED_RUINS", new Obstacle("ABANDONED_RUINS", ElementType.OBSTACLE, ObstacleTag.CAN_GO_THROUGH)),      
         Map.entry("RIVER", new Obstacle("RIVER", ElementType.OBSTACLE, ObstacleTag.CAN_SHOOT_THROUGH))      
     );
 
