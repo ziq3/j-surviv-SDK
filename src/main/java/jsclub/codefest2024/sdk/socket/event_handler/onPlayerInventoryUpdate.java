@@ -40,6 +40,9 @@ public class onPlayerInventoryUpdate implements Emitter.Listener {
                         case THROWABLE:
                             heroInventory.setThrowable(WeaponFactory.getWeaponById(id));
                             break;
+                        case SPECIAL:
+                            heroInventory.setSpecial(WeaponFactory.getWeaponById(id));
+                            break;
                         case ARMOR:
                             heroInventory.getListArmor().add(ArmorFactory.getArmorById(id));
                             break;
@@ -58,6 +61,9 @@ public class onPlayerInventoryUpdate implements Emitter.Listener {
                             break;
                         case THROWABLE:
                             heroInventory.setThrowable(null);
+                            break;
+                        case SPECIAL:
+                            heroInventory.setSpecial(null);
                             break;
                         case ARMOR:
                             heroInventory.getListArmor().remove(ArmorFactory.getArmorById(id));
