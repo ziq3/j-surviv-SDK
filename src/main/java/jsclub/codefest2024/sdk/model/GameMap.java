@@ -72,6 +72,7 @@ public class GameMap {
             Gson gson = new Gson();
             String message = MsgPackUtil.decode(arg);
             MapData mapData = gson.fromJson(message, MapData.class);
+            mapData.categorizeMapData();
 
             List<Enemy> newListEnemies = new ArrayList<>();
             List<Obstacle> newListTraps = new ArrayList<>();
