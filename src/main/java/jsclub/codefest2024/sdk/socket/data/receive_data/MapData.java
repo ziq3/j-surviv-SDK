@@ -20,6 +20,7 @@ import jsclub.codefest2024.sdk.model.players.Player;
 import jsclub.codefest2024.sdk.model.weapon.Bullet;
 import jsclub.codefest2024.sdk.model.weapon.Weapon;
 
+import java.lang.classfile.CodeBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +32,16 @@ public class MapData {
     public int safeZone;
 
     @SerializedName("blocks")
+    public List<Block> listBlocks;
+
+    @SerializedName("obstaccles")
     public List<Obstacle> listObstacles;
+
+    @SerializedName("traps")
+    public List<Obstacle> listTraps;
+
+    @SerializedName("listChests")
+    public List<Obstacle> listChests;
 
     @SerializedName("structures")
     public List<Structure> listStructures;
@@ -54,6 +64,13 @@ public class MapData {
     public List<Bullet> listBullet = new ArrayList<>();
 
     public void categorizeMapData() throws CloneNotSupportedException {
+        for (Block b : listBlocks){
+            if (b.type == ElementType.OBSTACLE){
+                Obstacle obstacle = ObstacleFactory.getObstacle(b.id, b.x, b.y);
+                listObstacles.add(obstacle);
+            }
+        }
+
         for (Entity e : listEntities) {
             if (e.type == ElementType.OBSTACLE) {
                 Obstacle obstacle = ObstacleFactory.getObstacle(e.id, e.x, e.y);
