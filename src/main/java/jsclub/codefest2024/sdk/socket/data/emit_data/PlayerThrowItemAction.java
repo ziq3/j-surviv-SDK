@@ -6,7 +6,11 @@ public class PlayerThrowItemAction {
     @SerializedName("direction")
     private String direction;
 
-    public PlayerThrowItemAction(String direction) {
+    @SerializedName("distance")
+    private int distance;
+
+    public PlayerThrowItemAction(String direction, int distance) {
         this.direction = direction;
+        this.distance = distance;
     }
 }
