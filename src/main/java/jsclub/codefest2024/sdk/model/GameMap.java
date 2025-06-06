@@ -12,13 +12,16 @@ import jsclub.codefest2024.sdk.model.equipments.*;
 import jsclub.codefest2024.sdk.model.obstacles.*;
 import jsclub.codefest2024.sdk.model.players.Player;
 import jsclub.codefest2024.sdk.model.weapon.*;
+import jsclub.codefest2024.sdk.socket.data.receive_data.Block;
+import jsclub.codefest2024.sdk.socket.data.receive_data.Entity;
 import jsclub.codefest2024.sdk.socket.data.receive_data.MapData;
 import jsclub.codefest2024.sdk.util.MsgPackUtil;
 
 public class GameMap {
     private int mapSize = 0;
     private int darkAreaSize = 0;
-    private List<Obstacle> listIndestructibleObstacles = new ArrayList<>();
+//    private List<Obstacle> listIndestructibleObstacles = new ArrayList<>();
+    private List<Obstacle> listObstacles = new ArrayList<>();
     private List<Enemy> listEnemies = new ArrayList<>();
     private List<Obstacle> listTraps = new ArrayList<>();
     private List<Obstacle> listChests = new ArrayList<>();
@@ -28,9 +31,17 @@ public class GameMap {
     private List<Bullet> listBullets = new ArrayList<>();
     private List<Player> otherPlayerInfo = new ArrayList<>();
     private List<Building> listBuildings = new ArrayList<>();
-
+    private List<Ally> listAllies = new ArrayList<>();
     private Player currentPlayer;
     private Inventory heroInventory;
+
+    public void setListObstacles(List<Obstacle> listObstacles) {
+        this.listObstacles = listObstacles;
+    }
+
+    public void setListAllies(List<Ally> allies) {
+        listAllies= allies;
+    }
 
     public GameMap(Inventory heroInventory) {
         this.heroInventory = heroInventory;
@@ -47,15 +58,31 @@ public class GameMap {
             Gson gson = new Gson();
             String message = MsgPackUtil.decode(arg);
             MapData mapData = gson.fromJson(message, MapData.class);
-
             setMapSize(mapData.mapSize);
 
-            List<Obstacle> newListIndestructibleObstacles = new ArrayList<>();
-            for (Obstacle o : mapData.listIndestructible) {
-                Obstacle indestructible = ObstacleFactory.getObstacle("INDESTRUCTIBLE_OBSTACLE", o.getX(), o.getY());
-                newListIndestructibleObstacles.add(indestructible);
+            List<Enemy> newListEnemies = new ArrayList<>();
+            List<Obstacle> newListObstacles = new ArrayList<>();
+            List<Ally> newListAllies = new ArrayList<>();
+            for (Enemy e : mapData.listEnemies) {
+                Enemy enemy = EnemyFactory.getEnemy(e.getId(), e.getX(), e.getY());
+                newListEnemies.add(enemy);
             }
-            setListIndestructibleObstacles(newListIndestructibleObstacles);
+            setListEnemies(newListEnemies);
+
+            for (Ally a : mapData.listAllies){
+                Ally ally = AllyFactory.getAlly(a.getId(), a.x, a.y);
+                newListAllies.add(ally);
+            }
+            setListAllies(newListAllies);
+
+            for (Obstacle o : mapData.listObstacles){
+                Obstacle obstacle = ObstacleFactory.getObstacle(o.getId(), o.x, o.y);
+                newListObstacles.add(obstacle);
+            }
+            setListObstacles(newListObstacles);
+
+
+
         } catch (CloneNotSupportedException | IOException e) {
             throw new RuntimeException(e);
         }

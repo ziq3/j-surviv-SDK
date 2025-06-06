@@ -23,6 +23,7 @@ public class Obstacle extends Element {
         this.setType(type);
     }
 
+
     public int getHp() {
         return hp;
     }

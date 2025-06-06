@@ -3,6 +3,7 @@ package jsclub.codefest2024.sdk.socket.data.receive_data;
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 import jsclub.codefest2024.sdk.model.ElementType;
+import jsclub.codefest2024.sdk.model.obstacles.ObstacleTag;
 
 import java.util.List;
 
@@ -20,8 +21,8 @@ public class Block {
     public ElementType type;
     
     @SerializedName("tags")
-    public List<String> tags;
-    
+    public List<ObstacleTag> tags;
+
     @SerializedName("attributes")
     public List<Object> attributes;
 
