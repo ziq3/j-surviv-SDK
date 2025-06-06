@@ -3,26 +3,17 @@ package jsclub.codefest2024.sdk;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 import jsclub.codefest2024.sdk.base.Node;
-import jsclub.codefest2024.sdk.factory.ArmorFactory;
 import jsclub.codefest2024.sdk.factory.HealingItemFactory;
-import jsclub.codefest2024.sdk.factory.WeaponFactory;
-import jsclub.codefest2024.sdk.model.Element;
-import jsclub.codefest2024.sdk.model.ElementType;
 import jsclub.codefest2024.sdk.model.GameMap;
 import jsclub.codefest2024.sdk.model.Inventory;
-import jsclub.codefest2024.sdk.model.equipments.Armor;
 import jsclub.codefest2024.sdk.model.equipments.HealingItem;
-import jsclub.codefest2024.sdk.model.weapon.Weapon;
 import jsclub.codefest2024.sdk.socket.EventName;
 import jsclub.codefest2024.sdk.socket.SocketClient;
 import jsclub.codefest2024.sdk.socket.data.emit_data.*;
 import jsclub.codefest2024.sdk.util.MsgPackUtil;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Hero {
     private String playerName = "";
@@ -75,7 +66,7 @@ public class Hero {
         Socket socket = socketClient.getSocket();
 
         if (socket != null) {
-            PlayerJoinGameAction joinGame = new PlayerJoinGameAction(this.gameID, this.playerName);
+            PlayerJoinGameAction joinGame = new PlayerJoinGameAction(this.gameID);
             byte[] bytes = MsgPackUtil.encodeFromObject(joinGame);
             socket.emit(EventName.EMIT_JOIN_GAME, (Object) bytes);
         }
@@ -198,7 +189,7 @@ public class Hero {
      * @param direction the direction in which to throw the object
      * @throws IOException if an I/O error occurs
      */
-    public void throwItem(String direction) throws IOException {
+    public void throwItem(String direction, int distance) throws IOException {
         Socket socket = socketClient.getSocket();
 
         if (direction.isEmpty() || direction == null) {
@@ -219,7 +210,7 @@ public class Hero {
             return;
         }
 
-        PlayerThrowItemAction botThrow = new PlayerThrowItemAction(direction);
+        PlayerThrowItemAction botThrow = new PlayerThrowItemAction(direction,distance);
         byte[] bytes = MsgPackUtil.encodeFromObject(botThrow);
         socket.emit(EventName.EMIT_THROW, (Object) bytes);
     }
