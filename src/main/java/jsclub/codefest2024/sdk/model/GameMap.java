@@ -31,17 +31,9 @@ public class GameMap {
     private List<Bullet> listBullets = new ArrayList<>();
     private List<Player> otherPlayerInfo = new ArrayList<>();
     private List<Building> listBuildings = new ArrayList<>();
-    private List<Ally> listAllies = new ArrayList<>();
     private Player currentPlayer;
     private Inventory heroInventory;
 
-    public void setListObstacles(List<Obstacle> listObstacles) {
-        this.listObstacles = listObstacles;
-    }
-
-    public void setListAllies(List<Ally> allies) {
-        listAllies= allies;
-    }
 
     public GameMap(Inventory heroInventory) {
         this.heroInventory = heroInventory;
@@ -215,7 +207,7 @@ public class GameMap {
         try {
             ObstacleTag t = ObstacleTag.valueOf(tag);
             for (Obstacle o : listObstacles) {
-            if (o.getTags().contains(t)) {
+            if (o.getTag().contains(t)) {
                 obstacles.add(o);
             }
         }
