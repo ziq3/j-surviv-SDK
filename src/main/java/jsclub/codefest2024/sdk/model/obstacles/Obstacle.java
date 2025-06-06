@@ -3,20 +3,23 @@ package jsclub.codefest2024.sdk.model.obstacles;
 import jsclub.codefest2024.sdk.model.Element;
 import jsclub.codefest2024.sdk.model.ElementType;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Obstacle extends Element {
     private int hp = -1;
-    private ObstacleTag tag = ObstacleTag.INDESTRUCTIBLE;
+    private List<ObstacleTag> tags = new ArrayList<>();
 
-    public Obstacle(String id, ElementType type, ObstacleTag tag , int hp) {
+    public Obstacle(String id, ElementType type, List<ObstacleTag> tags , int hp) {
         super(id);
-        this.tag = tag;
+        this.tags = tags;
         this.hp = hp;
         this.setType(type);
     }
 
-    public Obstacle(String id, ElementType type, ObstacleTag tag) {
+    public Obstacle(String id, ElementType type, List<ObstacleTag> tags) {
         super(id);
-        this.tag = tag;
+        this.tags = tags;
         this.setType(type);
     }
 
@@ -24,15 +27,15 @@ public class Obstacle extends Element {
         return hp;
     }
 
-    public ObstacleTag getTag() {
-        return tag;
+    public List<ObstacleTag> getTag() {
+        return tags;
     }
 
     public void setHp(int hp) {
         this.hp = hp;
     }
 
-    public void setTag(ObstacleTag tag) {
-        this.tag = tag;
+    public void setTag(List<ObstacleTag> tags) {
+        this.tags = tags;
     }
 }
