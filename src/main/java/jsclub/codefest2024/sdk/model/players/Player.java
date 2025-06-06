@@ -5,6 +5,8 @@ import jsclub.codefest2024.sdk.model.Element;
 import jsclub.codefest2024.sdk.model.ElementType;
 import jsclub.codefest2024.sdk.model.effects.Effect;
 
+import java.util.List;
+
 public class Player extends Element {
     @SerializedName("player_name")
     private String playerName;
@@ -19,7 +21,7 @@ public class Player extends Element {
     private boolean isAlive;
 
     @SerializedName("effects")
-    private Effect[] effects;
+    private List<Effect> effects;
 
     private int point;
     private int hp;
@@ -52,7 +54,7 @@ public class Player extends Element {
         return isAlive;
     }
 
-    public Effect[] getEffects() {
+    public List<Effect> getEffects() {
         return effects;
     }
 }
