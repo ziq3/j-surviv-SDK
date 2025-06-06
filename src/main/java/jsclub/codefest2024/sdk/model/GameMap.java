@@ -19,12 +19,12 @@ import jsclub.codefest2024.sdk.util.MsgPackUtil;
 
 public class GameMap {
     private int mapSize = 0;
+    private int safeZone = 0;
     private int darkAreaSize = 0;
-//    private List<Obstacle> listIndestructibleObstacles = new ArrayList<>();
+    private List<Obstacle> listIndestructibleObstacles = new ArrayList<>();
     private List<Obstacle> listObstacles = new ArrayList<>();
     private List<Enemy> listEnemies = new ArrayList<>();
-    private List<Obstacle> listTraps = new ArrayList<>();
-    private List<Obstacle> listChests = new ArrayList<>();
+    private List<Ally> listAllies = new ArrayList<>();
     private List<Weapon> listWeapons = new ArrayList<>();
     private List<HealingItem> listHealingItems = new ArrayList<>();
     private List<Armor> listArmors = new ArrayList<>();
@@ -101,14 +101,20 @@ public class GameMap {
             MapData mapData = gson.fromJson(message, MapData.class);
             mapData.categorizeMapData();
 
+            List<Obstacle> newListObstacles = new ArrayList<>();
             List<Enemy> newListEnemies = new ArrayList<>();
-            List<Obstacle> newListTraps = new ArrayList<>();
-            List<Obstacle> newListChests = new ArrayList<>();
+            List<Ally> newListAllies = new ArrayList<>();
             List<Weapon> newListWeapons = new ArrayList<>();
             List<HealingItem> newListHealingItem = new ArrayList<>();
             List<Armor> newListArmor = new ArrayList<>();
 
-            setDarkAreaSize(mapData.darkAreaSize);
+            setSafeZone(mapData.safeZone);
+
+            for (Obstacle o : mapData.listObstacles) {
+                Obstacle obstacle = ObstacleFactory.getObstacle(o.getId(), o.getX(), o.getY());
+                newListObstacles.add(obstacle);
+            }
+            setListObstacles(newListObstacles);
 
             for (Enemy e : mapData.listEnemies) {
                 Enemy enemy = EnemyFactory.getEnemy(e.getId(), e.getX(), e.getY());
@@ -116,17 +122,11 @@ public class GameMap {
             }
             setListEnemies(newListEnemies);
 
-            for (Obstacle t : mapData.listTraps) {
-                Obstacle trap = ObstacleFactory.getObstacle(t.getId(), t.getX(), t.getY(), t.getHp());
-                newListTraps.add(trap);
+            for (Ally a : mapData.listAllies) {
+                Ally ally = AllyFactory.getAlly(a.getId(), a.getX(), a.getY());
+                newListAllies.add(ally);
             }
-            setListTraps(newListTraps);
-
-            for (Obstacle c : mapData.listChests) {
-                Obstacle chest = ObstacleFactory.getObstacle(c.getId(), c.getX(), c.getY(), c.getHp());
-                newListChests.add(chest);
-            }
-            setListChests(newListChests);
+            setListEnemies(newListEnemies);
 
             for (Weapon w : mapData.listWeapons) {
                 Weapon weapon = WeaponFactory.getWeapon(w.getId(), w.getX(), w.getY());
@@ -174,12 +174,6 @@ public class GameMap {
         element = this.findElementInListByIndex(x, y, this.listEnemies);
         if (element != null) return element;
 
-        element = this.findElementInListByIndex(x, y, this.listTraps);
-        if (element != null) return element;
-
-        element = this.findElementInListByIndex(x, y, this.listChests);
-        if (element != null) return element;
-
         element = this.findElementInListByIndex(x, y, this.listWeapons);
         if (element != null) return element;
 
@@ -216,6 +210,21 @@ public class GameMap {
      * get,set functions
      */
 
+    public List<Obstacle> getObstaclesbyTag(String tag) {
+        List<Obstacle> obstacles = new ArrayList<>();
+        try {
+            ObstacleTag t = ObstacleTag.valueOf(tag);
+            for (Obstacle o : listObstacles) {
+            if (o.getTags().contains(t)) {
+                obstacles.add(o);
+            }
+        }
+        } catch (IllegalArgumentException | NullPointerException e) {
+            throw new RuntimeException(e);
+        }
+        return obstacles;
+    }
+
     public List<Weapon> getAllGun() {
         List<Weapon> guns = new ArrayList<>();
         for (Weapon weapon : listWeapons) {
@@ -250,24 +259,24 @@ public class GameMap {
         return mapSize;
     }
 
-    public int getDarkAreaSize() {
-        return darkAreaSize;
+    public int getSafeZone() {
+        return safeZone;
     }
 
     public List<Obstacle> getListIndestructibleObstacles() {
         return listIndestructibleObstacles;
     }
 
+    public List<Obstacle> getListObstacles() {
+        return listObstacles;
+    }
+
     public List<Enemy> getListEnemies() {
         return listEnemies;
     }
 
-    public List<Obstacle> getListTraps() {
-        return listTraps;
-    }
-
-    public List<Obstacle> getListChests() {
-        return listChests;
+    public List<Ally> getListAllies() {
+        return listAllies;
     }
 
     public List<Weapon> getListWeapons() {
@@ -302,24 +311,24 @@ public class GameMap {
         this.mapSize = mapSize;
     }
 
-    public void setDarkAreaSize(int darkAreaSize) {
-        this.darkAreaSize = darkAreaSize;
+    public void setSafeZone(int safeZone) {
+        this.safeZone = safeZone;
     }
 
     public void setListIndestructibleObstacles(List<Obstacle> listIndestructibleObstacles) {
         this.listIndestructibleObstacles = listIndestructibleObstacles;
     }
 
+    public void setListObstacles(List<Obstacle> listObstacles) {
+        this.listObstacles = listObstacles;
+    }
+
     public void setListEnemies(List<Enemy> listEnemies) {
         this.listEnemies = listEnemies;
     }
 
-    public void setListTraps(List<Obstacle> listTraps) {
-        this.listTraps = listTraps;
-    }
-
-    public void setListChests(List<Obstacle> listChests) {
-        this.listChests = listChests;
+    public void setListAllies(List<Ally> listAllies) {
+        this.listAllies = listAllies;
     }
 
     public void setListWeapons(List<Weapon> listWeapons) {
