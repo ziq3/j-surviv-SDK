@@ -15,12 +15,9 @@ import jsclub.codefest2024.sdk.factory.HealingItemFactory;
 import jsclub.codefest2024.sdk.model.obstacles.Obstacle;
 import jsclub.codefest2024.sdk.factory.ObstacleFactory;
 import jsclub.codefest2024.sdk.factory.WeaponFactory;
-import jsclub.codefest2024.sdk.model.obstacles.ObstacleTag;
 import jsclub.codefest2024.sdk.model.players.Player;
 import jsclub.codefest2024.sdk.model.weapon.Bullet;
 import jsclub.codefest2024.sdk.model.weapon.Weapon;
-
-import java.lang.classfile.CodeBuilder;
 import java.util.ArrayList;
 import java.util.List;
 

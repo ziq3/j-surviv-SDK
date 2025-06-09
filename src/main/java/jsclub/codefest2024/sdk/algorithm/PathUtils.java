@@ -41,7 +41,7 @@ public class PathUtils {
         int[] Dx = {-1, 1, 0, 0};
         int[] Dy = {0, 0, -1, 1};
         int mapSize = gameMap.getMapSize();
-        int darkAreaSize = gameMap.getDarkAreaSize();
+//        int darkAreaSize = gameMap.getDarkAreaSize();
         List<Obstacle> listIndestructibleObstacles = gameMap.getListIndestructibleObstacles();
         ArrayList<ArrayList<Integer>> isRestrictedNodes = new ArrayList<>(mapSize + 5);
         ArrayList<ArrayList<Integer>> g = new ArrayList<>(mapSize + 5);
@@ -109,8 +109,8 @@ public class PathUtils {
 
                 if (x < 0 || y < 0 || x >= mapSize || y >= mapSize) continue;
                 if (isRestrictedNodes.get(x).get(y) == 1) continue;
-                if (!skipDarkArea && !checkInsideSafeArea(new Node(x, y), darkAreaSize, mapSize))
-                    continue;
+//                if (!skipDarkArea && !checkInsideSafeArea(new Node(x, y), darkAreaSize, mapSize))
+//                    continue;
 
                 int cost = g.get(u.x).get(u.y) + 1;
                 if (g.get(x).get(y) == -1 || g.get(x).get(y) > cost) {
