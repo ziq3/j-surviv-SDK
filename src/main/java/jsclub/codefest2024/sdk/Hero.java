@@ -14,20 +14,23 @@ import jsclub.codefest2024.sdk.util.MsgPackUtil;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 public class Hero {
     private String playerName = "";
     private String playerKey = "";
     private String gameID = "";
+    private String secretKey = "";
     private final SocketClient socketClient;
     private final GameMap gameMap;
     private final Inventory inventory;
     private Emitter.Listener onMapUpdate;
 
-    public Hero(String gameID, String playerName, String playerKey) {
+    public Hero(String gameID, String playerName, String playerKey, String secretKey) {
         this.playerName = playerName;
         this.playerKey = playerKey;
         this.gameID = gameID;
+        this.secretKey = secretKey;
         this.inventory = new Inventory();
         this.gameMap = new GameMap(this.getInventory());
         this.socketClient = new SocketClient(this.inventory, this.gameMap);
@@ -50,8 +53,13 @@ public class Hero {
             throw new RuntimeException("gameID is not set");
         }
 
-        socketClient.connectToServer(serverURL, this.playerName, this.playerKey, this.onMapUpdate);
-        this.joinGame();
+        socketClient.connectToServer(serverURL, playerName, playerKey, secretKey, onMapUpdate)
+                .thenRun(this::joinGame)
+                .exceptionally(ex -> {
+                    System.err.println("Failed to connect and join game: " + ex.getMessage());
+                    ex.printStackTrace();
+                    return null;
+                });
     }
 
     public String getPlayerID() {
@@ -62,15 +70,21 @@ public class Hero {
         return gameID;
     }
 
-    public void joinGame() throws IOException {
+    public void joinGame() {
         Socket socket = socketClient.getSocket();
 
         if (socket != null) {
-            PlayerJoinGameAction joinGame = new PlayerJoinGameAction(this.gameID);
-            byte[] bytes = MsgPackUtil.encodeFromObject(joinGame);
-            socket.emit(EventName.EMIT_JOIN_GAME, (Object) bytes);
+            try {
+                PlayerJoinGameAction joinGame = new PlayerJoinGameAction(this.gameID);
+                System.out.println(joinGame.toString());
+                byte[] bytes = MsgPackUtil.encodeFromObject(joinGame);
+                socket.emit(EventName.EMIT_JOIN_GAME, (Object) bytes);
+            } catch (IOException e) {
+                e.printStackTrace(); // or handle more gracefully
+            }
         }
     }
+
 
     private boolean invalidDirection(String direction) {
         if (direction == null) {
