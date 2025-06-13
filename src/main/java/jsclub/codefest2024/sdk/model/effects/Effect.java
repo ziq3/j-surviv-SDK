@@ -6,23 +6,23 @@ public class Effect {
     @SerializedName("id")
     private String id;
 
-    @SerializedName("time")
-    private int time;
+    @SerializedName("duration")
+    private Integer duration;
 
-    @SerializedName("damage")
-    private int damage;
+    @SerializedName("level")
+    private Integer level;
 
     public Effect() {
     }
 
-    public Effect(int time, String id, int damage) {
-        this.time = time;
+    public Effect(Integer duration, String id, Integer level) {
+        this.duration = duration;
         this.id = id;
-        this.damage = damage;
+        this.level = level;
     }
 
-    public int getTime() {
-        return time;
+    public Integer getduration() {
+        return duration;
     }
 
     public String getId() {
@@ -30,5 +30,5 @@ public class Effect {
     }
 
 
-    public int getDamage(){ return damage;};
+    public Integer getlevel(){ return level;};
 }
