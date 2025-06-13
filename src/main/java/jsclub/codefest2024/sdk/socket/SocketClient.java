@@ -15,7 +15,7 @@ public class SocketClient {
     private final Inventory heroInventory;
     private final GameMap gameMap;
 
-    public CompletableFuture<Void> connectToServer(String serverUrl, String playerName, String playerKey, String secretKey, Emitter.Listener onMapUpdate) {
+    public CompletableFuture<Void> connectToServer(String serverUrl, String playerName, String secretKey, Emitter.Listener onMapUpdate) {
         CompletableFuture<Void> connectionFuture = new CompletableFuture<>();
 
         if (socket != null) {
@@ -23,7 +23,7 @@ public class SocketClient {
             socket = null;
         }
 
-        socket = SocketUtil.init(serverUrl + "/bot/socket?secretKey=" + secretKey, playerName, playerKey);
+        socket = SocketUtil.init(serverUrl + "/bot/socket?secretKey=" + secretKey, playerName);
         if (socket == null) {
             connectionFuture.completeExceptionally(new IllegalStateException("Socket init failed"));
             return connectionFuture;

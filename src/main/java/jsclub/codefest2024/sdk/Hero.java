@@ -18,7 +18,6 @@ import java.util.concurrent.CompletableFuture;
 
 public class Hero {
     private String playerName = "";
-    private String playerKey = "";
     private String gameID = "";
     private String secretKey = "";
     private final SocketClient socketClient;
@@ -26,9 +25,8 @@ public class Hero {
     private final Inventory inventory;
     private Emitter.Listener onMapUpdate;
 
-    public Hero(String gameID, String playerName, String playerKey, String secretKey) {
+    public Hero(String gameID, String playerName, String secretKey) {
         this.playerName = playerName;
-        this.playerKey = playerKey;
         this.gameID = gameID;
         this.secretKey = secretKey;
         this.inventory = new Inventory();
@@ -45,15 +43,11 @@ public class Hero {
             throw new RuntimeException("playerName is not set");
         }
 
-        if (this.playerKey.isEmpty()) {
-            throw new RuntimeException("playerKey is not set");
-        }
-
         if (this.gameID.isEmpty()) {
             throw new RuntimeException("gameID is not set");
         }
 
-        socketClient.connectToServer(serverURL, playerName, playerKey, secretKey, onMapUpdate)
+        socketClient.connectToServer(serverURL, playerName, secretKey, onMapUpdate)
                 .thenRun(this::joinGame)
                 .exceptionally(ex -> {
                     System.err.println("Failed to connect and join game: " + ex.getMessage());

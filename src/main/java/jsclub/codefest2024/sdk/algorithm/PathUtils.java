@@ -26,10 +26,13 @@ public class PathUtils {
      * @param x Node, darkAreaSize int, mapSize int  to check.
      * @return boolean value.
      */
-    public static boolean checkInsideSafeArea(Node x, int darkAreaSize, int mapSize) {
-        return (x.x >= darkAreaSize && x.y >= darkAreaSize &&
-                x.x < mapSize - darkAreaSize && x.y < mapSize - darkAreaSize);
-    }
+//    public static boolean checkInsideSafeArea(Node x, int darkAreaSize, int mapSize) {
+//        return (x.x >= darkAreaSize && x.y >= darkAreaSize &&
+//                x.x < mapSize - darkAreaSize && x.y < mapSize - darkAreaSize);
+//    }
+        public static boolean checkInsideSafeArea(Node x, int safeZone) {
+            return (x.x < safeZone && x.y < safeZone);
+        }
 
     /**
      * The algorithm to find the shortest path from the current node to the target node
@@ -42,6 +45,7 @@ public class PathUtils {
         int[] Dy = {0, 0, -1, 1};
         int mapSize = gameMap.getMapSize();
 //        int darkAreaSize = gameMap.getDarkAreaSize();
+        int safeZone = gameMap.getSafeZone();
         List<Obstacle> listIndestructibleObstacles = gameMap.getListIndestructibleObstacles();
         ArrayList<ArrayList<Integer>> isRestrictedNodes = new ArrayList<>(mapSize + 5);
         ArrayList<ArrayList<Integer>> g = new ArrayList<>(mapSize + 5);
@@ -111,6 +115,9 @@ public class PathUtils {
                 if (isRestrictedNodes.get(x).get(y) == 1) continue;
 //                if (!skipDarkArea && !checkInsideSafeArea(new Node(x, y), darkAreaSize, mapSize))
 //                    continue;
+
+                if (!skipDarkArea && !checkInsideSafeArea(new Node(x, y), safeZone))
+                    continue;
 
                 int cost = g.get(u.x).get(u.y) + 1;
                 if (g.get(x).get(y) == -1 || g.get(x).get(y) > cost) {
