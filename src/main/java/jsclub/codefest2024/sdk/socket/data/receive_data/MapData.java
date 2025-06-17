@@ -30,7 +30,7 @@ public class MapData {
     public List<Obstacle> listObstacles;
 
     @SerializedName("buildings")
-    public List<Building> listBuildings;
+    public List<Structure> listBuildings;
 
     @SerializedName("safeZoneRadius")
     public int safeZone;

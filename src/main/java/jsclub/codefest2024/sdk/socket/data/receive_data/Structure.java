@@ -24,6 +24,8 @@ public class Structure {
     @SerializedName("attributes")
     public List<Object> attributes;
 
+    
+
     @Override
     public String toString() {
         return new Gson().toJson(this);
