@@ -12,8 +12,6 @@ import jsclub.codefest2024.sdk.model.equipments.*;
 import jsclub.codefest2024.sdk.model.obstacles.*;
 import jsclub.codefest2024.sdk.model.players.Player;
 import jsclub.codefest2024.sdk.model.weapon.*;
-import jsclub.codefest2024.sdk.socket.data.receive_data.Block;
-import jsclub.codefest2024.sdk.socket.data.receive_data.Entity;
 import jsclub.codefest2024.sdk.socket.data.receive_data.MapData;
 import jsclub.codefest2024.sdk.util.MsgPackUtil;
 
@@ -52,29 +50,13 @@ public class GameMap {
             MapData mapData = gson.fromJson(message, MapData.class);
             setMapSize(mapData.mapSize);
 
-            List<Enemy> newListEnemies = new ArrayList<>();
             List<Obstacle> newListObstacles = new ArrayList<>();
-            List<Ally> newListAllies = new ArrayList<>();
-            for (Enemy e : mapData.listEnemies) {
-                Enemy enemy = EnemyFactory.getEnemy(e.getId(), e.getX(), e.getY());
-                newListEnemies.add(enemy);
-            }
-            setListEnemies(newListEnemies);
-
-            for (Ally a : mapData.listAllies){
-                Ally ally = AllyFactory.getAlly(a.getId(), a.x, a.y);
-                newListAllies.add(ally);
-            }
-            setListAllies(newListAllies);
-
+            
             for (Obstacle o : mapData.listObstacles){
                 Obstacle obstacle = ObstacleFactory.getObstacle(o.getId(), o.x, o.y);
                 newListObstacles.add(obstacle);
             }
             setListObstacles(newListObstacles);
-
-
-
         } catch (CloneNotSupportedException | IOException e) {
             throw new RuntimeException(e);
         }
@@ -202,15 +184,15 @@ public class GameMap {
      * get,set functions
      */
 
-    public List<Obstacle> getObstaclesbyTag(String tag) {
+    public List<Obstacle> getObstaclesByTag(String tag) {
         List<Obstacle> obstacles = new ArrayList<>();
         try {
             ObstacleTag t = ObstacleTag.valueOf(tag);
             for (Obstacle o : listObstacles) {
-            if (o.getTag().contains(t)) {
-                obstacles.add(o);
+                if (o.getTag().contains(t)) {
+                    obstacles.add(o);
+                }
             }
-        }
         } catch (IllegalArgumentException | NullPointerException e) {
             throw new RuntimeException(e);
         }
