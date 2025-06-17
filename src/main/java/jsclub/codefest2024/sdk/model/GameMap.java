@@ -6,15 +6,15 @@ import java.util.List;
 
 import com.google.gson.Gson;
 import jsclub.codefest2024.sdk.model.buildings.Building;
+import jsclub.codefest2024.sdk.base.Node;
 import jsclub.codefest2024.sdk.factory.*;
 import jsclub.codefest2024.sdk.model.npcs.*;
 import jsclub.codefest2024.sdk.model.equipments.*;
 import jsclub.codefest2024.sdk.model.obstacles.*;
 import jsclub.codefest2024.sdk.model.players.Player;
 import jsclub.codefest2024.sdk.model.weapon.*;
-import jsclub.codefest2024.sdk.socket.data.receive_data.Block;
-import jsclub.codefest2024.sdk.socket.data.receive_data.Entity;
 import jsclub.codefest2024.sdk.socket.data.receive_data.MapData;
+import jsclub.codefest2024.sdk.socket.data.receive_data.Structure;
 import jsclub.codefest2024.sdk.util.MsgPackUtil;
 
 public class GameMap {
@@ -23,6 +23,7 @@ public class GameMap {
     private int darkAreaSize = 0;
     private List<Obstacle> listIndestructibleObstacles = new ArrayList<>();
     private List<Obstacle> listObstacles = new ArrayList<>();
+    private List<Building> listBuildings = new ArrayList<>();
     private List<Enemy> listEnemies = new ArrayList<>();
     private List<Ally> listAllies = new ArrayList<>();
     private List<Weapon> listWeapons = new ArrayList<>();
@@ -30,7 +31,6 @@ public class GameMap {
     private List<Armor> listArmors = new ArrayList<>();
     private List<Bullet> listBullets = new ArrayList<>();
     private List<Player> otherPlayerInfo = new ArrayList<>();
-    private List<Building> listBuildings = new ArrayList<>();
     private Player currentPlayer;
     private Inventory heroInventory;
 
@@ -52,29 +52,22 @@ public class GameMap {
             MapData mapData = gson.fromJson(message, MapData.class);
             setMapSize(mapData.mapSize);
 
-            List<Enemy> newListEnemies = new ArrayList<>();
             List<Obstacle> newListObstacles = new ArrayList<>();
-            List<Ally> newListAllies = new ArrayList<>();
-            for (Enemy e : mapData.listEnemies) {
-                Enemy enemy = EnemyFactory.getEnemy(e.getId(), e.getX(), e.getY());
-                newListEnemies.add(enemy);
-            }
-            setListEnemies(newListEnemies);
-
-            for (Ally a : mapData.listAllies){
-                Ally ally = AllyFactory.getAlly(a.getId(), a.x, a.y);
-                newListAllies.add(ally);
-            }
-            setListAllies(newListAllies);
-
+            List<Building> newListBuildings = new ArrayList<>();
+            
             for (Obstacle o : mapData.listObstacles){
                 Obstacle obstacle = ObstacleFactory.getObstacle(o.getId(), o.x, o.y);
                 newListObstacles.add(obstacle);
             }
             setListObstacles(newListObstacles);
 
-
-
+            for (Structure b : mapData.listBuildings) {
+                Node limitPos = new Node(b.xBottomRight, b.yBottomRight);
+                Node landmarkPos = new Node(b.xTopLeft, b.yTopLeft);
+                Building building = BuildingFactory.getBuilding(b.id, limitPos, landmarkPos);
+                newListBuildings.add(building);
+            }
+            setListBuildings(newListBuildings);
         } catch (CloneNotSupportedException | IOException e) {
             throw new RuntimeException(e);
         }
@@ -202,15 +195,15 @@ public class GameMap {
      * get,set functions
      */
 
-    public List<Obstacle> getObstaclesbyTag(String tag) {
+    public List<Obstacle> getObstaclesByTag(String tag) {
         List<Obstacle> obstacles = new ArrayList<>();
         try {
             ObstacleTag t = ObstacleTag.valueOf(tag);
             for (Obstacle o : listObstacles) {
-            if (o.getTag().contains(t)) {
-                obstacles.add(o);
+                if (o.getTag().contains(t)) {
+                    obstacles.add(o);
+                }
             }
-        }
         } catch (IllegalArgumentException | NullPointerException e) {
             throw new RuntimeException(e);
         }

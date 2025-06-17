@@ -12,6 +12,7 @@ import jsclub.codefest2024.sdk.socket.SocketClient;
 import jsclub.codefest2024.sdk.socket.data.emit_data.*;
 import jsclub.codefest2024.sdk.util.MsgPackUtil;
 import java.io.IOException;
+import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -121,12 +122,42 @@ public class Hero {
         }
     }
 
+
     /**
      * Shoots a projectile in the specified direction ('l', 'r', 'u', 'd').
      *
      * @param direction the direction in which to shoot
      * @throws IOException if an I/O error occurs
      */
+    public void useSpecial(String direction) throws IOException{
+        Socket socket = socketClient.getSocket();
+
+        if (direction.isEmpty() || direction == null) {
+            System.out.println("DEBUG FROM SDK shoot ERROR : direction is null or empty");
+            return;
+        }
+
+        if (direction.length() != 1) {
+            System.out.println("DEBUG FROM SDK shoot ERROR : direction string length must be 1");
+            return;
+        }
+
+        if (invalidDirection(direction)) {
+            System.out.println("DEBUG FROM SDK useSpecial ERROR : Invalid direction");
+            return;
+        }
+
+        if (socket == null || getInventory().getGun() == null) {
+            System.out.println("DEBUG FROM SDK useSpecial ERROR : Socket is null or inventory does not have special weapons");
+            return;
+        }
+
+        PlayerUseSpecialAction botUseSpecial = new PlayerUseSpecialAction(direction);
+        byte[] bytes = MsgPackUtil.encodeFromObject(botUseSpecial);
+        socket.emit("USE_SPECIAL", (Object)bytes);
+
+    }
+
     public void shoot(String direction) throws IOException {
         Socket socket = socketClient.getSocket();
 
@@ -213,7 +244,7 @@ public class Hero {
             return;
         }
 
-        if (socket != null || getInventory().getThrowable() != null) {
+        if (socket == null || getInventory().getThrowable() == null) {
             System.out.println("DEBUG FROM SDK throwItem ERROR : Socket is null or inventory does not have throwable");
             return;
         }
@@ -270,6 +301,8 @@ public class Hero {
      * @param itemId the ID of the item to use
      * @throws IOException if an I/O error occurs
      */
+
+
     public void useItem(String itemId) throws IOException {
         Socket socket = socketClient.getSocket();
         HealingItem item = HealingItemFactory.getHealingItemById(itemId);

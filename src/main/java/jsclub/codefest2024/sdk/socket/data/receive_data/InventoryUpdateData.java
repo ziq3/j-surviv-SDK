@@ -9,7 +9,7 @@ public class InventoryUpdateData {
     @SerializedName("item_type")
     public ElementType itemType;
 
-    @SerializedName("id")
+    @SerializedName("item")
     public String id;
 
     @SerializedName("action")
