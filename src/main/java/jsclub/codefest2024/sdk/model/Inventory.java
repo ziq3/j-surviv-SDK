@@ -30,7 +30,7 @@ public class Inventory {
                 this.throwable =  WeaponFactory.getWeaponById(n.getID());
             if (n.getType().equals(ElementType.SPECIAL))
                 this.special =  WeaponFactory.getWeaponById(n.getID());
-            if (n.getType().equals(ElementType.ARMOR))
+            if (n.getType().equals(ElementType.ARMOR) || n.getType().equals(ElementType.HELMET))
                 this.listArmor.add(ArmorFactory.getArmorById(n.getID()));
             if (n.getType().equals(ElementType.HEALING_ITEM))
                 this.listHealingItem.add(HealingItemFactory.getHealingItemById(n.getID()));

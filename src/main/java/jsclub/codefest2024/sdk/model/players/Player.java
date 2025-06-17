@@ -3,55 +3,85 @@ package jsclub.codefest2024.sdk.model.players;
 import com.google.gson.annotations.SerializedName;
 import jsclub.codefest2024.sdk.model.Element;
 import jsclub.codefest2024.sdk.model.ElementType;
+import jsclub.codefest2024.sdk.model.Inventory;
 import jsclub.codefest2024.sdk.model.effects.Effect;
 
+import java.io.Serial;
 import java.util.List;
 
 public class Player extends Element {
-    @SerializedName("player_name")
-    private String playerName;
+//    @SerializedName("player_name")
+//    private String playerName;
+//
+//    @SerializedName("bullet_num")
+//    private int bulletNum;
+//
+//    @SerializedName("damage_reduction")
+//    private int damageReduction;
+//
+//    @SerializedName("is_alive")
+//    private boolean isAlive;
 
-    @SerializedName("bullet_num")
-    private int bulletNum;
+    @SerializedName("id")
+    private String ID;
 
-    @SerializedName("damage_reduction")
-    private int damageReduction;
-
-    @SerializedName("is_alive")
-    private boolean isAlive;
-
+    private int health;
+    private int score;
+    private Inventory inventory;
+    private List<String> canBeSeenBy;
     @SerializedName("effects")
     private List<Effect> effects;
 
-    private int point;
-    private int hp;
+//    private int point;
+//    private int hp;
 
     public Player() {
         setType(ElementType.PLAYER);
     }
 
-    public String getPlayerName() {
-        return playerName;
+//    public String getPlayerName() {
+//        return playerName;
+//    }
+//
+//    public int getBulletNum() {
+//        return bulletNum;
+//    }
+//
+//    public int getDamageReduction() {
+//        return damageReduction;
+//    }
+
+//    public int getPoint() {
+//        return point;
+//    }
+//
+//    public int getHp() {
+//        return hp;
+//    }
+
+//    public boolean getIsAlive() {
+//        return isAlive;
+//    }
+
+
+    public String getID() {
+        return ID;
     }
 
-    public int getBulletNum() {
-        return bulletNum;
+    public int getHealth() {
+        return health;
     }
 
-    public int getDamageReduction() {
-        return damageReduction;
+    public int getScore() {
+        return score;
     }
 
-    public int getPoint() {
-        return point;
+    public Inventory getInventory() {
+        return inventory;
     }
 
-    public int getHp() {
-        return hp;
-    }
-
-    public boolean getIsAlive() {
-        return isAlive;
+    public List<String> getCanBeSeenBy() {
+        return canBeSeenBy;
     }
 
     public List<Effect> getEffects() {
