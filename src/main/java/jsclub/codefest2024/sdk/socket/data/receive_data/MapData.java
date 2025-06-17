@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
 import jsclub.codefest2024.sdk.model.ElementType;
+import jsclub.codefest2024.sdk.model.buildings.Building;
 import jsclub.codefest2024.sdk.model.npcs.Enemy;
 import jsclub.codefest2024.sdk.factory.EnemyFactory;
 import jsclub.codefest2024.sdk.model.npcs.Ally;
@@ -25,26 +26,32 @@ public class MapData {
     @SerializedName("mapSize")
     public int mapSize;
 
-    @SerializedName("safeZone")
-    public int safeZone;
-
-    @SerializedName("blocks")
-    public List<Block> listBlocks;
-
-    @SerializedName("obstaccles")
+    @SerializedName("obstacles")
     public List<Obstacle> listObstacles;
 
-    @SerializedName("traps")
-    public List<Obstacle> listTraps;
+    @SerializedName("buildings")
+    public List<Building> listBuildings;
 
-    @SerializedName("listChests")
-    public List<Obstacle> listChests;
-
-    @SerializedName("structures")
-    public List<Structure> listStructures;
+    @SerializedName("safeZoneRadius")
+    public int safeZone;
+    
+    @SerializedName("isAccentWallOpened")
+    public boolean isAccentWallOpened;
 
     @SerializedName("entities")
     public List<Entity> listEntities;
+
+    // @SerializedName("blocks")
+    // public List<Block> listBlocks;
+
+    // @SerializedName("traps")
+    // public List<Obstacle> listTraps;
+
+    // @SerializedName("listChests")
+    // public List<Obstacle> listChests;
+
+    // @SerializedName("structures")
+    // public List<Structure> listStructures;
 
     @SerializedName("otherPlayers")
     public List<Player> otherPlayers;
@@ -61,12 +68,6 @@ public class MapData {
     public List<Bullet> listBullet = new ArrayList<>();
 
     public void categorizeMapData() throws CloneNotSupportedException {
-        for (Block b : listBlocks){
-            if (b.type == ElementType.OBSTACLE){
-                Obstacle obstacle = ObstacleFactory.getObstacle(b.id, b.x, b.y);
-                listObstacles.add(obstacle);
-            }
-        }
 
         for (Entity e : listEntities) {
             if (e.type == ElementType.OBSTACLE) {
@@ -102,9 +103,10 @@ public class MapData {
                 listArmors.add(armor);
             }
 
-            // if (e.type == ElementType.BULLET) {
-            //     listBullet.add(e)
-            // }
+            if (e.type == ElementType.BULLET) {
+                Bullet b = new Bullet();
+                listBullet.add(b);
+            }
         }
     }
 

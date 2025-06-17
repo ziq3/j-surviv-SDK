@@ -213,7 +213,7 @@ public class Hero {
             return;
         }
 
-        if (socket != null || getInventory().getThrowable() != null) {
+        if (socket == null || getInventory().getThrowable() == null) {
             System.out.println("DEBUG FROM SDK throwItem ERROR : Socket is null or inventory does not have throwable");
             return;
         }
