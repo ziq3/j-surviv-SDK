@@ -13,6 +13,7 @@ import jsclub.codefest2024.sdk.model.equipments.*;
 import jsclub.codefest2024.sdk.model.obstacles.*;
 import jsclub.codefest2024.sdk.model.players.Player;
 import jsclub.codefest2024.sdk.model.weapon.*;
+import jsclub.codefest2024.sdk.socket.data.receive_data.Entity;
 import jsclub.codefest2024.sdk.socket.data.receive_data.MapData;
 import jsclub.codefest2024.sdk.socket.data.receive_data.Structure;
 import jsclub.codefest2024.sdk.util.MsgPackUtil;
@@ -84,7 +85,6 @@ public class GameMap {
             Gson gson = new Gson();
             String message = MsgPackUtil.decode(arg);
             MapData mapData = gson.fromJson(message, MapData.class);
-            mapData.categorizeMapData();
 
             List<Obstacle> newListObstacles = new ArrayList<>();
             List<Enemy> newListEnemies = new ArrayList<>();
@@ -92,46 +92,65 @@ public class GameMap {
             List<Weapon> newListWeapons = new ArrayList<>();
             List<HealingItem> newListHealingItem = new ArrayList<>();
             List<Armor> newListArmor = new ArrayList<>();
+            // List<Bullet> newListBullets = new ArrayList<>();
 
             setSafeZone(mapData.safeZone);
 
-            for (Obstacle o : mapData.listObstacles) {
-                Obstacle obstacle = ObstacleFactory.getObstacle(o.getId(), o.getX(), o.getY());
+            for (Obstacle o : mapData.listObstacles){
+                Obstacle obstacle = ObstacleFactory.getObstacle(o.getId(), o.x, o.y);
                 newListObstacles.add(obstacle);
             }
             setListObstacles(newListObstacles);
+            
+            for (Entity entity : mapData.listEntities) {
+                if (entity.type == ElementType.OBSTACLE) {
+                    Obstacle obstacle = ObstacleFactory.getObstacle(entity.id, entity.x, entity.y);
+                    newListObstacles.add(obstacle);
+                }             
 
-            for (Enemy e : mapData.listEnemies) {
-                Enemy enemy = EnemyFactory.getEnemy(e.getId(), e.getX(), e.getY());
-                newListEnemies.add(enemy);
+                if (entity.type == ElementType.ENEMY) {
+                    Enemy enemy = EnemyFactory.getEnemy(entity.id, entity.x, entity.y);
+                    newListEnemies.add(enemy);
+                }
+                
+                if (entity.type == ElementType.ALLY) {
+                    Ally ally = AllyFactory.getAlly(entity.id, entity.x, entity.y);
+                    newListAllies.add(ally);
+                }
+                
+                if (entity.type == ElementType.MELEE
+                 || entity.type == ElementType.THROWABLE
+                 || entity.type == ElementType.GUN
+                 || entity.type == ElementType.SPECIAL) {
+                    Weapon weapon = WeaponFactory.getWeapon(entity.id, entity.x, entity.y);
+                    newListWeapons.add(weapon);
+                }
+                
+                if (entity.type == ElementType.HEALING_ITEM) {
+                    HealingItem healing = HealingItemFactory.getHealingItem(entity.id, entity.x, entity.y);
+                    newListHealingItem.add(healing);
+                }
+                
+                if (entity.type == ElementType.ARMOR
+                 || entity.type == ElementType.HELMET) {
+                    Armor armor = ArmorFactory.getArmor(entity.id, entity.x, entity.y);
+                    newListArmor.add(armor);
+                }
+
+                // if (entity.type == ElementType.BULLET) {
+                //     Bullet b = new Bullet();
+                //     newListBullets.add(b);
+                // }
             }
+            
+            setListObstacles(newListObstacles);
             setListEnemies(newListEnemies);
-
-            for (Ally a : mapData.listAllies) {
-                Ally ally = AllyFactory.getAlly(a.getId(), a.getX(), a.getY());
-                newListAllies.add(ally);
-            }
-            setListEnemies(newListEnemies);
-
-            for (Weapon w : mapData.listWeapons) {
-                Weapon weapon = WeaponFactory.getWeapon(w.getId(), w.getX(), w.getY());
-                newListWeapons.add(weapon);
-            }
+            setListAllies(newListAllies);
             setListWeapons(newListWeapons);
-
-            for (HealingItem h : mapData.listHealingItems) {
-                HealingItem healing = HealingItemFactory.getHealingItem(h.getId(), h.getX(), h.getY());
-                newListHealingItem.add(healing);
-            }
             setListHealingItems(newListHealingItem);
-
-            for (Armor a : mapData.listArmors) {
-                Armor armor = ArmorFactory.getArmor(a.getId(), a.getX(), a.getY());
-                newListArmor.add(armor);
-            }
             setListArmors(newListArmor);
-
-            setListBullets(mapData.listBullet);
+            
+            // setListBullets(mapData.listBullets);
             setOtherPlayerInfo(mapData.otherPlayers);
             setCurrentPlayer(mapData.currentPlayer);
 
@@ -153,12 +172,18 @@ public class GameMap {
 
     public Element getElementByIndex(int x, int y) {
         Element element = null;
-        element = this.findElementInListByIndex(x, y, this.listIndestructibleObstacles);
+        // element = this.findElementInListByIndex(x, y, this.listIndestructibleObstacles);
+        // if (element != null) return element;
+
+        element = this.findElementInListByIndex(x, y, this.listObstacles);
         if (element != null) return element;
 
         element = this.findElementInListByIndex(x, y, this.listEnemies);
         if (element != null) return element;
 
+        element = this.findElementInListByIndex(x, y, this.listAllies);
+        if (element != null) return element;
+        
         element = this.findElementInListByIndex(x, y, this.listWeapons);
         if (element != null) return element;
 
@@ -240,6 +265,16 @@ public class GameMap {
         return throwables;
     }
 
+    public List<Weapon> getAllSpecial() {
+        List<Weapon> specials = new ArrayList<>();
+        for (Weapon weapon : listWeapons) {
+            if (weapon.getType() == ElementType.SPECIAL) {
+                specials.add(weapon);
+            }
+        }
+        return specials;
+    }
+
     public int getMapSize() {
         return mapSize;
     }
@@ -300,9 +335,9 @@ public class GameMap {
         this.safeZone = safeZone;
     }
 
-    public void setListIndestructibleObstacles(List<Obstacle> listIndestructibleObstacles) {
-        this.listIndestructibleObstacles = listIndestructibleObstacles;
-    }
+    // public void setListIndestructibleObstacles(List<Obstacle> listIndestructibleObstacles) {
+    //     this.listIndestructibleObstacles = listIndestructibleObstacles;
+    // }
 
     public void setListObstacles(List<Obstacle> listObstacles) {
         this.listObstacles = listObstacles;
