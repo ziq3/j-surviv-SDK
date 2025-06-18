@@ -2,7 +2,9 @@ package jsclub.codefest2024.sdk.algorithm;
 
 import jsclub.codefest2024.sdk.base.Node;
 import jsclub.codefest2024.sdk.model.GameMap;
+import jsclub.codefest2024.sdk.model.buildings.Building;
 import jsclub.codefest2024.sdk.model.obstacles.Obstacle;
+import jsclub.codefest2024.sdk.model.obstacles.ObstacleTag;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -23,35 +25,65 @@ public class PathUtils {
     /**
      * Checks if Node x is within the safe area
      *
-     * @param x Node, darkAreaSize int, mapSize int  to check.
+     * param current Node, darkAreaSize int, mapSize int  to check.
      * @return boolean value.
      */
-//    public static boolean checkInsideSafeArea(Node x, int darkAreaSize, int mapSize) {
-//        return (x.x >= darkAreaSize && x.y >= darkAreaSize &&
-//                x.x < mapSize - darkAreaSize && x.y < mapSize - darkAreaSize);
-//    }
-        public static boolean checkInsideSafeArea(Node x, int safeZone) {
-            return (x.x < safeZone && x.y < safeZone);
-        }
 
+    public static Node getCenterOfMap(int mapSize) {
+        return new Node(mapSize/2, mapSize/2);
+    }
+
+    public static boolean checkInsideSafeArea(Node current, int safeZone, int mapSize) {
+        Node center = getCenterOfMap(mapSize);
+        return (Math.abs(current.getX() - center.getX()) < safeZone && Math.abs(current.getY() - center.getY()) < safeZone);
+    }
     /**
      * The algorithm to find the shortest path from the current node to the target node
      *
-     * @param  gameMap GameMap, restrictedNodes List<Node> , current Node , target Node , skipDarkArea boolean to calculate moves.
+     * param  gameMap GameMap, restrictedNodes List<Node> , current Node , target Node , skipDarkArea boolean to calculate moves.
      * @return String value as move string.
      */
+
+    public static String goXTimes(int time, String direction) {
+        String path = "";
+        for (int i = 0; i < time; i++) {
+            path += direction;
+        }
+        return path;
+    }
+
     public static String getShortestPath(GameMap gameMap, List<Node> restrictedNodes, Node current, Node target, boolean skipDarkArea) {
         int[] Dx = {-1, 1, 0, 0};
         int[] Dy = {0, 0, -1, 1};
         int mapSize = gameMap.getMapSize();
-//        int darkAreaSize = gameMap.getDarkAreaSize();
         int safeZone = gameMap.getSafeZone();
+
+        List<Building> buildingList = gameMap.getListBuildings();
+        List<Node> buildingWall = new ArrayList<>();
+        for (Building building:buildingList) { //get all node on buildings' wall
+            buildingWall.addAll(building.getWall());
+        }
+
+        List<Obstacle> canGoThroughList = gameMap.getObstaclesbyTag("CAN_GO_THROUGH");
+        List<Node> canGoThroughNodes = new ArrayList<>();
+        for(Obstacle o:canGoThroughList) {
+            canGoThroughNodes.add(new Node(o.getX(), o.getY()));
+        }
+
         List<Obstacle> listIndestructibleObstacles = gameMap.getListIndestructibleObstacles();
+        List<Node> listIndestructibleNodes = new ArrayList<>();
+        for(Obstacle o:listIndestructibleObstacles) {
+            listIndestructibleNodes.add(new Node(o.getX(), o.getY()));
+        }
+        listIndestructibleNodes.addAll(buildingWall);
+        listIndestructibleNodes.removeAll(canGoThroughNodes);
+        listIndestructibleNodes.addAll(restrictedNodes);
+
         ArrayList<ArrayList<Integer>> isRestrictedNodes = new ArrayList<>(mapSize + 5);
         ArrayList<ArrayList<Integer>> g = new ArrayList<>(mapSize + 5);
         ArrayList<ArrayList<Integer>> trace = new ArrayList<>(mapSize + 5);
 
-        for (int i = 0; i < mapSize + 1; i++) {
+        for (int i = 0; i < mapSize + 1; i++) { //create 2D maps
             isRestrictedNodes.add(new ArrayList<>(mapSize + 5));
             g.add(new ArrayList<>(mapSize + 5));
             trace.add(new ArrayList<>(mapSize + 5));
@@ -63,13 +95,7 @@ public class PathUtils {
             }
         }
 
-        for (Node point : restrictedNodes) {
-            if (point.x >= 0 && point.x < mapSize && point.y >= 0 && point.y < mapSize) {
-                isRestrictedNodes.get(point.x).set(point.y, 1);
-            }
-        }
-
-        for (Node point : listIndestructibleObstacles) {
+        for (Node point : listIndestructibleNodes) {
             if (point.x >= 0 && point.x < mapSize && point.y >= 0 && point.y < mapSize) {
                 isRestrictedNodes.get(point.x).set(point.y, 1);
             }
@@ -113,10 +139,8 @@ public class PathUtils {
 
                 if (x < 0 || y < 0 || x >= mapSize || y >= mapSize) continue;
                 if (isRestrictedNodes.get(x).get(y) == 1) continue;
-//                if (!skipDarkArea && !checkInsideSafeArea(new Node(x, y), darkAreaSize, mapSize))
-//                    continue;
 
-                if (!skipDarkArea && !checkInsideSafeArea(new Node(x, y), safeZone))
+                if (!skipDarkArea && !checkInsideSafeArea(current, safeZone, gameMap.getMapSize()))
                     continue;
 
                 int cost = g.get(u.x).get(u.y) + 1;
