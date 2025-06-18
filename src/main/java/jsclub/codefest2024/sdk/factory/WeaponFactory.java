@@ -27,9 +27,9 @@ public class WeaponFactory {
             Map.entry("CRYSTAL", new Weapon("CRYSTAL", ElementType.THROWABLE, 20, 30, 60, 2, 0, 60, 6, 9, AttackRange.LONG, new Bullet(60, 6), null)),
             Map.entry("SEED", new Weapon("SEED", ElementType.THROWABLE, 15, 45, 30, 10, 2, 30, 5, 9, AttackRange.LONG, new Bullet(30, 6), List.of(EffectFactory.getEffects("STUN")) )),
             Map.entry("MACE", new Weapon("MACE", ElementType.MELEE, -1, 60, 40, 5, 2, 40, 9, 0, AttackRange.MID, new Bullet(0, 0), List.of(EffectFactory.getEffects("STUN")))),
-            Map.entry("ROPE", new Weapon("ROPE", ElementType.SPECIAL, 25, 80, 5, 10, 2, 5, 6, 0, AttackRange.LONG, new Bullet(0, 12), List.of(EffectFactory.getEffects("STUN"), EffectFactory.getEffects("PULL")))),
-            Map.entry("BELL", new Weapon("BELL", ElementType.SPECIAL, 12, 70, 15, 0, 1, 15, 49, 0, AttackRange.LONG, new Bullet(0, 0), List.of(EffectFactory.getEffects("REVERSE")))),
-            Map.entry("SAHUR_BAT", new Weapon("SAHUR_BAT", ElementType.SPECIAL, 13, 70, 20, 10, 3, 20, 5, 0, AttackRange.LONG, new Bullet(20, 5), List.of(EffectFactory.getEffects("KNOCKBACK"))))
+            Map.entry("ROPE", new Weapon("ROPE", ElementType.SPECIAL, 50, 80, 5, 10, 2, 5, 6, 0, AttackRange.LONG, new Bullet(0, 12), List.of(EffectFactory.getEffects("STUN"), EffectFactory.getEffects("PULL")))),
+            Map.entry("BELL", new Weapon("BELL", ElementType.SPECIAL, 25, 70, 15, 0, 1, 15, 49, 0, AttackRange.LONG, new Bullet(0, 0), List.of(EffectFactory.getEffects("REVERSE")))),
+            Map.entry("SAHUR_BAT", new Weapon("SAHUR_BAT", ElementType.SPECIAL, 25, 70, 20, 10, 3, 20, 5, 0, AttackRange.LONG, new Bullet(20, 5), List.of(EffectFactory.getEffects("KNOCKBACK"))))
     );
 
     /**
