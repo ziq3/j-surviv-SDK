@@ -135,9 +135,9 @@ public class GameMap {
             setOtherPlayerInfo(mapData.otherPlayers);
             setCurrentPlayer(mapData.currentPlayer);
 
-            if (!currentPlayer.getIsAlive()) {
-                this.heroInventory.reset();
-            }
+//            if (!currentPlayer.getIsAlive()) {
+//                this.heroInventory.reset();
+//            }
         } catch (CloneNotSupportedException | IOException e) {
             throw new RuntimeException(e);
         }
