@@ -10,7 +10,7 @@ public class Entity {
     @SerializedName("x")
     public int x;
 
-    @SerializedName("x")
+    @SerializedName("y")
     public int y;
 
     @SerializedName("id")

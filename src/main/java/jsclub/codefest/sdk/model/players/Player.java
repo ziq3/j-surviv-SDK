@@ -22,8 +22,8 @@ public class Player extends Element {
 //    @SerializedName("is_alive")
 //    private boolean isAlive;
 
-    @SerializedName("id")
-    private String ID;
+//    @SerializedName("id")
+//    private String ID;
 
     private int health;
     private int score;
@@ -64,7 +64,7 @@ public class Player extends Element {
 //    }
 
     public String getID() {
-        return ID;
+        return super.getId();
     }
 
     public int getHealth() {
