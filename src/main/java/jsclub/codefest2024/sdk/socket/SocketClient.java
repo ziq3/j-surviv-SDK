@@ -5,7 +5,9 @@ import io.socket.emitter.Emitter;
 import jsclub.codefest2024.sdk.model.GameMap;
 import jsclub.codefest2024.sdk.model.Inventory;
 import jsclub.codefest2024.sdk.socket.event_handler.onMapInit;
+import jsclub.codefest2024.sdk.socket.event_handler.onPlayerInventoryAdd;
 import jsclub.codefest2024.sdk.socket.event_handler.onPlayerInventoryUpdate;
+import jsclub.codefest2024.sdk.socket.event_handler.onplayerInventoryClear;
 import jsclub.codefest2024.sdk.util.SocketUtil;
 
 import java.util.concurrent.CompletableFuture;
@@ -33,9 +35,10 @@ public class SocketClient {
             System.out.println("Connected to the server");
 
             socket.on(EventName.ON_MAP_INIT, new onMapInit(gameMap));
-            socket.on(EventName.ON_INVENTORY_UPDATE, new onPlayerInventoryUpdate(heroInventory));
+//            socket.on(EventName.ON_INVENTORY_UPDATE, new onPlayerInventoryUpdate(heroInventory));
             socket.on(EventName.ON_MAP_UPDATE, onMapUpdate);
-
+            socket.on(EventName.ON_EFFECT_APPLY,new onPlayerInventoryAdd(heroInventory));
+            socket.on(EventName.ON_EFFECT_CLEAR,new onplayerInventoryClear(heroInventory));
             socket.on(EventName.ON_PLAYER_REMOVE, args1 -> {
                 System.out.println("You've been kicked out of the server");
                 System.exit(0);

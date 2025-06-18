@@ -1,14 +1,20 @@
 package jsclub.codefest2024.sdk.model;
 
+import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
-import jsclub.codefest2024.sdk.factory.ArmorFactory;
-import jsclub.codefest2024.sdk.factory.HealingItemFactory;
-import jsclub.codefest2024.sdk.factory.WeaponFactory;
+import jsclub.codefest2024.sdk.base.Node;
+import jsclub.codefest2024.sdk.factory.*;
+import jsclub.codefest2024.sdk.model.buildings.Building;
 import jsclub.codefest2024.sdk.model.equipments.Armor;
 import jsclub.codefest2024.sdk.model.equipments.HealingItem;
+import jsclub.codefest2024.sdk.model.obstacles.Obstacle;
 import jsclub.codefest2024.sdk.model.weapon.Weapon;
 import jsclub.codefest2024.sdk.socket.data.receive_data.ItemData;
+import jsclub.codefest2024.sdk.socket.data.receive_data.MapData;
+import jsclub.codefest2024.sdk.socket.data.receive_data.Structure;
+import jsclub.codefest2024.sdk.util.MsgPackUtil;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,6 +73,103 @@ public class Inventory
     public Inventory() {
         // Set default value for melee is HAND
         this.melee = WeaponFactory.getWeaponById("HAND");
+    }
+
+    /**
+     * Decode message from server when new item added to inventory.
+     * update item slots in inventory
+     *
+     * @param arg The message parsed from server.
+     */
+    public void updateOnInventoryAdd(Object arg) {
+        try {
+            Gson gson = new Gson();
+            String message = MsgPackUtil.decode(arg);
+            ItemData itemData = gson.fromJson(message, ItemData.class);
+            ElementType type = itemData.getType();
+
+            switch (type) {
+                case GUN:
+                    setGun(WeaponFactory.getWeaponById(itemData.getID()));
+                    break;
+                case MELEE:
+                    setMelee(WeaponFactory.getWeaponById(itemData.getID()));
+                    break;
+                case THROWABLE:
+                    setThrowable(WeaponFactory.getWeaponById(itemData.getID()));
+                    break;
+                case SPECIAL:
+                    setSpecial(WeaponFactory.getWeaponById(itemData.getID()));
+                    break;
+                case ARMOR:
+                    setArmor(ArmorFactory.getArmorById(itemData.getID()));
+                    break;
+                case HELMET:
+                    setHelmet(ArmorFactory.getArmorById(itemData.getID()));
+                    break;
+                case HEALING_ITEM:
+                    if (listHealingItem.size() < 4) {
+                        listHealingItem.add(HealingItemFactory.getHealingItemById(itemData.getID()));
+                    } else {
+                        System.out.println("Full Item");
+                    }
+                    break;
+                default:
+                    System.out.println("Unknown ElementType: " + type);
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Decode message from server when an item removed from inventory.
+     * update item slots in inventory
+     *
+     * @param arg The message parsed from server.
+     */
+    public void updateOnInventoryClear(Object arg) {
+        try {
+            Gson gson = new Gson();
+            String message = MsgPackUtil.decode(arg);
+            String itemId = gson.fromJson(message, String.class);
+            Element element = new Element(itemId);
+            ElementType type = element.getType();
+
+            switch (type) {
+                case GUN:
+                    setGun(null);
+                    break;
+                case MELEE:
+                    setMelee(null);
+                    break;
+                case THROWABLE:
+                    setThrowable(null);
+                    break;
+                case SPECIAL:
+                    setSpecial(null);
+                    break;
+                case ARMOR:
+                    setArmor(null);
+                    break;
+                case HELMET:
+                    setHelmet(null);
+                    break;
+                case HEALING_ITEM:
+                    if (!listHealingItem.isEmpty()) {
+                        listHealingItem.remove(HealingItemFactory.getHealingItemById(itemId));
+                    } else {
+                        System.out.println("Out of item");
+                    }
+                    break;
+                default:
+                    System.out.println("Unknown ElementType: " + type);
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public Weapon getGun() {

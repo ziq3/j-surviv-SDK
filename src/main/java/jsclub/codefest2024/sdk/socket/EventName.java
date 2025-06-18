@@ -6,6 +6,7 @@ public class EventName {
     public static final String ON_START_GAME = "game:status:start";
     public static final String ON_MAP_UPDATE = "game:state:update";
     public static final String ON_INVENTORY_UPDATE = "game:player:inventory:add";
+    public static final String ON_INVENTORY_ADD= "game:player:inventory:add";
     public static final String ON_INVENTORY_CLEAR = "game:player:inventory:clear";
     public static final String ON_EFFECT_APPLY = "game:player:effects:apply";
     public static final String ON_EFFECT_CLEAR = "game:player:effects:clear";

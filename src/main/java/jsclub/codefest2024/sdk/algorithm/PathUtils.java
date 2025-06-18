@@ -64,7 +64,7 @@ public class PathUtils {
             buildingWall.addAll(building.getWall());
         }
 
-        List<Obstacle> canGoThroughList = gameMap.getObstaclesbyTag("CAN_GO_THROUGH");
+        List<Obstacle> canGoThroughList = gameMap.getObstaclesByTag("CAN_GO_THROUGH");
         List<Node> canGoThroughNodes = new ArrayList<>();
         for(Obstacle o:canGoThroughList) {
             canGoThroughNodes.add(new Node(o.getX(), o.getY()));
