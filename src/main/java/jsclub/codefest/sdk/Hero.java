@@ -147,7 +147,7 @@ public class Hero {
             return;
         }
 
-        if (socket == null || getInventory().getGun() == null) {
+        if (socket == null || getInventory().getSpecial() == null) {
             System.out.println("DEBUG FROM SDK useSpecial ERROR : Socket is null or inventory does not have special weapons");
             return;
         }

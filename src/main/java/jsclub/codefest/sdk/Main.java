@@ -3,8 +3,11 @@ package jsclub.codefest.sdk;
 import io.socket.emitter.Emitter;
 import jsclub.codefest.sdk.algorithm.PathUtils;
 import jsclub.codefest.sdk.base.Node;
+import jsclub.codefest.sdk.model.Element;
 import jsclub.codefest.sdk.model.GameMap;
+import jsclub.codefest.sdk.model.npcs.Ally;
 import jsclub.codefest.sdk.model.players.Player;
+import jsclub.codefest.sdk.model.weapon.Weapon;
 
 import java.io.IOException;
 

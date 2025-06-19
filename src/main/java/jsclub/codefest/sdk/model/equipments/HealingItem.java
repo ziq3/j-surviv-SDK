@@ -38,6 +38,18 @@ public class HealingItem extends Element {
         return usageTime;
     }
 
+    public int getDuration() {
+        return duration;
+    }
+
+    public int getRarity() {
+        return rarity;
+    }
+
+    public ArrayList<Effect> getEffects() {
+        return effects;
+    }
+
     public int getPoint() {
         return point;
     }
