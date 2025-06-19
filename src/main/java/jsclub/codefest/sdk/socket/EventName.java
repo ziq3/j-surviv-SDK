@@ -21,5 +21,6 @@ public class EventName {
     public static final String EMIT_THROW = "player:action:throw";
     public static final String EMIT_PICKUP_ITEM = "player:item:pick";
     public static final String EMIT_USE_ITEM = "player:item:use";
+    public static final String EMIT_USE_SPECIAL = "player:action:special";
     public static final String EMIT_REVOKE_ITEM = "player:item:drop";
 }

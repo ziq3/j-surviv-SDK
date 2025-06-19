@@ -7,6 +7,7 @@ import jsclub.codefest.sdk.factory.HealingItemFactory;
 import jsclub.codefest.sdk.model.GameMap;
 import jsclub.codefest.sdk.model.Inventory;
 import jsclub.codefest.sdk.model.equipments.HealingItem;
+import jsclub.codefest.sdk.model.weapon.Weapon;
 import jsclub.codefest.sdk.socket.EventName;
 import jsclub.codefest.sdk.socket.SocketClient;
 import jsclub.codefest.sdk.socket.data.emit_data.*;
@@ -129,10 +130,10 @@ public class Hero {
      * @param direction the direction in which to shoot
      * @throws IOException if an I/O error occurs
      */
-    public void useSpecial(String direction) throws IOException{
+    public void useSpecial(String direction, Weapon special) throws IOException{
         Socket socket = socketClient.getSocket();
 
-        if (direction.isEmpty() || direction == null) {
+        if (direction.isEmpty()) {
             System.out.println("DEBUG FROM SDK shoot ERROR : direction is null or empty");
             return;
         }
@@ -152,9 +153,9 @@ public class Hero {
             return;
         }
 
-        PlayerUseSpecialAction botUseSpecial = new PlayerUseSpecialAction(direction);
+        PlayerUseSpecialAction botUseSpecial = new PlayerUseSpecialAction(direction,special);
         byte[] bytes = MsgPackUtil.encodeFromObject(botUseSpecial);
-        socket.emit("USE_SPECIAL", (Object)bytes);
+        socket.emit(EventName.EMIT_USE_SPECIAL, (Object)bytes);
 
     }
 
