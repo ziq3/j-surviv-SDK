@@ -2,6 +2,7 @@ package jsclub.codefest.sdk.model.buildings;
 
 import jsclub.codefest.sdk.base.Node;
 import jsclub.codefest.sdk.model.Element;
+import jsclub.codefest.sdk.model.ElementType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ public class Building extends Element {
     public Building(String id, ShapeType shapeType) {
         super(id);
         this.shapeType = shapeType;
+        this.setType(ElementType.BUILDING);
     }
 
     public Building(String id, ShapeType shapeType, Node limitPos, Node landmarkPos) {
@@ -21,6 +23,7 @@ public class Building extends Element {
         this.shapeType = shapeType;
         this.limitPos = limitPos;
         this.landmarkPos = landmarkPos;
+        this.setType(ElementType.BUILDING);
     }
 
     public Node getCenter() {

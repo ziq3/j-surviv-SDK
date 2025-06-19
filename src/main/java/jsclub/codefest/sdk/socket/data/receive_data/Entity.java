@@ -20,7 +20,7 @@ public class Entity {
     public ElementType type;
 
     @SerializedName("attributes")
-    public List<Object> attributes;
+    public Object attributes;
 
     @Override
     public String toString() {

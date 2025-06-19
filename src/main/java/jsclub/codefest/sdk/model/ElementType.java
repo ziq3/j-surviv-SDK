@@ -14,4 +14,5 @@ public enum ElementType {
     OBSTACLE,
     ROAD,
     BULLET,
+    BUILDING
 }

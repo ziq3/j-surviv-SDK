@@ -22,7 +22,7 @@ public class Structure {
     public String id;
 
     @SerializedName("attributes")
-    public List<Object> attributes;
+    public Object attributes;
 
     
 

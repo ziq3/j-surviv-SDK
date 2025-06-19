@@ -26,75 +26,11 @@ public class MapData {
     @SerializedName("entities")
     public List<Entity> listEntities;
 
-    // @SerializedName("blocks")
-    // public List<Block> listBlocks;
-
-    // @SerializedName("traps")
-    // public List<Obstacle> listTraps;
-
-    // @SerializedName("listChests")
-    // public List<Obstacle> listChests;
-
-    // @SerializedName("structures")
-    // public List<Structure> listStructures;
-
     @SerializedName("otherPlayers")
     public List<Player> otherPlayers;
 
     @SerializedName("currentPlayer")
     public Player currentPlayer;
-
-    // Categorize da chuyen sang ben gameMap
-    // public List<Enemy> listEnemies = new ArrayList<>();
-    // public List<Ally> listAllies = new ArrayList<>();
-    // public List<Weapon> listWeapons = new ArrayList<>();
-    // public List<HealingItem> listHealingItems = new ArrayList<>();
-    // public List<Armor> listArmors = new ArrayList<>();
-    // public List<Bullet> listBullet = new ArrayList<>();
-
-    // public void categorizeMapData() throws CloneNotSupportedException {
-
-    //     for (Entity e : listEntities) {
-    //         if (e.type == ElementType.OBSTACLE) {
-    //             Obstacle obstacle = ObstacleFactory.getObstacle(e.id, e.x, e.y);
-    //             listObstacles.add(obstacle);
-    //         }
-
-    //         if (e.type == ElementType.ENEMY) {
-    //             Enemy enemy = EnemyFactory.getEnemy(e.id, e.x, e.y);
-    //             listEnemies.add(enemy);
-    //         }
-            
-    //         if (e.type == ElementType.ALLY) {
-    //             Ally ally = AllyFactory.getAlly(e.id, e.x, e.y);
-    //             listAllies.add(ally);
-    //         }
-
-    //         if (e.type == ElementType.MELEE
-    //          || e.type == ElementType.THROWABLE
-    //          || e.type == ElementType.GUN
-    //          || e.type == ElementType.SPECIAL) {
-    //             Weapon weapon = WeaponFactory.getWeapon(e.id, e.x, e.y);
-    //             listWeapons.add(weapon);
-    //         }
-
-    //         if (e.type == ElementType.HEALING_ITEM) {
-    //             HealingItem healing = HealingItemFactory.getHealingItem(e.id, e.x, e.y);
-    //             listHealingItems.add(healing);
-    //         }
-
-    //         if (e.type == ElementType.ARMOR) {
-    //             Armor armor = ArmorFactory.getArmor(e.id, e.x, e.y);
-    //             listArmors.add(armor);
-    //         }
-
-    //         if (e.type == ElementType.BULLET) {
-    //             Bullet b = new Bullet();
-    //             listBullet.add(b);
-    //         }
-    //     }
-    // }
-
 
     @Override
     public String toString() {

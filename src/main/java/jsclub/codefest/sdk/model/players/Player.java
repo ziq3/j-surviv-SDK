@@ -6,7 +6,6 @@ import jsclub.codefest.sdk.model.ElementType;
 import jsclub.codefest.sdk.model.Inventory;
 import jsclub.codefest.sdk.model.effects.Effect;
 
-import java.io.Serial;
 import java.util.List;
 
 public class Player extends Element {
@@ -25,43 +24,20 @@ public class Player extends Element {
 //    @SerializedName("id")
 //    private String ID;
 
+    @SerializedName("health")
     private int health;
+    @SerializedName("score")
     private int score;
+    @SerializedName("inventory")
     private Inventory inventory;
+    @SerializedName("canBeSeenBy")
     private List<String> canBeSeenBy;
     @SerializedName("effects")
     private List<Effect> effects;
 
-//    private int point;
-//    private int hp;
-
     public Player() {
         setType(ElementType.PLAYER);
     }
-
-//    public String getPlayerName() {
-//        return playerName;
-//    }
-//
-//    public int getBulletNum() {
-//        return bulletNum;
-//    }
-//
-//    public int getDamageReduction() {
-//        return damageReduction;
-//    }
-
-//    public int getPoint() {
-//        return point;
-//    }
-//
-//    public int getHp() {
-//        return hp;
-//    }
-
-//    public boolean getIsAlive() {
-//        return isAlive;
-//    }
 
     public String getID() {
         return super.getId();
