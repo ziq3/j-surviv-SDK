@@ -46,7 +46,7 @@ public class GameMap {
         try {
             Gson gson = new Gson();
             String message = MsgPackUtil.decode(arg);
-            System.out.println(message);
+//            System.out.println("game map init:"+ message);
             MapData mapData = gson.fromJson(message, MapData.class);
             setMapSize(mapData.mapSize);
 
@@ -75,8 +75,7 @@ public class GameMap {
             Gson gson = new Gson();
             String message = MsgPackUtil.decode(arg);
             MapData mapData = gson.fromJson(message, MapData.class);
-            System.out.println("message update map:"+message);
-            System.out.println(mapData);
+//            System.out.println(mapData);
             List<Obstacle> newListObstacles = new ArrayList<>();
             List<Enemy> newListEnemies = new ArrayList<>();
             List<Ally> newListAllies = new ArrayList<>();
@@ -92,7 +91,7 @@ public class GameMap {
 //                newListObstacles.add(obstacle);
 //            }
 //            setListObstacles(newListObstacles);
-            
+
             for (Entity entity : mapData.listEntities) {
                 if (entity.type == ElementType.OBSTACLE) {
                     Obstacle obstacle = ObstacleFactory.getObstacle(entity.id, entity.x, entity.y);

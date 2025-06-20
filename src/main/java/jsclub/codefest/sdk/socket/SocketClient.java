@@ -1,12 +1,15 @@
 package jsclub.codefest.sdk.socket;
 
+import com.google.gson.Gson;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 import jsclub.codefest.sdk.model.GameMap;
 import jsclub.codefest.sdk.model.Inventory;
 import jsclub.codefest.sdk.socket.event_handler.*;
+import jsclub.codefest.sdk.util.MsgPackUtil;
 import jsclub.codefest.sdk.util.SocketUtil;
 
+import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
 public class SocketClient {
@@ -31,8 +34,18 @@ public class SocketClient {
         socket.on(Socket.EVENT_CONNECT, args -> {
             System.out.println("Connected to the server");
 
+
+            socket.onAnyIncoming((event) -> {
+                System.out.println("Received event: " + new Gson().toJson(event[0]));
+                try {
+                    System.out.println("event data: " + new Gson().toJson(MsgPackUtil.decode((Object) event[1])));
+                } catch (IOException ex) {
+                    System.err.println("error:" + ex);
+                }
+            });
+
+
             socket.on(EventName.ON_MAP_INIT, new onMapInit(gameMap));
-//            socket.on(EventName.ON_INVENTORY_UPDATE, new onPlayerInventoryUpdate(heroInventory));
             socket.on(EventName.ON_MAP_UPDATE, onMapUpdate);
             socket.on(EventName.ON_INVENTORY_ADD,new onPlayerInventoryAdd(heroInventory));
             socket.on(EventName.ON_INVENTORY_CLEAR,new onplayerInventoryClear(heroInventory));
