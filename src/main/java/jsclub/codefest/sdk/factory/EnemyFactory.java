@@ -14,7 +14,7 @@ public class EnemyFactory {
         "LEOPARD", new Enemy("LEOPARD", 5),
         "ANACONDA", new Enemy("ANACONDA", 5),
         "RHINO", new Enemy("RHINO", 15),
-        "GOLEM", new Enemy("GOLEM", 20)
+        "GOLEM", new Enemy("GOLEM", 15)
     );
 
     /**
