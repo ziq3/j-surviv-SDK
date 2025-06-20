@@ -14,9 +14,9 @@ import java.io.IOException;
 public class Main {
     private static final String SERVER_URL = "https://cf25-server-staging.jsclub.dev";
     //    private static final String SERVER_URL = "http://192.168.123.126:3000";
-    private static final String GAME_ID = "DEMO133";
+    private static final String GAME_ID = "000000";
     private static final String PLAYER_NAME = "phi";
-    private static final String SECRET_KEY = "sk-hVA_5XJ9Tj-3tqbqH-QHcw:mwGy6DygTBsxAWvoJzWiCMkTz5hAu4RSYWV5fTSyADrfNl_Nw6TE1mWPb8a0msX2FS5G7b-gFAXjLfG2Duy60w";
+    private static final String SECRET_KEY = "sk-Ys4OBUD4S1KehCMwQpG3TA:VeTfIcYNRwY7gHSi8dft5iKa40M23hPwDoFg0uQK7Ahih724tA4fFX9qEUWrxhNoc6G3vu76L0Hw_hRFNMXJkg";
 //    private static final String SECRET_KEY = "sk-bKmGDraDRVSV1opmx1gZ7Q:YYrurLaSNj8-FVHpMiYtfWn5quvLda1NevFOe6d41QL3JCKDl8WVy5xsi34fXdjWS3SRQIdGtCNBD8Hk-gkWHw";
 
     public static void main(String[] args) throws IOException {
