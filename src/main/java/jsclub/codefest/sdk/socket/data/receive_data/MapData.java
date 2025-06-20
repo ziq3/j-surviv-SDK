@@ -14,9 +14,6 @@ public class MapData {
     @SerializedName("obstacles")
     public List<Obstacle> listObstacles;
 
-    @SerializedName("buildings")
-    public List<Structure> listBuildings;
-
     @SerializedName("safeZoneRadius")
     public int safeZone;
     

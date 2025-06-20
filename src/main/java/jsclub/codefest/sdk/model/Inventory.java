@@ -4,14 +4,12 @@ import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 import jsclub.codefest.sdk.base.Node;
 import jsclub.codefest.sdk.factory.*;
-import jsclub.codefest.sdk.model.buildings.Building;
 import jsclub.codefest.sdk.model.equipments.Armor;
 import jsclub.codefest.sdk.model.equipments.HealingItem;
 import jsclub.codefest.sdk.model.obstacles.Obstacle;
 import jsclub.codefest.sdk.model.weapon.Weapon;
 import jsclub.codefest.sdk.socket.data.receive_data.ItemData;
 import jsclub.codefest.sdk.socket.data.receive_data.MapData;
-import jsclub.codefest.sdk.socket.data.receive_data.Structure;
 import jsclub.codefest.sdk.util.MsgPackUtil;
 
 import java.io.IOException;
