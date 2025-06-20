@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
-import jsclub.codefest.sdk.model.buildings.Building;
 import jsclub.codefest.sdk.base.Node;
 import jsclub.codefest.sdk.factory.*;
 import jsclub.codefest.sdk.model.npcs.*;
@@ -15,16 +14,13 @@ import jsclub.codefest.sdk.model.players.Player;
 import jsclub.codefest.sdk.model.weapon.*;
 import jsclub.codefest.sdk.socket.data.receive_data.Entity;
 import jsclub.codefest.sdk.socket.data.receive_data.MapData;
-import jsclub.codefest.sdk.socket.data.receive_data.Structure;
 import jsclub.codefest.sdk.util.MsgPackUtil;
 
 public class GameMap {
     private int mapSize = 0;
     private int safeZone = 0;
-    private int darkAreaSize = 0;
     private List<Obstacle> listIndestructibleObstacles = new ArrayList<>();
     private List<Obstacle> listObstacles = new ArrayList<>();
-    private List<Building> listBuildings = new ArrayList<>();
     private List<Enemy> listEnemies = new ArrayList<>();
     private List<Ally> listAllies = new ArrayList<>();
     private List<Weapon> listWeapons = new ArrayList<>();
@@ -55,21 +51,12 @@ public class GameMap {
             setMapSize(mapData.mapSize);
 
             List<Obstacle> newListObstacles = new ArrayList<>();
-            List<Building> newListBuildings = new ArrayList<>();
             
             for (Obstacle o : mapData.listObstacles){
                 Obstacle obstacle = ObstacleFactory.getObstacle(o.getId(), o.x, o.y);
                 newListObstacles.add(obstacle);
             }
             setListObstacles(newListObstacles);
-
-            for (Structure b : mapData.listBuildings) {
-                Node limitPos = new Node(b.xBottomRight, b.yBottomRight);
-                Node landmarkPos = new Node(b.xTopLeft, b.yTopLeft);
-                Building building = BuildingFactory.getBuilding(b.id, limitPos, landmarkPos);
-                newListBuildings.add(building);
-            }
-            setListBuildings(newListBuildings);
 
 //            System.out.println("mapData"+getListObstacles());
         } catch (CloneNotSupportedException | IOException e) {
@@ -327,10 +314,6 @@ public class GameMap {
         return currentPlayer;
     }
 
-    public List<Building> getListBuildings() {
-        return listBuildings;
-    }
-
     public void setMapSize(int mapSize) {
         this.mapSize = mapSize;
     }
@@ -377,10 +360,6 @@ public class GameMap {
 
     public void setCurrentPlayer(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
-    }
-
-    public void setListBuildings(List<Building> listBuildings) {
-        this.listBuildings = listBuildings;
     }
 
     @Override

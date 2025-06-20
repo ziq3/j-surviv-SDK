@@ -2,9 +2,7 @@ package jsclub.codefest.sdk.algorithm;
 
 import jsclub.codefest.sdk.base.Node;
 import jsclub.codefest.sdk.model.GameMap;
-import jsclub.codefest.sdk.model.buildings.Building;
 import jsclub.codefest.sdk.model.obstacles.Obstacle;
-import jsclub.codefest.sdk.model.obstacles.ObstacleTag;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -44,13 +42,6 @@ public class PathUtils {
      * @return String value as move string.
      */
 
-    public static String goXTimes(int time, String direction) {
-        String path = "";
-        for (int i = 0; i < time; i++) {
-            path += direction;
-        }
-        return path;
-    }
 
     public static String getShortestPath(GameMap gameMap, List<Node> restrictedNodes, Node current, Node target, boolean skipDarkArea) {
         int[] Dx = {-1, 1, 0, 0};
@@ -58,11 +49,6 @@ public class PathUtils {
         int mapSize = gameMap.getMapSize();
         int safeZone = gameMap.getSafeZone();
 
-        List<Building> buildingList = gameMap.getListBuildings();
-        List<Node> buildingWall = new ArrayList<>();
-        for (Building building:buildingList) { //get all node on buildings' wall
-            buildingWall.addAll(building.getWall());
-        }
 
         List<Obstacle> canGoThroughList = gameMap.getObstaclesByTag("CAN_GO_THROUGH");
         List<Node> canGoThroughNodes = new ArrayList<>();
@@ -75,7 +61,6 @@ public class PathUtils {
         for(Obstacle o:listIndestructibleObstacles) {
             listIndestructibleNodes.add(new Node(o.getX(), o.getY()));
         }
-        listIndestructibleNodes.addAll(buildingWall);
         listIndestructibleNodes.removeAll(canGoThroughNodes);
         listIndestructibleNodes.addAll(restrictedNodes);
 
