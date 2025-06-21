@@ -15,8 +15,11 @@ import jsclub.codefest.sdk.model.weapon.*;
 import jsclub.codefest.sdk.socket.data.receive_data.Entity;
 import jsclub.codefest.sdk.socket.data.receive_data.MapData;
 import jsclub.codefest.sdk.util.MsgPackUtil;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class GameMap {
+    private static final Logger log = LogManager.getLogger(GameMap.class);
     private int mapSize = 0;
     private int safeZone = 0;
     private List<Obstacle> listIndestructibleObstacles = new ArrayList<>();
@@ -44,6 +47,7 @@ public class GameMap {
      */
     public void updateOnInitMap(Object arg) {
         try {
+            System.out.println("init arg: "+ arg);
             Gson gson = new Gson();
             String message = MsgPackUtil.decode(arg);
 //            System.out.println("game map init:"+ message);
@@ -73,7 +77,9 @@ public class GameMap {
     public void updateOnUpdateMap(Object arg) {
         try {
             Gson gson = new Gson();
+            System.out.println("arg:"+arg);
             String message = MsgPackUtil.decode(arg);
+            System.out.println(message);
             MapData mapData = gson.fromJson(message, MapData.class);
 //            System.out.println(mapData);
             List<Obstacle> newListObstacles = new ArrayList<>();

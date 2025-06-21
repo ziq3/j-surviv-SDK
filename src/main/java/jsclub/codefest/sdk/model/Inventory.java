@@ -18,30 +18,12 @@ import java.util.List;
 
 public class Inventory
 {
-    @SerializedName("ranged")
     private Weapon gun;
-    @SerializedName("melee")
     private Weapon melee;
-    @SerializedName("thrown")
     private Weapon throwable;
-    @SerializedName("special")
     private Weapon special;
-    @SerializedName("armor")
     private Armor armor;
-    @SerializedName("helmet")
     private Armor helmet;
-//    @SerializedName("item1")
-//    private HealingItem item1;
-//
-//    @SerializedName("item2")
-//    private HealingItem item2;
-//
-//    @SerializedName("item3")
-//    private HealingItem item3;
-//
-//    @SerializedName("item4")
-//    private HealingItem item4;
-
     private List<HealingItem> listHealingItem = new ArrayList<>();
 
     public Inventory(List<ItemData> items) {
@@ -83,8 +65,11 @@ public class Inventory
         try {
             Gson gson = new Gson();
             String message = MsgPackUtil.decode(arg);
+            System.out.println(message);
             ItemData itemData = gson.fromJson(message, ItemData.class);
+            System.out.println(itemData);
             ElementType type = itemData.getType();
+            System.out.println("type: "+type);
 
             switch (type) {
                 case GUN:
