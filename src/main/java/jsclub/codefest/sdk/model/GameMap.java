@@ -56,7 +56,7 @@ public class GameMap {
                 Obstacle obstacle = ObstacleFactory.getObstacle(o.getId(), o.x, o.y);
                 newListObstacles.add(obstacle);
             }
-            setListObstacles(newListObstacles);
+            this.listIndestructibleObstacles = newListObstacles;
 
 //            System.out.println("mapData"+getListObstacles());
         } catch (CloneNotSupportedException | IOException e) {
