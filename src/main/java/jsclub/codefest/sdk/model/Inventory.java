@@ -1,6 +1,8 @@
 package jsclub.codefest.sdk.model;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.annotations.SerializedName;
 import jsclub.codefest.sdk.base.Node;
 import jsclub.codefest.sdk.factory.*;
@@ -65,9 +67,12 @@ public class Inventory
         try {
             Gson gson = new Gson();
             String message = MsgPackUtil.decode(arg);
-            System.out.println("add" + message);
-            ItemData itemData = gson.fromJson(message, ItemData.class);
-            System.out.println(itemData);
+            System.out.println("MESSAGE: " + message);
+            JsonObject jsonObject = JsonParser.parseString(message).getAsJsonObject();
+            JsonObject itemJson = jsonObject.getAsJsonObject("item");
+            ItemData itemData = gson.fromJson(itemJson, ItemData.class);
+            //  ItemData itemData = gson.fromJson(message, ItemData.class);
+            System.out.println("ITEMDATA: " + itemData);
             ElementType type = itemData.getType();
             System.out.println("type: "+type);
 
