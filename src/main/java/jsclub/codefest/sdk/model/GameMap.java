@@ -22,7 +22,7 @@ public class GameMap {
     private static final Logger log = LogManager.getLogger(GameMap.class);
     private int mapSize = 0;
     private int safeZone = 0;
-    private List<Obstacle> listIndestructibleObstacles = new ArrayList<>();
+    private List<Obstacle> listObstacleInit = new ArrayList<>();
     private List<Obstacle> listObstacles = new ArrayList<>();
     private List<Enemy> listEnemies = new ArrayList<>();
     private List<Ally> listAllies = new ArrayList<>();
@@ -50,7 +50,7 @@ public class GameMap {
             System.out.println("init arg: "+ arg);
             Gson gson = new Gson();
             String message = MsgPackUtil.decode(arg);
-//            System.out.println("game map init:"+ message);
+            System.out.println("game map init:"+ message);
             MapData mapData = gson.fromJson(message, MapData.class);
             setMapSize(mapData.mapSize);
 
@@ -60,9 +60,9 @@ public class GameMap {
                 Obstacle obstacle = ObstacleFactory.getObstacle(o.getId(), o.x, o.y);
                 newListObstacles.add(obstacle);
             }
-            setListObstacles(newListObstacles);
+            setListObstacleInit(newListObstacles);
 
-//            System.out.println("mapData"+getListObstacles());
+            System.out.println("mapData: "+this.listObstacles);
         } catch (CloneNotSupportedException | IOException e) {
             throw new RuntimeException(e);
         }
@@ -81,7 +81,7 @@ public class GameMap {
             String message = MsgPackUtil.decode(arg);
             System.out.println(message);
             MapData mapData = gson.fromJson(message, MapData.class);
-//            System.out.println(mapData);
+            System.out.println(mapData);
             List<Obstacle> newListObstacles = new ArrayList<>();
             List<Enemy> newListEnemies = new ArrayList<>();
             List<Ally> newListAllies = new ArrayList<>();
@@ -279,10 +279,6 @@ public class GameMap {
         return safeZone;
     }
 
-    public List<Obstacle> getListIndestructibleObstacles() {
-        return listIndestructibleObstacles;
-    }
-
     public List<Obstacle> getListObstacles() {
         return listObstacles;
     }
@@ -325,6 +321,14 @@ public class GameMap {
 
     public void setSafeZone(int safeZone) {
         this.safeZone = safeZone;
+    }
+
+    public void setListObstacleInit(List<Obstacle> listObstacleInit) {
+        this.listObstacleInit = listObstacleInit;
+    }
+
+    public List<Obstacle> getListObstacleInit() {
+        return listObstacleInit;
     }
 
     // public void setListIndestructibleObstacles(List<Obstacle> listIndestructibleObstacles) {

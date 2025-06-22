@@ -65,7 +65,7 @@ public class Inventory
         try {
             Gson gson = new Gson();
             String message = MsgPackUtil.decode(arg);
-            System.out.println(message);
+            System.out.println("add" + message);
             ItemData itemData = gson.fromJson(message, ItemData.class);
             System.out.println(itemData);
             ElementType type = itemData.getType();
@@ -116,6 +116,7 @@ public class Inventory
         try {
             Gson gson = new Gson();
             String message = MsgPackUtil.decode(arg);
+            System.out.println("clear: "+message);
             String itemId = gson.fromJson(message, String.class);
             Element element = new Element(itemId);
             ElementType type = element.getType();
@@ -265,5 +266,10 @@ public void reset() {
     this.setListHealingItem(null);
 
 }
+
+    @Override
+    public String toString() {
+        return this.getGun().getId();
+    }
 }
 
