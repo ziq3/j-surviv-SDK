@@ -45,13 +45,13 @@ public class Main {
                     Player player = gameMap.getCurrentPlayer();
                     Player nearestPlayer = getNearestPlayer(gameMap, player);
 
-                    List<Obstacle> traps = gameMap.getObstaclesByTag("TRAP");
+//                    List<Obstacle> traps = gameMap.getObstaclesByTag("TRAP");
                     List<Obstacle> initThings = gameMap.getListObstacleInit();
                     List<Obstacle> canGoThroughs = gameMap.getObstaclesByTag("CAN_GO_THROUGH");
 
                     List<Node> restrictedNodes = new ArrayList<>(initThings);
                     restrictedNodes.removeAll(canGoThroughs);
-                    restrictedNodes.addAll(traps);
+//                    restrictedNodes.addAll(traps);
 
 
                     if (player == null || player.getHealth() ==0) {

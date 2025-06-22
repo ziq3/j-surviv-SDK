@@ -49,12 +49,12 @@ public class PathUtils {
         int mapSize = gameMap.getMapSize();
         int safeZone = gameMap.getSafeZone();
 
-        List<Obstacle> obstacles = gameMap.getListObstacles();
-        System.out.println("obstacle:"+ obstacles);
-        List<Obstacle> obstaclesInit = gameMap.getListObstacleInit();
-        System.out.println("obstacle init:"+ obstaclesInit);
+        List<Obstacle> initThings = gameMap.getListObstacleInit();
+        List<Obstacle> canGoThroughs = gameMap.getObstaclesByTag("CAN_GO_THROUGH");
 
-        List<Node> listIndestructibleNodes = new ArrayList<>(restrictedNodes);
+        List<Node> listIndestructibleNodes = new ArrayList<>(initThings);
+        listIndestructibleNodes.removeAll(canGoThroughs);
+        listIndestructibleNodes.addAll(restrictedNodes);
 
         ArrayList<ArrayList<Integer>> isRestrictedNodes = new ArrayList<>(mapSize + 5);
         ArrayList<ArrayList<Integer>> g = new ArrayList<>(mapSize + 5);
