@@ -199,7 +199,7 @@ public void reset() {
 
     @Override
     public String toString() {
-        return this.getGun().getId();
+        return new Gson().toJson(this);
     }
 }
 

@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class Main {
     private static final String SERVER_URL = "https://cf25-server-staging.jsclub.dev";
-    private static final String GAME_ID = "184055";
+    private static final String GAME_ID = "113706";
     private static final String PLAYER_NAME = "lily";
     private static final String SECRET_KEY = "sk-_1cbwgEAQ_-1nRK0TsThqw:sfTqg9SnxrLE38umH71MTWzl0emAQWli6-aO4UaxWOQjrBxRhQjh--hi3yqGRP93pwMGn9Muw6WLWHLTRAxOpQ";
 
@@ -53,7 +53,8 @@ class MapUpdateListener implements Emitter.Listener {
                 return;
             }
 
-            System.out.println("CurrentPlayer: (" + player.x + "," + player.y + ")");
+            System.out.println("CurrentPlayer: " + player.getPosition());
+            System.out.println("CurrentInventory: " + player.getInventory());
 
             handleStuckDetection(player);
             if (stuckCounter > Main.STUCK_LIMIT) {
@@ -64,13 +65,12 @@ class MapUpdateListener implements Emitter.Listener {
             List<Node> nodesToAvoid = getNodesToAvoid(gameMap);
             Player nearestPlayer = getNearestPlayer(gameMap, player);
 
-            if (shouldDodge(nearestPlayer, player)) {
-                handleDodge(nearestPlayer, nodesToAvoid, player);
-            } else if (player.getInventory().getGun() == null) {
+            if (player.getInventory().getGun() == null) {
                 handleSearchForGun(gameMap, player, nodesToAvoid);
             } else {
                 handleCombat(nearestPlayer, nodesToAvoid, player);
             }
+
 
         } catch (Exception e) {
             System.err.println("Critical error in call method: " + e.getMessage());
@@ -95,7 +95,9 @@ class MapUpdateListener implements Emitter.Listener {
     }
 
     private boolean shouldDodge(Player nearestPlayer, Player player) {
-        return nearestPlayer != null && PathUtils.distance(player, nearestPlayer) <= Main.DODGE_RANGE;
+        return player.getInventory().getGun() == null &&
+                nearestPlayer != null &&
+                PathUtils.distance(player, nearestPlayer) <= Main.DODGE_RANGE;
     }
 
     private void handleDodge(Player nearestPlayer, List<Node> nodesToAvoid, Player player) throws IOException {
@@ -186,7 +188,6 @@ class MapUpdateListener implements Emitter.Listener {
         List<Player> otherPlayers = gameMap.getOtherPlayerInfo();
         Player target = null;
         int minDistance = 99999;
-
         for (Player otherPlayer : otherPlayers) {
             if (otherPlayer.getHealth() > 0) {
                 int distance = PathUtils.distance(player, otherPlayer);

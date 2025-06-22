@@ -53,8 +53,9 @@ public class PathUtils {
         List<Obstacle> canGoThroughs = gameMap.getObstaclesByTag("CAN_GO_THROUGH");
 
         List<Node> listIndestructibleNodes = new ArrayList<>(initThings);
-        listIndestructibleNodes.removeAll(canGoThroughs);
         listIndestructibleNodes.addAll(restrictedNodes);
+        listIndestructibleNodes.removeAll(canGoThroughs);
+        listIndestructibleNodes.removeIf(node -> node.x == target.x && node.y == target.y);
 
         ArrayList<ArrayList<Integer>> isRestrictedNodes = new ArrayList<>(mapSize + 5);
         ArrayList<ArrayList<Integer>> g = new ArrayList<>(mapSize + 5);
@@ -130,7 +131,6 @@ public class PathUtils {
         }
 
         if (!existPath) return null;
-        System.out.println("path:"+ ans.toString());
         return ans.toString();
     }
 }
