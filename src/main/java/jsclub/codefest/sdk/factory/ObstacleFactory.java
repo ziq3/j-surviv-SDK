@@ -20,9 +20,7 @@ public class ObstacleFactory {
         Map.entry("INDESTRUCTIBLE", new Obstacle("INDESTRUCTIBLE", ElementType.OBSTACLE, List.of(ObstacleTag.PULLABLE_ROPE, ObstacleTag.HERO_HIT_BY_BAT_WILL_BE_STUNNED))),
         Map.entry("POND", new Obstacle("POND", ElementType.OBSTACLE, List.of(ObstacleTag.CAN_GO_THROUGH, ObstacleTag.CAN_SHOOT_THROUGH, ObstacleTag.HERO_HIT_BY_BAT_WILL_BE_STUNNED))),
         Map.entry("BUSH", new Obstacle("BUSH", ElementType.OBSTACLE, List.of(ObstacleTag.CAN_GO_THROUGH, ObstacleTag.CAN_SHOOT_THROUGH))),
-        Map.entry("RIVER", new Obstacle("RIVER", ElementType.OBSTACLE, List.of(ObstacleTag.CAN_SHOOT_THROUGH, ObstacleTag.HERO_HIT_BY_BAT_WILL_BE_STUNNED))),
-        Map.entry("ANCIENT_WELL", new Obstacle("ANCIENT_WELL", ElementType.OBSTACLE, List.of(ObstacleTag.PULLABLE_ROPE, ObstacleTag.HERO_HIT_BY_BAT_WILL_BE_STUNNED)))
-    );
+        Map.entry("RIVER", new Obstacle("RIVER", ElementType.OBSTACLE, List.of(ObstacleTag.CAN_SHOOT_THROUGH, ObstacleTag.HERO_HIT_BY_BAT_WILL_BE_STUNNED))) );
 
     /**
      * Find obstacle by id.
