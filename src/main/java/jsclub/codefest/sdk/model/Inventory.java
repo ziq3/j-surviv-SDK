@@ -193,7 +193,7 @@ public void reset() {
 //    this.setItem2(null);
 //    this.setItem3(null);
 //    this.setItem4(null);
-    this.setListHealingItem(null);
+    this.setListHealingItem(new ArrayList<>());
 
 }
 
