@@ -16,10 +16,10 @@ public class HealingItemFactory {
         "MERMAID_TAIL", new HealingItem("MERMAID_TAIL", ElementType.HEALING_ITEM, 15, 1, 20, 0, 20, null),
         "PHOENIX_FEATHERS", new HealingItem("PHOENIX_FEATHERS", ElementType.HEALING_ITEM, 10, 1.5, 40, 0, 25, null),
         "UNICORN_BLOOD", new HealingItem("UNICORN_BLOOD", ElementType.HEALING_ITEM, 5, 3, 80, 0, 30, null),
-            "ELIXIR", new HealingItem("ELIXIR", ElementType.SPECIAL, 5, 0, 5, 7, 30, List.of(EffectFactory.getEffects("CONTROL_IMMUNITY")) ),
-            "MAGIC", new HealingItem("MAGIC", ElementType.SPECIAL, 5, 0, 0, 5, 30, List.of(EffectFactory.getEffects("INVISIBLE")) ),
-            "ELIXIR_OF_LIFE", new HealingItem("ELIXIR_OF_LIFE", ElementType.SPECIAL, 5, 0, 100, 0, 30, List.of(EffectFactory.getEffects("REVIVAL"), EffectFactory.getEffects("UNDEAD")) ),
-            "COMPASS", new HealingItem("COMPASS", ElementType.SPECIAL, -1, 2, 0, 7, 60, List.of(EffectFactory.getEffects("STUN")) )
+            "ELIXIR", new HealingItem("ELIXIR", ElementType.HEALING_ITEM, 5, 0, 5, 7, 30, List.of(EffectFactory.getEffects("CONTROL_IMMUNITY")) ),
+            "MAGIC", new HealingItem("MAGIC", ElementType.HEALING_ITEM, 5, 0, 0, 5, 30, List.of(EffectFactory.getEffects("INVISIBLE")) ),
+            "ELIXIR_OF_LIFE", new HealingItem("ELIXIR_OF_LIFE", ElementType.HEALING_ITEM, 5, 0, 100, 0, 30, List.of(EffectFactory.getEffects("REVIVAL"), EffectFactory.getEffects("UNDEAD")) ),
+            "COMPASS", new HealingItem("COMPASS", ElementType.HEALING_ITEM, -1, 2, 0, 7, 60, List.of(EffectFactory.getEffects("STUN")) )
 
 
     );
